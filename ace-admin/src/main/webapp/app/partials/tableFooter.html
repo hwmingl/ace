@@ -1,0 +1,40 @@
+<h3 class="col-xs-12 text-center  bigger-125 " ng-show="loading">
+    <i id="loading" class="icon-spinner icon-spin orange bigger-125"></i>
+</h3>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="dataTables_info">
+            展示第{{table.startIndex}}条记录至第{{table.endIndex}}条记录（总计{{table.total}}条记录）
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="dataTables_paginate paging_bootstrap">
+            <ul class="pagination">
+                <li class="{{table.getDisableLabelforPrevious()}}">
+                    <a href="" ng-click="table.gotoFirstPage()">
+                        <i class="icon-double-angle-left"></i>
+                    </a>
+                </li>
+                <li class="{{table.getDisableLabelforPrevious()}}">
+                    <a href="" ng-click="table.previousPage()">
+                        <i class="icon-angle-left"></i>
+                    </a>
+                </li>
+                <li ng-repeat="num in table.getCurrentPageNumDisplay()"
+                    class="{{table.getActiveLabel(num)}}">
+                    <a href="" ng-click="table.changePage(num)">{{num}}</a>
+                </li>
+                <li class="{{table.getDisableLabelforNext()}}">
+                    <a href="" ng-click="table.nextPage()">
+                        <i class="icon-angle-right"></i>
+                    </a>
+                </li>
+                <li class="{{table.getDisableLabelforNext()}}">
+                    <a href="" ng-click="table.gotoLastPage()">
+                        <i class="icon-double-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

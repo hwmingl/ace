@@ -1,0 +1,45 @@
+<div class="page-header">
+    <h1>
+        证书数据
+        <small>
+            <i class="icon-double-angle-right"></i>
+            管理证书数据
+        </small>
+    </h1>
+</div><!-- /.page-header -->
+
+<div class="row" ng-controller="ncsoCtrl">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+
+                        <label for="form-field-1" class="col-sm-1 control-label no-padding-right text-right">身份证号</label>
+                        <div class="col-sm-3 ">
+                            <input class="form-control" type="text" id="filterfullname" ng-model="condition.fullName"/>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <span class="input-group-btn text-center" >
+									<button type="button"   class="btn btn-purple btn-sm" ng-click="search()">
+                                        查询
+                                        <i class="icon-search icon-on-right bigger-110"></i>
+                                    </button>
+					        </span>
+
+                            <span class="input-group-btn text-left" >
+									<button type="button" class="btn btn-purple btn-sm" data-toggle="modal"
+                                            data-target="#modal-form" ng-click="clearSelect()">
+                                        添加
+                                        <i class="fa fa-plus bigger-110" ></i>
+                                    </button>
+							</span>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
