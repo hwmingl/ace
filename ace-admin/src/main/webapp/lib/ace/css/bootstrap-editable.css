@@ -107,7 +107,7 @@
     height: 250px; 
 }
 
-/* clear button shown as link in date inputs */
+/* remove button shown as link in date inputs */
 .editable-clear {
    clear: both;
    font-size: 0.9em;
@@ -115,7 +115,7 @@
    text-align: right;
 }
 
-/* IOS-style clear button for text inputs */
+/* IOS-style remove button for text inputs */
 .editable-clear-x {
    background: url('../img/clear.png') center center no-repeat;
    display: block;
