@@ -14,6 +14,7 @@
     <!-- 自动扫描包中注解spring-->
     <context:component-scan base-package="com.fighter.ace"/>
     <context:annotation-config/>
+    <!--
     <import resource="classpath:spring/application-datasource.xml"/>
-
+    -->
 </beans>

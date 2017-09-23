@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>jeecms-left</title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        $(function(){
+            Cms.lmenu('lmenu');
+        });
+    </script>
+</head>
+<body class="lbody">
+    <div class="left">
+        <#include "/cms_sys/date.html"/>
+        <ul class="w-lful">
+            <li><a href="admin/toUpdate.do?id=${_admin_user_key.id}&index=index" target="rightFrame">个人资料</a></li>
+            <li><a href="statistic/v_member_reg.do" target="rightFrame">会员注册量走势图</a></li>
+            <li><a href="statistic/v_model_download.do" target="rightFrame">模型下载量走势图</a></li>
+        </ul>
+    </div>
+</body>
+</html>

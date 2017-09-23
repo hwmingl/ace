@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd"
+       default-lazy-init="true">
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/login.jspx" />
+        <property name="successUrl" value="/" />
+        <property name="filters">
+            <util:map>
+                <entry key="authc" value-ref="authcFilter" />
+                <entry key="user" value-ref="userFilter" />
+            </util:map>
+        </property>
+        <!--anon匿名 authc登录认证  user用户已登录 logout退出filter-->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.html = anon
+                /login.do = anon
+                /admin/cms/login.do = authc
+                /admin/cms/logout.do = logout
+                /admin/cms/** = user
+            </value>
+        </property>
+    </bean>
+
+    <!-- Shiro Filter -->
+    <bean id="adminUrlBean" class="com.fighter.ace.cms.security.CmsAdminUrl">
+        <property name="adminLogin" value="/admin/cms/login.do"/>
+        <property name="adminPrefix" value="/admin/cms/"/>
+    </bean>
+
+    <bean id="authcFilter" class="com.fighter.ace.cms.security.CmsAuthenticationFilter" parent="adminUrlBean">
+        <property name="adminIndex" value="/admin/cms/index.do"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="userFilter" class="com.fighter.ace.cms.security.CmsUserFilter" parent="adminUrlBean"/>
+    <bean id="logoutFilter" class="com.fighter.ace.cms.security.CmsLogoutFilter" parent="adminUrlBean"/>
+
+
+    <!-- 安全管理 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+        <property name="realm" ref="authorizingRealm"/>
+    </bean>
+
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManager">
+            <ref local="cacheManager"/>
+        </property>
+    </bean>
+
+    <bean id="cacheManager" class="com.fighter.ace.framework.web.cache.WebEhCacheManagerFacotryBean">
+        <property name="cacheManagerName" value="cacheManager"/>
+        <property name="configLocation">
+            <value>classpath:ehcache.xml</value>
+        </property>
+        <property name="diskStoreLocation">
+            <value>/WEB-INF/cache</value>
+        </property>
+    </bean>
+
+    <bean id="authorizingRealm" class="com.fighter.ace.cms.security.CmsAuthorizingRealm">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"/>
+                <!--   true means hex encoded, false means base64 encoded -->
+                <property name="storedCredentialsHexEncoded" value="true"/>
+                <!-- 迭代次数 -->
+                <property name="hashIterations" value="1" />
+            </bean>
+        </property>
+        <property name="userService" ref="userService" />
+    </bean>
+
+    <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after -->
+    <!-- the lifecycleBeanProcessor has run: -->
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+</beans>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.main.UserDao">
+
+    <resultMap id="userBeanMap" type="com.fighter.ace.cms.entity.main.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="VARCHAR"/>
+        <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 添加用户 -->
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.main.User">
+        insert into t_user (
+        create_time,
+        modified_time,
+        user_name,
+        user_pwd,
+        real_name,
+        role,
+        last_login_time,
+        status
+        )
+        values (
+        #{createTime},
+        #{modifiedTime},
+        #{userName},
+        #{userPwd},
+        #{realName},
+        #{role},
+        #{lastLoginTime},
+        #{status}
+        )
+    </insert>
+
+    <!-- 根据username查询用户 -->
+    <select id="listBy" parameterType="java.util.Map" resultMap="userBeanMap">
+        select *
+        from t_user
+        where user_name = #{username}
+    </select>
+
+    <select id="getById" parameterType="java.lang.Long" resultMap="userBeanMap">
+        select *
+        from t_user
+        where id = #{id}
+    </select>
+
+    <!-- 查询总页数 -->
+    <select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+        COUNT(1)
+        FROM
+        t_user
+    </select>
+
+    <!-- 查询分页用户 -->
+    <select id="listPage" parameterType="java.util.Map" resultMap="userBeanMap">
+        SELECT
+        *
+        FROM
+        t_user
+        ORDER BY id DESC
+        LIMIT #{pageFirst},#{pageSize}
+    </select>
+
+    <!-- 根据条件查询分页用户 -->
+    <select id="countByPageParam">
+
+    </select>
+
+    <!-- 删除用户 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from t_user
+        where id = #{id}
+    </delete>
+
+    <!-- 批量删除用户 -->
+    <delete id="batchDelete" parameterType="java.lang.Integer">
+        delete from t_user
+        where id in
+        <foreach item="id" collection="array" open="(" separator ="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 更新用户信息 -->
+    <update id="update" parameterType="com.fighter.ace.cms.entity.main.User">
+        update t_user
+        set
+        modified_time = #{modifiedTime},
+        user_pwd = #{userPwd},
+        <if test="lastLoginTime != null">last_login_time = #{lastLoginTime},</if>
+        real_name = #{realName}
+        where id = #{id}
+    </update>
+</mapper>
