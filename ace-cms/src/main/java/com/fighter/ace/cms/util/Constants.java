@@ -30,8 +30,4 @@ public class Constants {
     public static final Integer STATUS_BACK = 403;
 
 
-
-
-    public static final String PERMISSION_MODEL = "_permission_key";
-
 }

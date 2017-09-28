@@ -1,8 +1,8 @@
 package com.fighter.ace.cms.security;
 
 
-import com.fighter.ace.cms.entity.main.User;
-import com.fighter.ace.cms.service.UserService;
+import com.fighter.ace.cms.entity.main.CmsUser;
+import com.fighter.ace.cms.service.CmsUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -26,7 +26,7 @@ public class CmsAuthorizingRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        User user = userService.getByUserName(token.getUsername());
+        CmsUser user = cmsUserService.getByUserName(token.getUsername());
 		if (user != null) {
 			return new SimpleAuthenticationInfo(user.getUserName(), user.getUserPwd(), getName());
 		} else {
@@ -39,7 +39,7 @@ public class CmsAuthorizingRealm extends AuthorizingRealm {
 	 */
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		String username = (String) principals.getPrimaryPrincipal();
-        User user = userService.getByUserName(username);
+        CmsUser user = cmsUserService.getByUserName(username);
 		SimpleAuthorizationInfo auth = new SimpleAuthorizationInfo();
 		if (user != null) {
 			Set<String>viewPermissionSet=new HashSet<String>();
@@ -58,9 +58,9 @@ public class CmsAuthorizingRealm extends AuthorizingRealm {
 		  super.clearCachedAuthorizationInfo(pc);
 	}
 
-	protected UserService userService;
+	protected CmsUserService cmsUserService;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setCmsUserService(CmsUserService cmsUserService) {
+        this.cmsUserService = cmsUserService;
     }
 }

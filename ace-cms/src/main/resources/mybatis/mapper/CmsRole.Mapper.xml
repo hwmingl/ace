@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.main.CmsRoleDao">
+
+
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.main.CmsRole">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="is_super" property="isSuper" jdbcType="BOOLEAN"/>
+        <result column="perms" property="perms" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 添加用户 -->
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.main.CmsRole" keyProperty="id" useGeneratedKeys="true">
+        insert into t_role (
+        create_time,
+        modified_time,
+        name,
+        is_super,
+        perms
+        )
+        values (
+        now(),
+        now(),
+        #{name},
+        #{isSuper},
+        #{perms}
+        )
+    </insert>
+
+    <select id="listBy" parameterType="java.util.Map" resultMap="beanMap">
+        select *
+        from t_role
+        where name = #{name}
+    </select>
+
+    <!-- 查询总页数 -->
+    <select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+        COUNT(1)
+        FROM
+        t_role
+    </select>
+
+    <!-- 查询分页新闻 -->
+    <select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
+        SELECT
+        *
+        FROM
+        t_role
+        ORDER BY id DESC
+        LIMIT #{pageFirst},#{pageSize}
+    </select>
+
+
+
+</mapper>
+

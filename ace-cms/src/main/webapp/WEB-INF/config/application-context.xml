@@ -15,6 +15,11 @@
     <context:component-scan base-package="com.fighter.ace.cms.dao,com.fighter.ace.cms.service"/>
     <context:annotation-config/>
 
+
+    <!--自定义标签-->
+    <!--后台权限标签-->
+    <bean id="cms_perm" class="com.fighter.ace.framework.directive.PermistionDirective"/>
+
     <import resource="classpath:application-datasource.xml"/>
     <import resource="cms-shiro-context.xml"/>
 </beans>

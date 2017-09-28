@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by hanebert on 16/5/4.
  */
 @Data
-public class User extends BaseEntity {
+public class CmsUser extends BaseEntity {
 
     private String userName;
     private String userPwd;
@@ -19,4 +19,5 @@ public class User extends BaseEntity {
     private Date lastLoginTime;
     private Integer status;
 
+    private boolean isSuper;
 }

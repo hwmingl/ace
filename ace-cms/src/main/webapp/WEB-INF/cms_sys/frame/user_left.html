@@ -14,11 +14,11 @@ $(function(){
 <div class="left">
 <#include "/cms_sys/date.html"/>
      <ul class="w-lful">
-		<li><a href="user_right.do" target="rightFrame">欢迎页</a></li>
-		 <li><a href="../member/list.do" target="rightFrame">会员管理</a></li>
-		 <li><a href="../designer/list.do" target="rightFrame">设计师管理</a></li>
-		 <li><a href="../admin/list.do" target="rightFrame">管理员</a></li>
-		 <li><a href="../cmslog/v_list.do" target="rightFrame">操作日志</a></li>
+         <@cms_perm url="/member/v_list.do">
+            <li><a href="../admin/v_list.do" target="rightFrame">管理员管理</a></li>
+          </@cms_perm>
+         <li><a href="../role/v_list.do" target="rightFrame">角色管理</a></li>
+         <li><a href="../log/v_list.do" target="rightFrame">操作日志</a></li>
      </ul>
 </div>
 </body>

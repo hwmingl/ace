@@ -1,7 +1,7 @@
 package com.fighter.ace.cms.security;
 
-import com.fighter.ace.cms.entity.main.User;
-import com.fighter.ace.cms.service.UserService;
+import com.fighter.ace.cms.entity.main.CmsUser;
+import com.fighter.ace.cms.service.CmsUserService;
 import com.fighter.ace.cms.util.CmsUtil;
 import com.fighter.ace.framework.utils.MD5Util;
 import com.fighter.ace.framework.web.RequestUtils;
@@ -138,7 +138,7 @@ public class CmsAuthenticationFilter extends FormAuthenticationFilter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		String username = (String) subject.getPrincipal();
         String password = RequestUtils.getQueryParam(req,"password");
-        User user = userService.getByUserName(username);
+        CmsUser user = cmsUserService.getByUserName(username);
         if (password != null && user != null && MD5Util.md5Encode(password).equals(user.getUserPwd())){
             HttpSession session = req.getSession();
             session.setAttribute(CmsUtil.ADMIN_USER_KEY, user);
@@ -194,7 +194,7 @@ public class CmsAuthenticationFilter extends FormAuthenticationFilter {
 	
 
 
-	private UserService userService;
+	private CmsUserService cmsUserService;
 
 	
 	private String adminPrefix;
@@ -225,7 +225,7 @@ public class CmsAuthenticationFilter extends FormAuthenticationFilter {
 		this.adminLogin = adminLogin;
 	}
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setCmsUserService(CmsUserService cmsUserService) {
+        this.cmsUserService = cmsUserService;
     }
 }

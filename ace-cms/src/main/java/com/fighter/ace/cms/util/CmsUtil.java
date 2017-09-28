@@ -2,7 +2,7 @@ package com.fighter.ace.cms.util;
 
 
 import com.fighter.ace.cms.entity.main.MarkConfig;
-import com.fighter.ace.cms.entity.main.User;
+import com.fighter.ace.cms.entity.main.CmsUser;
 
 import static com.fighter.ace.cms.util.Constants.UPLOAD_PATH;
 
@@ -42,8 +42,8 @@ public class CmsUtil {
      * @param request
      * @return
      */
-    public static Long getUserId(HttpServletRequest request) {
-        User user = getUser(request);
+    public static Long getAdminUserId(HttpServletRequest request) {
+        CmsUser user = getAdminUser(request);
         if (user != null) {
             return Long.valueOf(user.getId());
         } else {
@@ -57,8 +57,8 @@ public class CmsUtil {
      * @param request
      * @return
      */
-    public static User getUser(HttpServletRequest request) {
-        return (User) request.getSession().getAttribute(ADMIN_USER_KEY);
+    public static CmsUser getAdminUser(HttpServletRequest request) {
+        return (CmsUser) request.getSession().getAttribute(ADMIN_USER_KEY);
     }
 
 }

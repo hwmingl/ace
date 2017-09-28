@@ -35,7 +35,7 @@
 
     <bean id="authcFilter" class="com.fighter.ace.cms.security.CmsAuthenticationFilter" parent="adminUrlBean">
         <property name="adminIndex" value="/admin/cms/index.do"/>
-        <property name="userService" ref="userService"/>
+        <property name="cmsUserService" ref="cmsUserService"/>
     </bean>
     <bean id="userFilter" class="com.fighter.ace.cms.security.CmsUserFilter" parent="adminUrlBean"/>
     <bean id="logoutFilter" class="com.fighter.ace.cms.security.CmsLogoutFilter" parent="adminUrlBean"/>
@@ -73,7 +73,7 @@
                 <property name="hashIterations" value="1" />
             </bean>
         </property>
-        <property name="userService" ref="userService" />
+        <property name="cmsUserService" ref="cmsUserService" />
     </bean>
 
     <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after -->

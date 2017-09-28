@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        $(function() {
+            $("#jvForm").validate();
+        });
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 角色管理 - 修改</div>
+    <form class="ropt">
+        <#if index??>
+            <input type="button" value="返回列表" onclick="window.history.go(-1);" class="return-button"/>
+            <#else>
+                <input type="submit" value="返回列表" onclick="this.form.action='list.do';" class="return-button"/>
+        </#if>
+        <input type="hidden" name="pageNo" value="${pageNo!}"/>
+    </form>
+    <div class="clear"/>
+</div>
+<div class="body-box">
+
+</div>
+</body>
+</html>

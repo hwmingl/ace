@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <link rel="stylesheet" href="${base}/res/ztree/css/ztree.css" type="text/css">
+    <script type="text/javascript" src="${base}/res/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <style type="text/css">
+        .perm-container{}
+        .perm-layout-1{padding:3px 0;}
+        .perm-layout-2{padding-left:30px;}
+    </style>
+    <script type="text/javascript">
+        $(function() {
+            $("#jvForm").validate();
+        });
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 角色管理 - 添加</div>
+    <form class="ropt">
+        <input type="submit" value="返回列表" onclick="this.form.action='v_list.do';" class="return-button"/>&nbsp;&nbsp;
+    </form>
+    <div class="clear"/>
+</div>
+<div class="body-box">
+    <form method="post" action="o_save.do" id="jvForm">
+        <input type="hidden" id="perms" name="perms"/>
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">
+                    <span class="pn-frequired">*</span>角色名:
+                </td>
+                <td class="pn-fcontent">
+                    <input type="text" name="name" vld="{required:true,username:true,remote:'check_name.do',messages:{remote:'角色名已被使用'}}"  maxlength="50"/>
+                </td>
+                <td width="15%" class="pn-flabel pn-flabel-h">
+                    <span class="pn-frequired">*</span>拥有所有权限:</td>
+                <td colspan="1" class="pn-fcontent">
+                    <label><input type="radio" value="true" name="all"/>是</label>
+                    <label><input type="radio" value="false" checked="checked" name="all"/>否</label>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">
+                    功能权限:
+                </td>
+                <td colspan="3" class="pn-fcontent">
+                    <#include "perms.html"/>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="4" class="pn-fbutton">
+                    <input type="submit" value="提交" onclick="submitNodes()" class="submit"/> &nbsp; <input type="reset" value="重置" class="reset"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function disablePerms() {
+        var nodes = ztree.getNodes();
+        if($("input[name=all]:checked").val()=="true") {
+            ztree.checkAllNodes(false);
+            for(var i=0;i<nodes.length;i++){
+                ztree.setChkDisabled(nodes[i], true,false,true);
+            }
+        } else {
+            for(var i=0;i<nodes.length;i++){
+                ztree.setChkDisabled(nodes[i], false,false,true);
+            }
+        }
+    }
+    $(function() {
+        disablePerms();
+        $("#jvForm").validate();
+        $("input[name=all]").bind("click",function(){
+            disablePerms();
+        });
+    });
+    function submitNodes(){
+        var nodes = ztree.getCheckedNodes(true);
+        var str = "";
+        var perms = "";
+        for(var i=0;i<nodes.length;i++){
+            if(nodes[i].perm!=null){
+                str += nodes[i].id+ ",";
+                perms += nodes[i].perm+ ",";
+            }
+        }
+        if(perms.length>0) {
+            perms = perms.substring(0,perms.length-1);
+        }
+        $("#perms").val(perms);
+    }
+</script>
+
+</body>
+</html>

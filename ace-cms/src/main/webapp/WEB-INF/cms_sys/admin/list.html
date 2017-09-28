@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>jeecms-left</title>
+    <#include "/cms_sys/head.html"/>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 用户 - 管理员管理</div>
+    <form class="ropt">
+        <input class="add" type="submit" value="添加" onclick="this.form.action='v_add.do';"/>&nbsp;&nbsp;
+    </form>
+    <div class="clear"></div>
+</div>
+<div class="body-box">
+
+    <form id="tableForm" method="post">
+        <input type="hidden" name="pageNo" value="1"/>
+        <table class="pn-ltable" style="" width="100%" cellspacing="1" cellpadding="0" border="0">
+            <thead class="pn-lthead"><tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>真实姓名</th>
+                <th>拥有角色</th>
+                <th>最后登录时间</th>
+                <th>最后修改时间</th>
+                <th>操作选项</th></tr></thead>
+            <tbody  class="pn-ltbody">
+            <#list pageBean.recordList as bean>
+            <tr onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
+                <td align="center">${bean.id}</td>
+                <td align="center">${bean.userName!}</td>
+                <td align="center">${bean.realName!}</td>
+                <td align="center">${bean.role!}</td>
+                <td align="center">${bean.lastLoginTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                <td align="center">${bean.modifiedTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                <td align="center">	修改 | 删除</td>
+            </tr>
+            </#list>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+</body>
+</html>

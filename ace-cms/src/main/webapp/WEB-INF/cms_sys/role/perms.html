@@ -1,0 +1,62 @@
+<#assign cc="frame:content_main,content:v_left,content:v_list"/>
+<#assign mc="frame:maintain_main,frame:maintain_left,frame:maintain_right"/>
+<#assign uc="frame:user_main,frame:user_left,frame:user_right"/>
+<#assign ec="frame:expand_left,frame:expand_main,frame:expand_right"/>
+<#assign sc="frame:statistic_main,frame:statistic_left,frame:statistic_right"/>
+<#assign configc="frame:config_main,frame:config_left,frame:config_right"/>
+<#assign tc="template:template_main,template:v_left,template:v_tree,template:v_list"/>
+<#assign rc="resource:resource_main,resource:v_left,resource:v_tree,resource:v_list"/>
+
+<SCRIPT type="text/javascript">
+    var setting = {
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    var zNodes =[
+        { id:1, pId:0, name:"全选", open:true,perm:"index,map,top,main,left,right"},
+        { id:11, pId:1, name:"首页"},
+
+        { id:111, pId:11, name:"个人资料修改"},
+        { id:1111, pId:111, name:"查看",perm:"personal:v_profile,personal:v_checkPwd"},
+        { id:1112, pId:111, name:"修改",perm:"personal:o_profile"},
+
+
+        { id:20, pId:1, name:"内容"},
+        { id:70, pId:1, name:"统计"},
+
+        { id:80, pId:1, name:"用户"},
+
+        { id:800, pId:80, name:"用户管理"},
+        { id:8000, pId:800, name:"列表",perm:"admin:v_list,${uc}"},
+        { id:8001, pId:800, name:"添加",perm:"admin:v_add,${uc}"},
+        { id:8002, pId:800, name:"保存",perm:"admin:o_save,${uc}"},
+        { id:8003, pId:800, name:"修改",perm:"admin:v_edit,${uc}"},
+        { id:8004, pId:800, name:"更新",perm:"admin:o_update,${uc}"},
+        { id:8005, pId:800, name:"删除",perm:"admin:o_delete,${uc}"},
+
+        { id:801, pId:80, name:"角色管理"},
+        { id:8010, pId:801, name:"列表",perm:"role:v_list,role:v_tree,${uc}"},
+        { id:8011, pId:801, name:"添加",perm:"role:v_add,${uc}"},
+        { id:8012, pId:801, name:"保存",perm:"role:o_save,${uc}"},
+        { id:8013, pId:801, name:"修改",perm:"role:v_edit,${uc}"},
+        { id:8014, pId:801, name:"更新",perm:"role:o_update,${uc}"},
+        { id:8015, pId:801, name:"删除",perm:"role:o_delete,${uc}"},
+
+        { id:90, pId:1, name:"配置"}
+    ];
+    $(document).ready(function(){
+        ztree =$.fn.zTree.init($("#tree"), setting, zNodes);
+    });
+</SCRIPT>
+
+<div class="content_wrap">
+    <div class="zTreeDemoBackground left">
+        <ul id="tree" class="ztree"></ul>
+    </div>
+</div>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fighter.ace.cms.dao.main.UserDao">
-
-    <resultMap id="userBeanMap" type="com.fighter.ace.cms.entity.main.User">
+<mapper namespace="com.fighter.ace.cms.dao.main.CmsUserDao">
+    <resultMap id="userBeanMap" type="com.fighter.ace.cms.entity.main.CmsUser">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
@@ -13,10 +12,11 @@
         <result column="role" property="role" jdbcType="VARCHAR"/>
         <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="is_admin" property="isSuper" jdbcType="BOOLEAN"/>
     </resultMap>
 
     <!-- 添加用户 -->
-    <insert id="insert" parameterType="com.fighter.ace.cms.entity.main.User">
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.main.CmsUser" keyProperty="id" useGeneratedKeys="true">
         insert into t_user (
         create_time,
         modified_time,
@@ -28,14 +28,14 @@
         status
         )
         values (
-        #{createTime},
-        #{modifiedTime},
+        now(),
+        now(),
         #{userName},
         #{userPwd},
         #{realName},
         #{role},
-        #{lastLoginTime},
-        #{status}
+        now(),
+        1
         )
     </insert>
 
@@ -91,7 +91,7 @@
     </delete>
 
     <!-- 更新用户信息 -->
-    <update id="update" parameterType="com.fighter.ace.cms.entity.main.User">
+    <update id="update" parameterType="com.fighter.ace.cms.entity.main.CmsUser">
         update t_user
         set
         modified_time = #{modifiedTime},

@@ -1,12 +1,20 @@
 package com.fighter.ace.framework.web.interceptor;
 
+import com.fighter.ace.cms.entity.main.CmsUser;
+import com.fighter.ace.cms.security.CmsThreadVariable;
+import com.fighter.ace.cms.service.CmsUserService;
+import com.fighter.ace.cms.util.CmsUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.UrlPathHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * CMS上下文信息拦截器
@@ -16,30 +24,47 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AdminContextInterceptor extends HandlerInterceptorAdapter {
 
+    public static final String PERMISSION_MODEL = "_permission_key";
 
     //可以进行编码、安全控制等处理
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        // 获得用户
+        CmsUser user = null;
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.isAuthenticated()) {
+            String username =  (String) subject.getPrincipal();
+            user = cmsUserService.getByUserName(username);
+        }
+        // User加入线程变量
+        CmsThreadVariable.setUser(user);
+        // URI
         String uri = getURI(request);
         if (exclude(uri)) {
             return true;
         }
-
         //System.out.println(getURI(request));
         return super.preHandle(request, response, handler);
     }
 
     //有机会修改ModelAndView
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        super.postHandle(request, response, handler, modelAndView);
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mav) throws Exception {
+        CmsUser user = CmsUtil.getAdminUser(request);
+        // 不控制权限时perm为null，PermistionDirective标签将以此作为依据不处理权限问题。
+        if (auth && user != null && !user.isSuper() && mav != null
+                && mav.getModelMap() != null && mav.getViewName() != null
+                && !mav.getViewName().startsWith("redirect:")) {
+            mav.getModelMap().addAttribute(PERMISSION_MODEL, getUserPermission(user));
+        }
     }
 
     //可以根据ex是否为null判断是否发生了异常，进行日志记录
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        super.afterCompletion(request, response, handler, ex);
+        // Sevlet容器有可能使用线程池，所以必须手动清空线程变量。
+        CmsThreadVariable.removeUser();
     }
 
 
@@ -84,8 +109,32 @@ public class AdminContextInterceptor extends HandlerInterceptorAdapter {
     }
 
 
+    private Set<String> getUserPermission(CmsUser user){
+        Set<String>viewPermissionSet = new HashSet<String>();
+        Set<String> perms = new HashSet<>();
+        perms.add("member:v_list.do");
+
+        Set<String> userPermission = new HashSet<String>();
+        if(perms!=null){
+            for(String perm : perms){
+                perm = "/" + perm;
+                if(perm.contains(":")){
+                    perm=perm.replace(":", "/").replace("*", "");
+                }
+                userPermission.add(perm);
+            }
+        }
+        return userPermission;
+    }
+
+
+    private CmsUserService cmsUserService;
     private boolean auth = true;
     private String[] excludeUrls;
+
+    public void setCmsUserService(CmsUserService cmsUserService) {
+        this.cmsUserService = cmsUserService;
+    }
 
     public void setAuth(boolean auth) {
         this.auth = auth;

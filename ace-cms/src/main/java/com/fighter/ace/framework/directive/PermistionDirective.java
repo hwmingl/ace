@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.fighter.ace.cms.util.Constants.PERMISSION_MODEL;
+import static com.fighter.ace.framework.web.interceptor.AdminContextInterceptor.PERMISSION_MODEL;
 
 /**
  * 后台管理员权限许可
