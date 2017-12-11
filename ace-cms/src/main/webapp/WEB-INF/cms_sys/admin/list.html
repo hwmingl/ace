@@ -27,15 +27,18 @@
                 <th>最后修改时间</th>
                 <th>操作选项</th></tr></thead>
             <tbody  class="pn-ltbody">
-            <#list pageBean.recordList as bean>
+            <#list recordList as bean>
             <tr onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
                 <td align="center">${bean.id}</td>
                 <td align="center">${bean.userName!}</td>
                 <td align="center">${bean.realName!}</td>
-                <td align="center">${bean.role!}</td>
+                <td align="center">${bean.roleName!}</td>
                 <td align="center">${bean.lastLoginTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td align="center">${bean.modifiedTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                <td align="center">	修改 | 删除</td>
+                <td align="center">
+                    <a href="v_edit.do?id=${bean.id}" class="pn-opt">修改</a> |
+                    <a href="o_delete.do?id=${bean.id}" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a>
+                </td>
             </tr>
             </#list>
             </tbody>

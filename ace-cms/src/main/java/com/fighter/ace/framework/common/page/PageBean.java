@@ -8,7 +8,7 @@ import java.util.Map;
  * Created by hanebert on 16/4/24.
  * 分页组件
  */
-public class PageBean implements Serializable {
+public class PageBean<T> implements Serializable {
 
     // 指定的或是页面参数
     private int currentPage; // 当前页
@@ -16,7 +16,7 @@ public class PageBean implements Serializable {
 
     // 查询数据库
     private int totalCount; // 总记录数
-    private List<Object> recordList; // 本页的数据列表
+    private List<T> recordList; // 本页的数据列表
 
     // 计算
     private int pageCount; // 总页数
@@ -36,7 +36,7 @@ public class PageBean implements Serializable {
      * @param totalCount
      * @param recordList
      */
-    public PageBean(int currentPage, int numPerPage, int totalCount, List<Object> recordList) {
+    public PageBean(int currentPage, int numPerPage, int totalCount, List<T> recordList) {
         this.currentPage = currentPage;
         this.numPerPage = numPerPage;
         this.totalCount = totalCount;
@@ -77,7 +77,7 @@ public class PageBean implements Serializable {
      * @param totalCount
      * @param recordList
      */
-    public PageBean(int currentPage, int numPerPage, int totalCount, List<Object> recordList, Map<String, Object> countResultMap) {
+    public PageBean(int currentPage, int numPerPage, int totalCount, List<T> recordList, Map<String, Object> countResultMap) {
         this.currentPage = currentPage;
         this.numPerPage = numPerPage;
         this.totalCount = totalCount;
@@ -111,11 +111,11 @@ public class PageBean implements Serializable {
         }
     }
 
-    public List<Object> getRecordList() {
+    public List<T> getRecordList() {
         return recordList;
     }
 
-    public void setRecordList(List<Object> recordList) {
+    public void setRecordList(List<T> recordList) {
         this.recordList = recordList;
     }
 

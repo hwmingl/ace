@@ -1,6 +1,8 @@
 package com.fighter.ace.cms.security;
 
+import com.fighter.ace.cms.entity.main.CmsRole;
 import com.fighter.ace.cms.entity.main.CmsUser;
+import com.fighter.ace.cms.service.CmsRoleService;
 import com.fighter.ace.cms.service.CmsUserService;
 import com.fighter.ace.cms.util.CmsUtil;
 import com.fighter.ace.framework.utils.MD5Util;
@@ -140,6 +142,9 @@ public class CmsAuthenticationFilter extends FormAuthenticationFilter {
         String password = RequestUtils.getQueryParam(req,"password");
         CmsUser user = cmsUserService.getByUserName(username);
         if (password != null && user != null && MD5Util.md5Encode(password).equals(user.getUserPwd())){
+            CmsRole cmsRole = cmsRoleService.getById(Long.valueOf(user.getRole()));
+            user.setSuper(cmsRole.isSuper());
+
             HttpSession session = req.getSession();
             session.setAttribute(CmsUtil.ADMIN_USER_KEY, user);
         }
@@ -195,7 +200,7 @@ public class CmsAuthenticationFilter extends FormAuthenticationFilter {
 
 
 	private CmsUserService cmsUserService;
-
+    private CmsRoleService cmsRoleService;
 	
 	private String adminPrefix;
 	private String adminIndex;
@@ -227,5 +232,9 @@ public class CmsAuthenticationFilter extends FormAuthenticationFilter {
 
     public void setCmsUserService(CmsUserService cmsUserService) {
         this.cmsUserService = cmsUserService;
+    }
+
+    public void setCmsRoleService(CmsRoleService cmsRoleService) {
+        this.cmsRoleService = cmsRoleService;
     }
 }

@@ -43,7 +43,9 @@
     <select id="listBy" parameterType="java.util.Map" resultMap="userBeanMap">
         select *
         from t_user
-        where user_name = #{username}
+        where status = 1
+        <if test="username != null"> and user_name = #{username} </if>
+        <if test="role != null"> and role = #{role} </if>
     </select>
 
     <select id="getById" parameterType="java.lang.Long" resultMap="userBeanMap">
@@ -58,6 +60,7 @@
         COUNT(1)
         FROM
         t_user
+        where status = 1
     </select>
 
     <!-- 查询分页用户 -->
@@ -66,6 +69,7 @@
         *
         FROM
         t_user
+        where status = 1
         ORDER BY id DESC
         LIMIT #{pageFirst},#{pageSize}
     </select>
@@ -75,29 +79,16 @@
 
     </select>
 
-    <!-- 删除用户 -->
-    <delete id="deleteById" parameterType="java.lang.Long">
-        delete from t_user
-        where id = #{id}
-    </delete>
-
-    <!-- 批量删除用户 -->
-    <delete id="batchDelete" parameterType="java.lang.Integer">
-        delete from t_user
-        where id in
-        <foreach item="id" collection="array" open="(" separator ="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 
     <!-- 更新用户信息 -->
     <update id="update" parameterType="com.fighter.ace.cms.entity.main.CmsUser">
         update t_user
-        set
-        modified_time = #{modifiedTime},
-        user_pwd = #{userPwd},
-        <if test="lastLoginTime != null">last_login_time = #{lastLoginTime},</if>
-        real_name = #{realName}
+        set modified_time = now()
+        <if test="userPwd != null">,user_pwd = #{userPwd}</if>
+        <if test="lastLoginTime != null">,last_login_time = #{lastLoginTime}</if>
+        <if test="realName != null">,real_name = #{realName}</if>
+        <if test="role != null">,role = #{role}</if>
+        <if test="status != null">,status = #{status}</if>
         where id = #{id}
     </update>
 </mapper>

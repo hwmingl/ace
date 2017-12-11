@@ -25,6 +25,7 @@
     <bean id="adminContextInterceptor" class="com.fighter.ace.framework.web.interceptor.AdminContextInterceptor">
         <property name="auth" value="true"/>
         <property name="cmsUserService" ref="cmsUserService"/>
+        <property name="cmsRoleService" ref="cmsRoleService"/>
         <property name="excludeUrls">
             <list>
                 <value>/login.do</value>

@@ -10,6 +10,8 @@ import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,8 +30,23 @@ public class CmsRoleServiceImpl implements CmsRoleService {
     }
 
     @Override
+    public List<CmsRole> findAll() throws BizException {
+        PageParam pageParam = new PageParam(1,20);
+        PageBean<CmsRole> pageBean = getListPage(pageParam, null);
+        if (null != pageBean && pageBean.getTotalCount() > 0){
+            return pageBean.getRecordList();
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
     public Long save(CmsRole cmsRole) throws BizException {
         return cmsRoleDao.insert(cmsRole);
+    }
+
+    @Override
+    public CmsRole getById(Long id) throws BizException {
+        return cmsRoleDao.getById(id);
     }
 
     @Override
@@ -37,6 +54,11 @@ public class CmsRoleServiceImpl implements CmsRoleService {
         Map<String,Object> params = Maps.newHashMap();
         params.put("name",name);
         return cmsRoleDao.getBy(params);
+    }
+
+    @Override
+    public int delete(Long id) throws BizException {
+        return cmsRoleDao.deleteById(id);
     }
 
 

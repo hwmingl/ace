@@ -3,8 +3,7 @@ package com.fighter.ace.cms.action.admin.main;
 import com.fighter.ace.cms.entity.main.CmsRole;
 import com.fighter.ace.cms.entity.main.CmsUser;
 import com.fighter.ace.cms.service.CmsRoleService;
-import com.fighter.ace.framework.common.page.PageBean;
-import com.fighter.ace.framework.common.page.PageParam;
+import com.fighter.ace.cms.service.CmsUserService;
 import com.fighter.ace.framework.web.RequestUtils;
 import com.fighter.ace.framework.web.ResponseUtils;
 import com.fighter.ace.framework.web.WebErrors;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by hanebert on 17/9/24.
@@ -28,15 +28,13 @@ public class CmsRoleAct {
     private static final int PAGESIZE = 20;
     @Autowired
     private CmsRoleService cmsRoleService;
+    @Autowired
+    private CmsUserService cmsUserService;
 
     @RequestMapping("/role/v_list.do")
-    public String list(Integer pageNo,HttpServletRequest request, ModelMap model) {
-        if (null == pageNo || pageNo == 0){
-            pageNo = 1;
-        }
-        PageParam pageParam = new PageParam(pageNo,PAGESIZE);
-        PageBean pageBean = cmsRoleService.getListPage(pageParam, null);
-        model.addAttribute("pageBean", pageBean);
+    public String list(HttpServletRequest request, ModelMap model) {
+        List<CmsRole> cmsRoleList = cmsRoleService.findAll();
+        model.addAttribute("recordList", cmsRoleList);
         return "role/list";
     }
 
@@ -74,7 +72,7 @@ public class CmsRoleAct {
 
     @RequestMapping("/role/check_name.do")
     public void checkRoleNameExist(HttpServletRequest request,HttpServletResponse response){
-        String name = RequestUtils.getQueryParam(request,"name");
+        String name = RequestUtils.getQueryParam(request, "name");
         CmsRole cmsRole = cmsRoleService.getByName(name);
         if(cmsRole == null){
             ResponseUtils.renderJson(response, "true");
@@ -113,7 +111,18 @@ public class CmsRoleAct {
         log.info("update CmsRole id={}.", bean.getId());
         cmsLogMng.operating(request, "cmsRole.log.update", "id=" + bean.getId()
                 + ";name=" + bean.getName());*/
-        return list(1,request, model);
+        return list(request, model);
+    }
+
+    @RequestMapping("/role/o_delete.do")
+    public String delete(Long id, HttpServletRequest request,
+                         ModelMap model) {
+        WebErrors errors = validateDelete(id,request);
+        if (errors.hasErrors()){
+            return errors.showErrorPage(model);
+        }
+        cmsRoleService.delete(id);
+        return list(request, model);
     }
 
 
@@ -121,5 +130,15 @@ public class CmsRoleAct {
         WebErrors errors = WebErrors.create(request);
         return errors;
     }
+
+    private WebErrors validateDelete(Long id, HttpServletRequest request) {
+        WebErrors errors = WebErrors.create(request);
+        List<CmsUser> cmsUserList = cmsUserService.findListByRoleId(id);
+        if (null != cmsUserList && !cmsUserList.isEmpty()){
+            errors.addError("该角色使用中,不可被删除");
+        }
+        return errors;
+    }
+
 
 }

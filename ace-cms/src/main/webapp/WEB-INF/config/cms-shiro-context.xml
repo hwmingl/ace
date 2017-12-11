@@ -36,6 +36,7 @@
     <bean id="authcFilter" class="com.fighter.ace.cms.security.CmsAuthenticationFilter" parent="adminUrlBean">
         <property name="adminIndex" value="/admin/cms/index.do"/>
         <property name="cmsUserService" ref="cmsUserService"/>
+        <property name="cmsRoleService" ref="cmsRoleService"/>
     </bean>
     <bean id="userFilter" class="com.fighter.ace.cms.security.CmsUserFilter" parent="adminUrlBean"/>
     <bean id="logoutFilter" class="com.fighter.ace.cms.security.CmsLogoutFilter" parent="adminUrlBean"/>

@@ -55,6 +55,16 @@
         LIMIT #{pageFirst},#{pageSize}
     </select>
 
+    <select id="getById" parameterType="java.lang.Long" resultMap="beanMap">
+        select *
+        from t_role
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from t_role where id = #{id}
+    </delete>
+
 
 
 </mapper>

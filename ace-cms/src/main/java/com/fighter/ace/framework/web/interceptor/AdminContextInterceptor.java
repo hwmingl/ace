@@ -1,7 +1,9 @@
 package com.fighter.ace.framework.web.interceptor;
 
+import com.fighter.ace.cms.entity.main.CmsRole;
 import com.fighter.ace.cms.entity.main.CmsUser;
 import com.fighter.ace.cms.security.CmsThreadVariable;
+import com.fighter.ace.cms.service.CmsRoleService;
 import com.fighter.ace.cms.service.CmsUserService;
 import com.fighter.ace.cms.util.CmsUtil;
 import org.apache.commons.lang.StringUtils;
@@ -112,7 +114,11 @@ public class AdminContextInterceptor extends HandlerInterceptorAdapter {
     private Set<String> getUserPermission(CmsUser user){
         Set<String>viewPermissionSet = new HashSet<String>();
         Set<String> perms = new HashSet<>();
-        perms.add("member:v_list.do");
+        CmsRole cmsRole = cmsRoleService.getById(Long.valueOf(user.getRole()));
+        String[] permsArray = cmsRole.getPerms().split(",");
+        for (int i = 0; i < permsArray.length; i++) {
+            perms.add(permsArray[i]);
+        }
 
         Set<String> userPermission = new HashSet<String>();
         if(perms!=null){
@@ -129,11 +135,16 @@ public class AdminContextInterceptor extends HandlerInterceptorAdapter {
 
 
     private CmsUserService cmsUserService;
+    private CmsRoleService cmsRoleService;
     private boolean auth = true;
     private String[] excludeUrls;
 
     public void setCmsUserService(CmsUserService cmsUserService) {
         this.cmsUserService = cmsUserService;
+    }
+
+    public void setCmsRoleService(CmsRoleService cmsRoleService) {
+        this.cmsRoleService = cmsRoleService;
     }
 
     public void setAuth(boolean auth) {

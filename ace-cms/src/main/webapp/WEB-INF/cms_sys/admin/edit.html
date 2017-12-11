@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        $(function() {
+            $("#jvForm").validate();
+        });
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 用户管理 - 修改</div>
+    <form class="ropt">
+        <#if index??>
+            <input type="button" value="返回列表" onclick="window.history.go(-1);" class="return-button"/>
+            <#else>
+                <input type="submit" value="返回列表" onclick="this.form.action='v_list.do';" class="return-button"/>
+        </#if>
+    </form>
+    <div class="clear"/>
+</div>
+<div class="body-box">
+    <form method="post" action="o_update.do" id="jvForm">
+        <input type="hidden" name="id" value="${user.id}"/>
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">用户名:</td>
+                <td colspan="1" class="pn-fcontent">
+                    <span>${user.userName}</span>
+                    <input type="hidden" name="userName"  readonly="readonly" value="${user.userName}"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">
+                    <span class="pn-frequired">*</span>密码:</td>
+                <td colspan="1" class="pn-fcontent">
+                    <input type="password" id="password" name="userPwd" class="required" maxlength="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">
+                    <span class="pn-frequired">*</span>确认密码:</td>
+                <td colspan="1" class="pn-fcontent">
+                    <input type="password" equalTo="#password" vld="{required:true}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">
+                    <span class="pn-frequired">*</span>真实姓名:</td>
+                <td colspan="1" class="pn-fcontent">
+                    <input type="text" maxlength="50" name="realName" vld="{required:true}" value="${user.realName}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">
+                    <span class="pn-frequired">*</span>选择角色:
+                </td>
+                <td class="pn-fcontent">
+                    <#list roleList as bean>
+                        <input type="radio" value="${bean.id}" name="role" <#if bean.id?string.number==user.role>checked</#if> /> ${bean.name} &nbsp;
+                    </#list>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pn-fbutton">
+                    <input type="submit" value="提交" class="submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

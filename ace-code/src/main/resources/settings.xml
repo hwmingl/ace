@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<project>
+	<property name="outdir" value="/code/generate_source"/>
+	<property name="jdbc.driverClass" value="com.mysql.jdbc.Driver"/>
+	<property name="jdbc.url" value="jdbc:mysql://localhost:3306/ace"/>
+	<property name="jdbc.userName" value="root"/>
+	<property name="jdbc.userPwd" value="mysql"/>
+	<property name="jdbc.catalog" value="ace"/>
+	<property name="jdbc.schema" value="ace"/>
+
+	<property name="pojo.package" value="com.prochanges.framework.domain"/>
+	<!--是否忽略框架已操作的表,为true时将忽略-->		
+	<property name="tables.ignore.hasExists" value="true"/>
+	<!--要忽略的表名称-->	
+	<property name="tables.ignore.tables" value="t_cms_log,t_role,t_user"/>
+	<!--是否生成所有的表,为true时将生成所有的表,但不包括系统表-->	
+	<property name="generate.all.table" value="false"/>
+	<!--要生成的表，多个时表名用","号隔开(当generate.all.table为false时，此属性才起作用)-->
+	<property name="generate.table.name" value="groups,position"/>	
+</project>

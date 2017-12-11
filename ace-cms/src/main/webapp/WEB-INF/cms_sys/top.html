@@ -75,8 +75,9 @@
                                     <td style="background-image:url('${base}/res/cms/img/admin/nav-left.png')" width="14" height="31"></td>
                                     <td>
                                         <ul class="nav-menu">
+                                            <@cms_perm url="/frame/maintain_main.do">
                                             <li class="current" id="tb_11" onclick="HoverLi(11);"><a href="main.do" target="mainFrame">首页</a></li>
-
+                                            </@cms_perm>
                                             <!--<li class="sep"></li><li class="normal" id="tb_12" onclick="HoverLi(12);"><a href="frame/channel_main.do" target="mainFrame">模型</a></li>
                                             -->
                                             <li class="sep"></li><li class="normal" id="tb_13" onclick="HoverLi(13);"><a href="frame/content_main.do" target="mainFrame">内容</a></li>
@@ -86,7 +87,9 @@
                                             <li class="sep"></li><li class="normal" id="tb_16" onclick="HoverLi(16);"><a href="frame/category_main.do" target="mainFrame">类目</a></li>-->
                                             <li class="sep"></li><li class="normal" id="tb_18" onclick="HoverLi(18);"><a href="frame/statistic_main.do" target="mainFrame">统计</a></li>
                                             <li class="sep"></li><li class="normal" id="tb_17" onclick="HoverLi(17);"><a href="frame/user_main.do" target="mainFrame">用户</a></li>
+                                            <@cms_perm url="/frame/config_main.do">
                                             <li class="sep"></li><li class="normal" id="tb_110" onclick="HoverLi(110);"><a href="frame/config_main.do" target="mainFrame">配置</a></li>
+                                            </@cms_perm>
                                         </ul>
                                     </td>
                                 </tr>
