@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>jeecms-left</title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        $(function(){
+            Cms.lmenu('lmenu');
+        });
+    </script>
+</head>
+<body class="lbody">
+<div class="left">
+    <#include "/cms_sys/date.html"/>
+    <ul class="w-lful">
+        <li><a href="../frame/content_right.do" target="rightFrame">欢迎页</a></li>
+        <li><a href="../model/list.do" target="rightFrame">模型管理</a></li>
+        <li><a href="../news/list.do" target="rightFrame">资讯管理</a></li>
+        <li><a href="../mall/list.do" target="rightFrame">商城管理</a></li>
+        <li><a href="../college/list.do" target="rightFrame">学院-资源管理</a></li>
+        <li><a href="../course/list.do" target="rightFrame">学院-课程管理</a></li>
+        <li><a href="../single_page/list.do" target="rightFrame">单页管理</a></li>
+        <li><a href="../notice/list.do" target="rightFrame">公告管理</a></li>
+        <li><a href="../extend/list.do" target="rightFrame">推广活动</a></li>
+        <li><a href="../activation/list.do" target="rightFrame">积分卡管理</a></li>
+        <li><a href="../banner/v_list.do" target="rightFrame">Banner管理</a></li>
+    </ul>
+</div>
+</body>
+</html>

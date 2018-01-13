@@ -10,6 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FrameAct {
 
+    @RequestMapping("/frame/content_main.do")
+    public String contentMain(ModelMap model) {
+        return "frame/content_main";
+    }
+
+    @RequestMapping("/frame/content_left.do")
+    public String contentLeft(ModelMap model) {
+        return "frame/content_left";
+    }
+
+    @RequestMapping("/frame/content_right.do")
+    public String contentRight(ModelMap model) {
+        return "frame/content_right";
+    }
+
     @RequestMapping("/frame/user_main.do")
     public String userMain(ModelMap model) {
         return "frame/user_main";
