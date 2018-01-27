@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        $(function() {
+            $("#color").colorPicker();
+            //new Pn.ColorPicker("#color");
+            $("#jvForm").validate();
+        });
+        function preview() {
+            var img = $('#imagePath').val();
+            if(img!="") {
+                $('#markPreview').attr('src','${base}'+img);
+            } else {
+                $('#markPreview').removeAttr('src');
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box-positon">
+
+    <form method="post" action="o_mark_update.do" id="jvForm">
+        <input type="hidden" name="id" value="${markConfig.id}"/>
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>开启水印:</td>
+                <td width="85%" class="pn-fcontent">
+                    <label><input type="radio" value="1" ${markConfig.on?string("checked","")}  name="on"/>是</label>
+                    <label><input type="radio" value="0" ${markConfig.on?string("","checked")} name="on"/>否</label>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>图片尺寸控制:</td>
+                <td width="85%" class="pn-fcontent">
+                    宽: <input type="text" name="minWidth" value="${markConfig.minWidth}" style="width:70px" class="required ditigs" maxlength="5"/>&nbsp;
+                    高: <input type="text" name="minHeight" value="${markConfig.minHeight}" style="width:70px" class="required ditigs" maxlength="5"/>
+                    <span class="pn-fhelp">小于该尺寸的图片不添加水印</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h">水印图片:</td>
+                <td width="85%" class="pn-fcontent">
+                    <input type="text" id="imagePath" maxlength="100" value="${markConfig.imagePath}" name="imagePath" style="width:200px" maxlength="100"/>
+                    <input class="preview-button" type="button" value="预览" onclick="preview();"/>
+                    <img id="markPreview" style="border:1px solid #ccc;vertical-align:middle" alt="预览" src="${base}${markConfig.imagePath}"/>
+                    <span class="pn-fhelp">留空则使用文字水印</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>水印文字:</td>
+                <td width="85%" class="pn-fcontent">
+                    <input type="text" maxlength="100" value="${markConfig.content}" name="content" class="required" style="width:200px" maxlength="100"/>
+                    <span class="pn-fhelp">使用中文有可能出现乱码</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>水印文字属性:</td>
+                <td width="85%" class="pn-fcontent">
+                    字体大小: <input type="text" maxlength="5" value="${markConfig.size}" name="size" class="required digits" style="width:70px" maxlength="5"/>&nbsp;
+                    颜色: <input type="text" id="color" maxlength="7" value="${markConfig.color}" name="color" class="required" style="width:70px" maxlength="7"/>&nbsp;
+                    透明度: <input type="text" maxlength="3" value="${markConfig.alpha}" name="alpha" class="required digits" style="width:70px" maxlength="3"/>
+                    <span class="pn-fhelp">0-100，越小越透明</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>位置:</td>
+                <td width="85%" class="pn-fcontent">
+                    <select name="pos">
+                        <option value="0" <#if markConfig.pos=0>selected="selected"</#if> >随机</option>
+                        <option value="1" <#if markConfig.pos=1>selected="selected"</#if>>左上</option>
+                        <option value="2" <#if markConfig.pos=2>selected="selected"</#if>>右上</option>
+                        <option value="3" <#if markConfig.pos=3>selected="selected"</#if>>左下</option>
+                        <option value="4" <#if markConfig.pos=4>selected="selected"</#if>>右下</option>
+                        <option value="5" <#if markConfig.pos=5>selected="selected"</#if>>中央</option>
+                    </select>
+                    &nbsp; 水平偏移量: <input type="text" name="offsetX" value="${markConfig.offsetX!}" class="required number" maxlength="5" style="width:70px"/>
+                    &nbsp; 垂直偏移量: <input type="text" name="offsetY" value="${markConfig.offsetY!}" class="required number" maxlength="5" style="width:70px"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pn-fbutton">
+                    <input type="submit" value="提交" class="submit" class="submit"/> &nbsp;
+                    <input type="reset" value="重置" class="reset" class="reset"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

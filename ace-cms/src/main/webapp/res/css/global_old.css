@@ -1,0 +1,98 @@
+@charset "utf-8";
+/*
+ *该文件为整站共公样式文件
+ *创作时间*2012-06-18
+ *完成时间*
+ *修改时间*2015-07-07
+ */
+body,html,ul,li,dl,dt,dd,ol,th,td,form,h1,h2,h3,h4,h5,h6,img,p,input{margin:0px;padding:0px;}
+img{vertical-align:top;border:0;}
+button,select,textarea{outline:none;}
+textarea{resize:none}
+ul,li{list-style-type:none;}
+.clear{clear:both;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+*html .clearfix{zoom:1;}
+*+html .clearfix{zoom:1;}
+.a_wd,.main{width:1180px; margin-left:auto; margin-right:auto;}
+.main_margin_bottom{margin-bottom:10px;}
+
+a{color:#111;text-decoration:none}
+a:hover{color:#00a3e7;}
+em,cite{font-style:normal}
+
+.red{color:red}
+.bluey{color:#00f}
+
+.up_t{margin-top:30px;}
+.up_t_1{margin-top:20px;}
+
+/*精 f1、佳 f2、荐 f3*/
+.f1{color:#e404ff}
+.f2{color:#f34242}
+.f3{color:#ffa904}
+
+/*.header_s_nav ul li.first{padding-left:0;}*/
+
+.main_left{width:68.6440678%;}
+
+.main_right{width:27.9661017%;}
+
+
+.main_title{line-height:26px; height:26px; padding-bottom:12px; border-bottom:1px solid #00a3e7; margin-bottom:20px;}
+.main_title h2{float:left; font-family:微软雅黑;font-size:26px; font-weight:normal;}
+.main_title h2 small{font-size:14px;}
+.main_title p{float:right; line-height:16px; padding-top:10px; font-size:13px;}
+.main_title p a{color:#999; margin-left:5px;}
+.main_title p a span{padding:2px 5px; background:#00a3e7; color:#fff; display:inline-block;}
+.main_title span{float:right;padding-right:20px; font-size:13px;}
+.main_title span a{color:#00B6E8;padding:0 5px;}
+.main_title .works_topic{font-weight:bold;color:red; display:none;}
+.main_title .works_topic a{padding:0 0 0 5px;color:red}
+.main_title font{float:right;padding-right:10px; font-size:13px;}
+.main_title font a{color:#00F}
+
+.left_title font{font-size:13px;}
+
+.main_text{width:100%;}
+
+/*分页*/
+.pagelinks{text-align:center;font-size:14px;line-height:20px; padding:20px 0}
+.pagelinks a{height:20px;border:1px solid #ddd;display:inline-block;padding:5px 8px;vertical-align:middle;overflow:hidden; border-radius:5px;}
+.pagelinks span{color:#fff;font-weight:bold;border:1px solid #00a3e7; background:#00a3e7;border-radius:5px;height:20px;display:inline-block;padding:5px 8px;vertical-align:middle;overflow:hidden;}
+
+/*回到顶部*/
+.backToTop{opacity:0.3;filter:alpha(opacity=30);position:absolute;right:30px;display:none;cursor:pointer;background:url(../images/backToTop.gif);width:54px;height:54px;}
+.backToTop.hover{opacity:1.0;filter:alpha(opacity=100);}
+
+.noborder{border:0; margin-bottom:0;}
+p a:hover,a:hover{color:#00a3e7;}
+
+@media only screen and (min-width: 1200px){
+.a_wd{width:1180px;}
+.nav ul li a{padding:0 46px;}
+}
+
+@media only screen and (max-width: 1024px){
+.a_wd,.main{width:980px;}
+.header_nav ul li a{padding:0 26px;}
+}
+
+@media (min-width:768px) and (max-width:979px){
+.a_wd,.main{width:96%;}
+.head_top_ad{display:none;}
+.header_nav ul li a{padding:0 15%; white-space:nowrap;}
+.login{width:300px;}
+}
+
+@media (max-width:767px){
+.a_wd,.main{width:98%;}
+.header_nav ul li a{padding:0 15%; white-space:nowrap;}
+.head_top_ad,.main_right,.loginleft{display:none;}
+.main_title{height:auto;}
+.main_left{width:100%;}
+}
+@media (max-width:480px){
+.main_title h2{float:none;}
+.main_title p{float:none;}
+}

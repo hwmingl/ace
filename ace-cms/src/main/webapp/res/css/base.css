@@ -1,0 +1,130 @@
+
+a {
+	color:#333;
+	text-decoration:none
+}
+
+
+.container {
+	width:1180px;
+	margin:0 auto
+}
+.container:after {
+	content:'';
+	display:table;
+	clear:both
+}
+.about_left {
+	float:left;
+	width:290px;
+	height:438px;
+	margin:20px 15px 28px 0;
+	border:1px solid #ebebeb;
+	background-color:#fdfdfd
+}
+.about_left ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-color:#fff
+}
+.about_left li {
+	border-top:1px solid #ebebeb;
+	border-bottom:1px solid #ebebeb;
+	margin-top:-1px;
+	text-align:left;
+	height:48px;
+	line-height:48px;
+	color:#090810;
+	font-size:16px;
+	font-weight:300;
+	cursor:pointer
+}
+.about_left li a {
+	display:block;
+	height:48px;
+	padding:0 0 0 28px
+}
+.about_left li.active a,.about_left li:hover a {
+	background-color:#058ccc;
+	color:#fff
+}
+.about_left li.active {
+	font-weight:600
+}
+.about_right {
+	display:inline-block;
+	width:790px;
+	margin:20px 0 30px;
+	text-align:left;
+	text-indent:28px;
+	background-color:#fbfbfb
+}
+.about_right h1 span {
+	color:#aaa
+}
+.about_right p {
+	font-size:15px;
+	line-height:30px;
+	color:#090810
+}
+.about_right p a {
+	color:#07a3d6
+}
+.about_right p a:hover {
+	text-decoration:underline
+}
+.about_right p a.ablack {
+	color:#090810
+}
+.rightArrow {
+	float:right;
+	display:block;
+	width:0;
+	height:0;
+	margin:20px 14px 18px;
+	border-style:solid;
+	border-width:5px 0 5px 5px;
+	border-color:transparent transparent transparent #fff
+}
+.about_content {
+	margin:0 auto;
+	padding:0 30px;
+	overflow:hidden
+}
+.about_line {
+	display:none;
+	width:790px;
+	min-height:541px;
+	text-align:left
+}
+.about_line:first-child {
+	display:block
+}
+.about_line p {
+	margin:10px 0
+}
+.about_line>b {
+	display:block;
+	height:47px;
+	line-height:48px;
+	border-bottom:1px solid #f2e7eb;
+	color:#090810;
+	font-size:16px
+}
+.about_line>b a {
+	float:right;
+	line-height:48px;
+	margin-right:30px;
+	text-decoration:underline;
+	font-size:16px;
+	font-weight:600;
+	color:#dd0556
+}
+.about_line>b a.al_h1_map {
+	float:left;
+	color:#090810;
+	text-decoration:none
+}
+
+

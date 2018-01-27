@@ -1,0 +1,133 @@
+﻿body
+{
+     background:#f6f6f6;
+}
+.bgWhite
+{
+    background: #fff;
+    border:#ddd solid 1px;
+}
+.bgWhite1
+{
+    background: #fff;
+    border:#fff solid 1px;
+}
+.bgWhite2
+{
+    background: #fff;
+}
+.tableBg
+{
+    background: #fff;
+    width: 1180px;
+    margin: 0 auto;
+    padding: 0 0 0 10px;
+    border:#ddd solid 1px;
+}
+.tableBg1
+{
+    background:#fff;
+    width: 1180px;
+    margin: 0 auto;
+    padding: 0px;
+    border:#ddd solid 1px;
+}
+.top_5
+{
+    margin-top:5px;
+}
+.top_10
+{
+    margin-top:10px;
+}
+.top_15
+{
+    margin-top:15px;
+}
+.top_20
+{
+    margin-top:20px;
+}
+
+
+.imagesListPic
+{
+    width: 60px; text-align: left; padding-left: 0;
+    
+}
+.imagesListPic img
+{
+    margin:5px;
+}
+
+.listTitle
+{
+    color: rgb(0, 0, 0); 
+    font-size: 100%;
+}
+.listCont
+{
+    color: rgb(136, 136, 136); 
+    line-height: 20px;
+     font-size: 12px;
+      margin-top: 10px;
+}
+.listTime
+{
+    color: rgb(119, 119, 119); 
+    line-height: 30px; 
+    font-size: 12px;
+}
+.lineH5
+{
+    line-height:2px;
+    font-size:1px;
+    height:5px;
+}
+.lineH10
+{
+    line-height:2px;
+    font-size:1px;
+    height:10px;
+}
+.lineH15
+{
+    line-height:2px;
+    font-size:1px;
+    height:15px;
+}
+
+
+
+/*分页*/
+.pagelinks
+{
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 20px 0;
+    margin: 50px auto;
+}
+.pagelinks a
+{
+    height: 20px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    padding: 5px 8px;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.pagelinks span
+{
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #00a3e7;
+    background: #00a3e7;
+    border-radius: 5px;
+    height: 20px;
+    display: inline-block;
+    padding: 5px 8px;
+    vertical-align: middle;
+    overflow: hidden;
+}

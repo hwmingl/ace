@@ -1,0 +1,420 @@
+@media screen and (min-width:360px)
+{
+.container {
+	width: 1200px;
+}
+}
+@media screen and (min-width:1200px)
+{
+.container {
+	width: 100%;
+}
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-weight: normal;
+}
+.supplier-container {
+	margin-top: 35px; background-color: rgb(244, 244, 244);
+}
+.supplier-banner {
+	background: url("img/banner_supplier.jpg") no-repeat center; height: 350px;
+}
+.supplier-list {
+	margin: 0px auto; width: 1240px; position: relative; background-color: rgb(255, 255, 255);
+}
+.supplier-list h3 {
+	height: 80px; text-align: center; line-height: 120px; font-size: 28px; font-weight: 400;
+}
+.supplier-list .supplier_ruzhu {
+	padding: 0px 10px; height: 20px; right: 10px; line-height: 0px; display: inline-block; position: absolute;
+}
+.supplier-list .supplier-line {
+	width: 100%; height: 120px; line-height: 120px;
+}
+.supplier-list .line {
+	margin: 0px 25px; width: 90px; height: 0px; vertical-align: middle; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: solid; display: inline-block;
+}
+.supplier-list ul {
+	margin: 0px auto; width: 1200px;
+}
+.supplier-list ul li {
+	padding: 40px 20px; border: 1px solid rgb(229, 229, 229); border-image: none; width: 359px; height: 120px; margin-right: -1px; margin-bottom: -1px; float: left;
+}
+.supplier-list ul li h4 {
+	font-size: 18px;
+}
+.supplier-list ul li p {
+	color: rgb(153, 153, 153); line-height: 20px; font-size: 12px;
+}
+.supplier-list ul li .contact {
+	margin: 2px 0px 10px; color: rgb(51, 51, 51);
+}
+.supplier-list ul li .contact strong {
+	padding: 0px 12px 0px 5px; font-size: 16px;
+}
+.supplier-list ul li .contact span {
+	font-size: 14px;
+}
+.supplier-list ul li .contact i {
+	background: url("img/phone.png") no-repeat center; width: 20px; height: 20px; vertical-align: text-bottom; display: inline-block;
+}
+.supplier-list ul li .contact a {
+	border: 1px solid rgb(223, 223, 223); border-image: none; width: 100px; height: 26px; text-align: center; color: rgb(51, 51, 51); line-height: 26px; font-size: 14px; text-decoration: none; display: inline-block; cursor: pointer; background-color: rgb(244, 244, 244);
+}
+.supplier-list ul li .contact a:hover {
+	background: rgb(51, 51, 51); color: rgb(255, 255, 255);
+}
+.supplier-list .item-detail {
+	margin-left: 20px; vertical-align: top; display: inline-block;
+}
+.supplier-list .item-detail a {
+	color: rgb(51, 51, 51);
+}
+.supplier-list .item-detail a:hover {
+	color: rgb(18, 167, 255);
+}
+.supplier-list .btn-view {
+	border-radius: 5px; width: 110px; height: 30px; text-align: center; color: rgb(255, 255, 255); line-height: 30px; font-size: 12px; display: block; background-color: rgb(255, 120, 0);
+}
+.gap {
+	height: 30px; background-color: rgb(244, 244, 244);
+}
+.detail-container {
+	background-color: rgb(255, 255, 255);
+}
+.new-nav-bar {
+	height: 70px; margin-top: 35px; background-color: rgb(51, 51, 51);
+}
+.new-nav {
+	margin: 0px auto; width: 1200px;
+}
+.new-nav h3 {
+	color: rgb(255, 255, 255); line-height: 70px; font-size: 24px; float: left;
+}
+.new-nav ul {
+	float: right;
+}
+.new-nav ul li {
+	line-height: 70px; float: left; position: relative;
+}
+.new-nav ul li:hover {
+	background-color: rgb(88, 88, 88);
+}
+.new-nav ul li.selected {
+	background-color: rgb(88, 88, 88);
+}
+.new-nav ul li a {
+	padding: 0px 35px; color: rgb(255, 255, 255); line-height: 4; font-size: 16px; display: inline-block;
+}
+.new-nav ul li a.last {
+	padding: 0px 18px;
+}
+.new-nav ul li .subMenu {
+	top: 70px; width: 142px; text-align: left; display: none; position: absolute; z-index: 1000; box-shadow: 0px 0px 10px 1px #888; background-color: rgb(255, 255, 255);
+}
+.new-nav ul li .subMenu a {
+	padding: 0px 30px; color: rgb(51, 51, 51); line-height: 2.5; font-size: 14px; display: inline-block;
+}
+.new-nav ul li .subMenu p {
+	color: rgb(102, 102, 102); line-height: 36px; padding-left: 5px; font-size: 12px; margin-bottom: 5px; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.new-nav ul li .subMenu p:hover {
+	background-color: rgb(212, 212, 212);
+}
+.detail-header {
+	margin: 0px auto; width: 1200px; text-align: center; padding-top: 20px; padding-bottom: 40px; background-color: rgb(255, 255, 255);
+}
+.detail-header.supplier-main {
+	width: 1200px;
+}
+.detail-header h3 {
+	font-size: 26px; font-weight: 400;
+}
+.detail-header .menuBar {
+	margin: 20px auto 0px; text-align: center; padding-left: 350px;
+}
+.supplier-main .menuBar {
+	padding-left: 470px;
+}
+.detail-header .menuBar li span {
+	height: 14px; padding-right: 40px; vertical-align: middle; border-right-color: rgb(204, 204, 204); border-right-width: 1px; border-right-style: solid; display: inline-block;
+}
+.detail-header .menuBar li {
+	float: left; position: relative; cursor: pointer;
+}
+.detail-header .menuBar li h4 {
+	padding-bottom: 10px; font-size: 14px; font-weight: 400; margin-left: 40px; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 2px; border-bottom-style: solid; display: inline-block;
+}
+.detail-header .menuBar li h4:hover {
+	border-bottom-color: rgb(0, 0, 0); border-bottom-width: 2px; border-bottom-style: solid;
+}
+.detail-header .menuBar li a {
+	color: rgb(0, 0, 0);
+}
+.detail-header .subMenu {
+	padding: 15px 15px 5px; left: 23px; top: 31px; width: 75px; text-align: left; display: none; position: absolute; z-index: 1000; background-color: rgb(255, 255, 255);
+}
+.detail-header .subMenu a {
+	color: rgb(102, 102, 102);
+}
+.detail-header .subMenu p {
+	width: 40px; color: rgb(102, 102, 102); line-height: 30px; padding-left: 5px; font-size: 12px; margin-bottom: 10px; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.detail-header .subMenu p:hover {
+	border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.detail-header .flex li {
+	font-size: 0px;
+}
+.detail-header .flex li img {
+	width: 600px; height: 360px;
+}
+.detail-header .flexslider {
+	height: 360px;
+}
+.about-us {
+	background-color:#fff;
+}
+.about-wrap {
+	margin: 0px auto; padding: 40px 0px; width: 1200px;
+}
+.about-content {
+	width: 570px; margin-left: 40px; vertical-align: top; display: inline-block;
+}
+.about-content h3 {
+	color: rgb(153, 153, 153); font-size: 24px; font-weight: 400;
+}
+.about-content .line {
+	margin: 20px 0px; width: 50px; height: 0px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.about-content p {
+	color: rgb(154, 154, 154); line-height: 24px; font-size: 13px;
+}
+.new-case {
+	background-color: rgb(255, 255, 255);
+}
+.case-content {
+	margin: 0px auto; padding: 0px 0px 60px; width: 1230px; padding-left:20px;
+}
+.case-content h3 em {
+	padding: 0px 25px; font-size: 26px; font-style: normal; vertical-align: middle;
+}
+.contact-us h3 em {
+	padding: 0px 25px; font-size: 26px; font-style: normal; vertical-align: middle;
+}
+.new-case .line-bg {
+	background: url("img/fws_home_line.png") no-repeat center; width: 489px; height: 6px; vertical-align: middle; display: inline-block;
+}
+.contact-us .line-bg {
+	background: url("img/fws_home_line.png") no-repeat center; width: 489px; height: 6px; vertical-align: middle; display: inline-block;
+}
+.new-case .nav-tab {
+	margin: 30px auto; width: 300px; padding-left: 50px;
+}
+.new-case .nav-tab li {
+	padding: 10px; color: rgb(102, 102, 102); font-size: 12px; margin-right: 50px; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 1px; border-bottom-style: solid; float: left; cursor: pointer;
+}
+.new-case .nav-tab li a {
+	color: rgb(102, 102, 102);
+}
+.new-case .nav-tab li:hover {
+	border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.new-case .nav-tab li.selected {
+	border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.case-list {
+	margin-top: 50px;
+}
+.no-case {
+	text-align: center; color: rgb(153, 153, 153); font-size: 16px;
+}
+.case-item {
+	width: 386px; height: 270px; margin-right: 22px; margin-bottom: 22px; float: left;
+}
+.case-item img {
+	width: 386px; height: 238px;
+}
+.case-item.last {
+	margin-right: 0px;
+}
+.case-item h3 {
+	text-align: center; line-height: 24px; font-size: 16px; font-weight: 400;
+}
+.btn-more {
+	margin: 10px auto 0px; border-radius: 5px; width: 140px; height: 46px; text-align: center; color: rgb(102, 102, 102); line-height: 46px; display: block; background-color: rgb(229, 229, 229);
+}
+.contact-content {
+	margin: 0px auto; width: 1200px;
+}
+.contact-us {
+	background: rgb(244, 244, 244);
+}
+.contact-us .line-bg {
+	width: 450px;
+}
+.contact-us h3 {
+	background: rgb(244, 244, 244); padding: 50px 0px;
+}
+.contact-us h3 em {
+	padding: 20px;
+}
+.contact-us .contact-info {
+	width: 300px; margin-left: 64px; vertical-align: top; display: inline-block;
+}
+.contact-us .info-items {
+	padding: 15px; background-color: rgb(255, 255, 255);
+}
+#map-container {
+	width: 683px; height: 410px; display: inline-block;
+}
+.anchorBL {
+	display: none;
+}
+.contact-us .contact-info .logo-wrap {
+	width: 380px; height: 160px; line-height: 160px; margin-bottom: 60px;
+}
+.contact-us .contact-info .logo {
+	vertical-align: middle; display: inline-block; max-height: 380px; max-width: 160px;
+}
+.contact-us .contact-info p {
+	line-height: 36px; font-size: 16px;
+}
+div.case-pager .b_page span {
+	background: rgb(102, 102, 102); border-color: rgb(102, 102, 102);
+}
+div.case-pager .page_currentpage {
+	background: rgb(102, 102, 102); border-color: rgb(102, 102, 102);
+}
+div.case-pager a:hover {
+	color: rgb(51, 51, 51);
+}
+div.case-pager a.page_xiayiye:hover {
+	color: rgb(51, 51, 51);
+}
+.contact-container {
+	background: rgb(244, 244, 244); padding-top: 40px;
+}
+.contact-box {
+	background: rgb(255, 255, 255); margin: 0px auto; width: 1200px; padding-bottom: 40px;
+}
+.contact-box .left {
+	float: left;
+}
+.contact-box .right {
+	float: left;
+}
+.contact-box .left {
+	width: 250px; height: 190px; text-align: center; margin-top: 50px; border-right-color: rgb(229, 229, 229); border-right-width: 1px; border-right-style: solid;
+}
+.contact-box .right {
+	padding: 50px 0px 0px 50px;
+}
+.cooperate {
+	padding: 20px 40px;
+}
+.contact-box .right h4 {
+	line-height: 36px; font-size: 18px;
+}
+.cooperate h4 {
+	line-height: 36px; font-size: 18px;
+}
+.contact-box .right p {
+	line-height: 24px; font-size: 14px;
+}
+.cooperate p {
+	line-height: 24px; font-size: 14px;
+}
+.cooperate p {
+	margin-left: 20px; vertical-align: top; display: inline-block;
+}
+.contact-box .left h3 {
+	text-align: center; line-height: 30px; font-size: 18px; margin-top: 10px;
+}
+.supplier-aggregate {
+	background-color: rgb(255, 255, 255);
+}
+.content-box {
+	margin: 0px auto; width: 1200px;
+}
+.module .title {
+	margin: 50px 0px 20px; height: 24px; line-height: 24px;
+}
+.module .title span {
+	color: rgb(1, 0, 2); font-size: 24px;
+}
+.module .title a {
+	color: rgb(1, 0, 2); font-size: 14px;
+}
+.task-box .task-items {
+	border: 1px solid rgb(231, 231, 231); border-image: none; width: 900px; height: 400px;
+}
+.task-items .item {
+	margin: 16px 30px 0px 20px; padding-bottom: 16px; border-bottom-color: rgb(231, 231, 231); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.task-items .item.last {
+	border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: none;
+}
+.task-items .item img {
+	width: 150px; height: 100px;
+}
+.task-items .item .info {
+	margin: 8px 0px 10px 16px; vertical-align: top; display: inline-block;
+}
+.task-items .item .info em {
+	color: rgb(255, 154, 92); font-size: 24px; font-style: normal;
+}
+.task-items .item .info i {
+	font-size: 14px; font-style: normal;
+}
+.task-items .item .info h5 {
+	margin: 10px 0px 5px; color: rgb(51, 51, 51); font-size: 16px; font-weight: normal;
+}
+.task-items .item .info p {
+	color: rgb(153, 153, 153); font-size: 12px;
+}
+.task-items .item .status {
+	margin: 45px 35px 0px 0px; color: rgb(255, 154, 92); font-size: 14px;
+}
+.task-box .ad-right {
+	width: 280px; height: 400px;
+}
+.ad-position {
+	width: 1200px; height: 90px; margin-top: 50px;
+}
+.supplier-lists .title {
+	margin-top: 22px;
+}
+.supplier-items {
+	margin-bottom: 50px;
+}
+.supplier-items ul li {
+	width: 280px; height: 400px; margin-right: 26px;
+}
+.supplier-items ul li.last {
+	margin-right: 0px;
+}
+.supplier-items ul li img.case-img {
+	width: 280px; height: 210px; display: block;
+}
+.supplier-items ul li .avatar {
+	border-radius: 50%; border: 1px solid rgb(231, 231, 231); border-image: none; left: 87px; top: -55px; width: 110px; height: 110px; position: absolute;
+}
+.supplier-items ul li .info {
+	padding: 60px 0px 20px; border: 1px solid rgb(231, 231, 231); border-image: none; text-align: center; position: relative;
+}
+.supplier-items ul li h5 {
+	color: rgb(1, 0, 2); font-size: 14px; font-weight: normal;
+}
+.supplier-items ul li p {
+	color: rgb(153, 153, 153); font-size: 12px;
+}
+.reward-item {
+	border: 1px solid rgb(238, 238, 238); border-image: none; width: 380px; margin-right: 26px; margin-bottom: 28px; float: left;
+}
+.reward-item.last {
+	margin-right: 0px;
+}

@@ -31,6 +31,16 @@
         <mapper resource="mybatis/mapper/CmsRole.Mapper.xml" />
         <mapper resource="mybatis/mapper/CmsUser.Mapper.xml" />
         <mapper resource="mybatis/mapper/CmsLog.Mapper.xml" />
+
+        <mapper resource="mybatis/mapper/News.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Notice.Mapper.xml" />
+        <mapper resource="mybatis/mapper/MarkConfig.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Dict.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Area.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Banner.Mapper.xml" />
+        <mapper resource="mybatis/mapper/SinglePage.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Activation.Mapper.xml" />
+
     </mappers>
 
 </configuration>

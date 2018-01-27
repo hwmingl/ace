@@ -1,0 +1,8 @@
+@charset "utf-8";
+.a_wd{width:1180px;}
+.nav ul li a{padding:0 46px;}
+.side-bar{margin-left:600px;}
+
+#news_focus p.bjqs-caption i{background:url(../images/tran_bg_03.png);}
+#tabs_container .news_3ren_info .news_3ren_con div{background:url(../images/tran_bg_02.png);}
+#tabs_container .news_3ren_info a{background:url(../images/news/play_news_30.png) no-repeat center;}

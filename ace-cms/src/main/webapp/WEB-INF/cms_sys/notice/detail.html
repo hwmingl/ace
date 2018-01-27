@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+
+    <script type="text/javascript">
+    $(function() {
+        $("#rejectDialog").dialog({
+            autoOpen: false,
+            modal: true,
+            width: 380,
+            height: 200,
+            position: ["center",50],
+            buttons: {
+                "OK": function() {
+                    rejectSubmit();
+                }
+            }
+        });
+    });
+    function rejectSubmit() {
+        $("input[name=rejectOpinion]").val($("#rejectOpinion").val());
+        $("input[name=rejectStep]").val($("#rejectStep").val());
+        $("#rejectDialog").dialog("close");
+        var f = $("#jvForm")[0];
+        f.action="o_reject.do";
+        f.submit();
+    }
+</script>
+    <style type="text/css">
+        h1{text-align:center;font-size:18px;}
+        .info{text-align:center;}
+    </style>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置:  公告管理 - 查看</div>
+    <form class="ropt">
+        <input type="submit" value="返回列表" onclick=this.form.action='relist.do'; class="return-button"/>
+        <input type="hidden" name="pageNo" value="${pageNo}"/>
+        <input type="hidden" name="title" value="${title?if_exists}"/>
+        <input type="hidden" name="cid" value=""/>
+        <input type="hidden" name="queryOrderBy" value="0"/><input type="hidden" name="queryStatus" value=""/><input type="hidden" name="queryTopLevel" value="false"/><input type="hidden" name="queryRecommend" value="false"/>	</form>
+    <div class="clear"></div>
+</div>
+<div class="body-box">
+    <form id="jvForm" method="post" style="padding-top:5px">
+        <input type="hidden" name="id" value=""/>
+        <input type="hidden" name="ids" value=""/>
+        <input type="hidden" name="pageNo" value=""/>
+        <input type="hidden" name="cid" value=""/>
+        <input type="hidden" name="queryOrderBy" value="0"/><input type="hidden" name="queryStatus" value=""/><input type="hidden" name="queryTopLevel" value="false"/><input type="hidden" name="queryRecommend" value="false"/>	<input type="hidden" name="rejectStep"/>
+        <input type="hidden" name="rejectOpinion"/>
+    </form>
+    <div style="border:1px solid #ccc;">
+        <h1>${notice.title}</h1>
+        <p class="info">
+            &nbsp; 点击: ${notice.viewCount}
+            &nbsp; 发布时间: ${notice.createTime?string('yyyy-MM-dd HH:mm:ss')}
+            &nbsp; 更新时间：${notice.modifiedTime?string('yyyy-MM-dd HH:mm:ss')}
+        </p>
+        <div>
+            <#if notice.content??>${notice.content}</#if>
+        </div>
+    </div>
+</div>
+</body>
+</html>

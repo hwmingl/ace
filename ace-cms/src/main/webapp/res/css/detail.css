@@ -1,0 +1,609 @@
+.detMain {
+	width: 980px;
+}
+.detMain .r {
+	width: 750px; float: right;
+}
+.detMain .dr {
+	width: 730px; float: right;
+}
+.detMain .r_2 {
+	width: 779px; height: 3346px; float: right;
+}
+.focusPic {
+	width: 570px; float: left;
+}
+.focusPic .pic {
+	padding: 0px 0px 0px 1px; border: 1px solid rgb(237, 237, 238); border-image: none; width: 566px; height: auto; margin-bottom: 16px; float: left;
+}
+.focusPic .tabList {
+	width: 570px; height: 62px; margin-top: 5px; float: right;
+}
+.focusPic .tabList .btn {
+	width: 11px; height: 62px; float: left;
+}
+.focusPic .tabList ul {
+	width: 540px; height: 62px; float: left;
+}
+.focusPic .tabList ul li {
+	margin: 3px 4px; border: 1px solid rgb(237, 237, 238); border-image: none; width: 60px; height: 59px; float: left;
+}
+.nav_sp {
+	width: 750px; height: 36px; border-bottom-color: rgb(207, 207, 207); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.nav_sp .select {
+	background: rgb(255, 255, 255); height: 36px; border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: none;
+}
+.nav_sp ul li {
+	background: rgb(245, 246, 241); border: 1px solid rgb(207, 207, 207); border-image: none; width: 131px; height: 35px; text-align: center; line-height: 35px; margin-right: 5px; float: left;
+}
+.nav_sp ul li a {
+	width: 131px; height: 35px; float: left;
+}
+.nav_sp ul {
+	margin-left: 30px;
+}
+.nav_spli {
+	border-left-color: currentColor; border-left-width: medium; border-left-style: none;
+}
+.fxd {
+	width: 570px;
+}
+.fxd a {
+	color: rgb(34, 156, 160) !important;
+}
+.shareBox {
+	width: 572px; float: left;
+}
+.share {
+	font: 12px/normal Î¢ÈíÑÅºÚ; padding: 4px 0px 4px 5px; height: 26px; position: relative; font-size-adjust: none; font-stretch: normal;
+}
+.share span {
+	font: 12px/normal ËÎÌå; color: rgb(91, 91, 91); font-size-adjust: none; font-stretch: normal;
+}
+.share em {
+	margin: 3px 8px 0px 0px; width: 10px; height: 11px; float: right;
+}
+.share .openLayer {
+	background: rgb(245, 245, 241); padding: 5px; border: 1px solid rgb(34, 156, 160); border-image: none; top: 18px; width: 70px; height: 90px; right: -39px; color: rgb(153, 153, 153); line-height: 20px; position: absolute;
+}
+.transTit {
+	margin: 0px 0px 18px; height: 28px; line-height: 28px; padding-left: 5px; border-top-color: rgb(238, 238, 238); border-bottom-color: rgb(238, 238, 238); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+.transPic {
+	padding: 5px 0px 5px 10px; width: 63px; float: left;
+}
+.transPic p {
+	margin: 3px 0px 0px; height: 18px; text-align: center; line-height: 18px; overflow: hidden;
+}
+.transName {
+	padding: 15px 0px 0px; width: 130px; text-align: left; float: left;
+}
+.recoList {
+	margin: -30px 0px 0px; width: 572px; float: left;
+}
+.recoList h6 {
+	padding: 0px 0px 0px 8px; color: rgb(215, 215, 214);
+}
+.recoList ul li {
+	margin: 10px 2px 0px 8px; padding: 3px; border: 1px solid rgb(237, 237, 237); border-image: none; width: 75px; height: 75px; overflow: hidden; float: left; display: inline;
+}
+.deTxt {
+	width: 203px; padding-left: 3px; float: right;
+}
+.deTxt ul li {
+	padding: 2px; border: 1px solid rgb(238, 238, 238); border-image: none; width: auto; height: 19px; margin-bottom: 6px; margin-left: 6px; float: left; display: block;
+}
+.deTxt ul a:hover {
+	text-decoration: none;
+}
+.deTxt ul li:hover {
+	border: 1px solid rgb(34, 156, 160); border-image: none;
+}
+.deTxt .ul {
+	border: currentColor; border-image: none; margin-left: 0px;
+}
+.deTxt h2 {
+	height: 26px; color: rgb(0, 0, 0); font-family: ºÚÌå; font-size: 22px; font-weight: 700; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.deTxt h4 {
+	padding: 8px 0px 0px; width: 205px; float: left;
+}
+.deTxt h3 {
+	width: 120px; height: 25px; line-height: 25px; padding-left: 78px; margin-bottom: 16px; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: dashed; display: block;
+}
+.deTxt h4 img {
+	margin-top: 10px;
+}
+.deTxt h5 {
+	text-align: center; padding-bottom: 7px; margin-top: 22px; margin-bottom: 10px; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.deTxt h6 {
+	height: 30px; line-height: 30px; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.colorDl {
+	padding: 6px 0px 0px; width: 189px; height: 22px; float: left;
+}
+.colorDl dt {
+	width: 38px; float: left;
+}
+.colorDl dd {
+	width: 150px; float: left;
+}
+.colorDl dd span {
+	padding: 0px 4px; border: 1px solid rgb(221, 221, 221); border-image: none; height: 18px; line-height: 18px; margin-right: 6px; float: left;
+}
+.spxq {
+	height: 181px; margin-bottom: 36px;
+}
+.spxq h1 {
+	background: rgb(245, 246, 241); width: 100px; height: 27px; text-align: center; line-height: 27px; margin-top: 25px; margin-bottom: 2px;
+}
+.spxq .spgg {
+	background: rgb(245, 246, 241); height: 130px;
+}
+.spxq .spgg p {
+	padding-top: 10px; padding-left: 20px;
+}
+.spxq h1 img {
+	padding-top: 8px;
+}
+.shopDet {
+	background: rgb(245, 245, 241); width: 187px; color: rgb(34, 156, 160); padding-top: 25px; float: left;
+}
+.shopDet .name {
+	padding-left: 10px;
+}
+.shopDet dl dd {
+	padding: 4px 0px 0px 2px;
+}
+.shopDet .m4 {
+	margin-right: 4px;
+}
+.shopkeeper dl {
+	width: 182px; float: left;
+}
+.shopkeeper .tx {
+	padding: 4px 0px 0px; width: 80px; float: left;
+}
+.shopkeeper .gz {
+	margin: 0px 0px 12px; padding: 12px 0px 10px 5px; width: 170px; float: left;
+}
+.shopkeeper .gz span {
+	padding: 7px 0px 0px 10px; text-decoration: underline; float: left;
+}
+.shopkeeper .gz span a {
+	text-decoration: underline;
+}
+.morePro {
+	padding: 0px 0px 5px; width: 177px; float: left;
+}
+.dianpu_pic {
+	padding: 0px 0px 5px; width: 177px; margin-left: 5px; float: left;
+}
+.dianpu_pic li {
+	margin: 0px 2px; float: left;
+}
+.morePro h3 {
+	text-indent: 4px;
+}
+.morePro li {
+	background: url("../images/0403_det_bg.gif") no-repeat; margin: 0px 2px 0px 3px; padding: 4px; width: 75px; height: 75px; overflow: hidden; float: left; display: inline;
+}
+.morePro li.more {
+	height: 59px; text-align: center; color: rgb(130, 180, 188); overflow: hidden; padding-top: 20px; margin-right: 0px;
+}
+.morePro li.more a {
+	color: rgb(130, 180, 188);
+}
+.morePro li.more span {
+	font: 20px/normal arial; font-size-adjust: none; font-stretch: normal;
+}
+.shopUl {
+	padding: 5px 0px 10px; width: 170px; float: left;
+}
+.shopUl li {
+	padding: 9px 0px 0px 5px; height: 20px;
+}
+.shopUl li img {
+	margin-right: 6px;
+}
+.shopUl_p {
+	width: 189px; color: rgb(91, 91, 91); line-height: 24px; float: left;
+}
+.shopUl .openLayer2 {
+	background: rgb(255, 255, 255); padding: 5px; border: 1px solid rgb(34, 156, 160); border-image: none; left: 35px; top: 30px; width: 70px; height: 90px; color: rgb(153, 153, 153); line-height: 20px; position: absolute;
+}
+.sel {
+	border: currentColor; border-image: none; width: 50px;
+}
+.xq {
+	border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.biaoqian {
+	border: 1px solid rgb(238, 238, 238); border-image: none; width: 748px; height: 115px; margin-top: 70px;
+}
+.k_350 {
+	padding: 6px 0px 0px 18px; width: 346px; height: 100px; margin-top: 5px; margin-left: 18px; border-left-color: rgb(238, 238, 238); border-left-width: 1px; border-left-style: solid; float: left;
+}
+.k_350_wu {
+	border: currentColor; border-image: none; padding-left: 0px;
+}
+.k_350 dt {
+	width: 38px; font-size: 14px; float: left; display: block;
+}
+.k_350 dd {
+	width: 300px; float: left; display: block;
+}
+.k_350 dd span {
+	padding: 0px 4px; height: 18px; line-height: 18px; margin-top: 4px; margin-right: 6px; float: left; display: block; white-space: nowrap; background-color: rgb(238, 238, 238);
+}
+.dztj_title {
+	margin: 25px auto 10px 0px;
+}
+.dztj {
+	height: auto;
+}
+.baifen_title {
+	margin: 10px auto 10px 0px;
+}
+.baifen_list {
+	height: auto; display: none;
+}
+.gmzx_title {
+	margin: auto auto 20px 10px; width: 747px; padding-bottom: 6px; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.service {
+	border: 1px solid rgb(238, 238, 238); border-image: none; width: 774px; height: 335px; margin-top: 10px;
+}
+.service h4 {
+	width: 747px; margin-left: 15px; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid;
+}
+#ser {
+	margin: 0px auto 5px 12px; width: auto;
+}
+.mjpl {
+	border: 1px solid rgb(238, 238, 238); border-image: none; width: 748px; height: auto; padding-bottom: 20px; margin-top: 15px;
+}
+.mjpl h4 {
+	width: 200px; margin-left: 15px; float: left;
+}
+.mjpl table {
+	margin: 15px auto auto 15px;
+}
+.mjpl h5 {
+	margin: 15px 12px auto auto; float: right;
+}
+.fb {
+	background: rgb(245, 245, 241); width: 751px; height: 165px; margin-top: 35px; margin-left: 10px;
+}
+.fb_l {
+	width: 97px; float: left;
+}
+.fb_l img {
+	padding-top: 20px; padding-left: 20px;
+}
+.fb_l h2 {
+	text-align: center; color: rgb(34, 156, 160);
+}
+.fb_r {
+	width: 645px; float: right;
+}
+.fb_r img {
+	margin-top: 9px; margin-right: 25px; float: right;
+}
+.fb_r textarea {
+	width: 630px; height: 98px; overflow: hidden; margin-top: 20px;
+}
+.gmzx {
+	height: auto; margin-top: 15px;
+}
+.xiaozuTit {
+	background: rgb(245, 244, 241); margin: 0px 0px 12px; padding: 9px 0px 0px 20px; width: 745px; height: 23px;
+}
+.xiaozuTit li {
+	padding: 0px 8px; height: 18px; line-height: 18px; border-right-color: rgb(217, 217, 217); border-right-width: 1px; border-right-style: solid; float: left;
+}
+.xiaozuTit li.none {
+	border-right-color: currentColor; border-right-width: medium; border-right-style: none;
+}
+.xiaouTit2 {
+	padding: 25px 0px 15px; width: 765px; float: left;
+}
+.xiaouTit2 span {
+	color: rgb(139, 138, 138) !important;
+}
+.xiaouTit2 dd {
+	color: rgb(228, 228, 228); padding-right: 10px; float: right;
+}
+.rmxzBox {
+	padding: 0px 0px 18px; width: 765px; overflow: hidden; float: left;
+}
+.rmxz {
+	margin: 4px 0px 12px; padding: 5px; border: 1px solid rgb(237, 237, 237); border-image: none; width: 360px; height: 91px; overflow: hidden; float: left;
+}
+.rmxz dt {
+	width: 92px; height: 91px; float: left;
+}
+.rmxz dd {
+	padding: 0px 0px 0px 10px; float: left;
+}
+.rmxz dd p {
+	width: 242px; height: 54px;
+}
+.hyyhList {
+	width: 765px; float: left;
+}
+.hyyhList li {
+	margin: 0px 12px 10px 0px; width: 83px; float: left;
+}
+.hyyhList li img {
+	width: 83px; height: 83px; overflow: hidden;
+}
+.hyyhList li p {
+	width: 83px; height: 24px; text-align: center; line-height: 24px; overflow: hidden;
+}
+.czrZp {
+	padding: 0px 0px 20px; width: 765px; float: left;
+}
+.czrZp li {
+	margin: 0px 18px 16px 0px; padding: 6px; border: 1px solid rgb(237, 237, 237); border-image: none; width: 228px; overflow: hidden; float: left;
+}
+.czrZp li img {
+	width: 71px; height: 71px; margin-right: 7px; float: left; display: block;
+}
+.czrZp li p {
+	color: rgb(139, 138, 138); float: left;
+}
+.czrZp li p span {
+	padding-bottom: 4px; font-weight: 700; display: block;
+}
+.syxz_btn {
+	background: rgb(255, 255, 255); border: 1px solid rgb(214, 213, 213); border-image: none; width: 150px; height: 20px; font-size: 12px;
+}
+.syxzBox {
+	padding: 0px 0px 10px 2px; width: 762px; float: left;
+}
+.syxzBox .box {
+	padding: 17px 0px; width: 762px; border-bottom-color: rgb(237, 237, 237); border-bottom-width: 1px; border-bottom-style: solid; float: left;
+}
+.syxzPic {
+	width: 475px; float: left; position: relative;
+}
+.syxzPic img {
+	width: 100px; height: 100px; margin-right: 14px; float: left;
+}
+.syxzPic h2 {
+	font-weight: 700; margin-top: -3px;
+}
+.syxzPic h3 {
+	left: 114px; bottom: 0px; color: rgb(139, 138, 138); margin-bottom: -4px; position: absolute;
+}
+.syxzPic2 {
+	width: 210px; float: right;
+}
+.syxzPic2 ul {
+	margin: 5px 0px 0px; width: 210px; float: left;
+}
+.syxzPic2 ul li {
+	margin: 0px 10px 0px 0px; width: 57px; height: 58px; float: left;
+}
+.creatbox {
+	padding: 20px 0px 0px; border: 1px solid rgb(238, 238, 238); border-image: none; width: 774px; float: left;
+}
+.creatbox .tit2 {
+	padding: 0px 0px 15px 8px;
+}
+.creatCon {
+	padding: 0px 0px 18px 10px; width: 737px; float: left;
+}
+.creatCon .pic {
+	width: 64px; height: 64px; float: left; position: relative;
+}
+.creatCon .pic2 {
+	width: 35px; height: 35px; float: left; position: relative;
+}
+.creatCon .pic2 h2 {
+	padding-left: 40px;
+}
+.creatCon .pic h3 {
+	left: 0px; width: 75px; height: 20px; bottom: 0px; position: absolute;
+}
+.creatCon .pic h4 {
+	left: 0px; width: 75px; height: 20px; text-align: center; bottom: 0px; line-height: 20px; position: absolute;
+}
+.coverbg {
+	opacity: 0.8;
+}
+.coverbg_yel {
+	opacity: 0.8;
+}
+.coverbg a {
+	color: rgb(255, 255, 255);
+}
+.coverbg_yel a {
+	color: rgb(255, 255, 255);
+}
+.coverbg {
+	background: rgb(75, 173, 174);
+}
+.coverbg_yel {
+	background: rgb(248, 214, 92); font-family: Î¢ÈíÑÅºÚ;
+}
+.creatTxt {
+	width: 625px; float: right; position: relative;
+}
+.creatTxt2 {
+	width: 625px; float: right; position: relative;
+}
+.creatTxt {
+	background: rgb(234, 246, 254); padding: 12px 10px 12px 15px;
+}
+.creatTxt h2 {
+	color: rgb(139, 138, 138);
+}
+.creatTxt2 h2 {
+	color: rgb(139, 138, 138);
+}
+.creatTxt h2 em {
+	font-style: normal; float: right;
+}
+.creatTxt2 h2 em {
+	font-style: normal; float: right;
+}
+.creatTxt p {
+	padding: 3px 0px 0px 50px; width: 345px;
+}
+.creatTxt p textarea {
+	border: 1px solid rgb(200, 231, 251); border-image: none; width: 570px; height: 67px; overflow: hidden;
+}
+.creatTxt2 p textarea {
+	border: 1px solid rgb(191, 191, 191); border-image: none; width: 620px; height: 80px; overflow: hidden;
+}
+.creatTxt h3 {
+	text-align: right; line-height: 16px; margin-top: -4px;
+}
+.creatTxt2 h3 {
+	text-align: right; line-height: 16px; margin-top: -4px;
+}
+.creatTxt2 {
+	background: rgb(245, 245, 241); padding: 12px 10px 16px 15px;
+}
+.creatTxt2 p {
+	padding: 8px 0px 0px;
+}
+.hf {
+	padding-bottom: 5px;
+}
+.creatIcon {
+	background: url("../images/0403_cl_icon.gif") no-repeat; left: -9px; top: 17px; width: 9px; height: 18px; position: absolute;
+}
+.creatIcon2 {
+	background: url("../images/0403_cl_icon2.gif") no-repeat; left: -12px; top: 8px; width: 12px; height: 25px; position: absolute;
+}
+.creatArea {
+	margin: 0px 0px 15px; padding: 8px; border: 1px solid rgb(238, 238, 238); border-image: none; width: 486px; height: 100px;
+}
+.pop_tab {
+	padding: 12px 10px 10px; background-color: rgb(255, 255, 255);
+}
+.pop_in {
+	padding: 4px; border: 1px solid rgb(216, 216, 216); border-image: none; left: 834px; top: 539px; width: 337px; height: auto; position: relative; background-color: rgb(242, 242, 242);
+}
+.pop_tip {
+	line-height: 16px; padding-top: 10px; background-color: rgb(255, 255, 255);
+}
+.pop_tip span {
+	color: rgb(201, 8, 9);
+}
+.handle {
+	padding: 6px 0px 0px; width: 205px; overflow: hidden; margin-left: 0px;
+}
+.handle ul {
+	width: 210px; color: rgb(122, 122, 122); overflow: hidden; margin-bottom: 5px;
+}
+.handle li {
+	margin-top: 5px; float: left; cursor: pointer;
+}
+.handle_title {
+	padding-top: 0px;
+}
+.solid {
+	background: rgb(234, 234, 234); padding: 0px 4px; border: 1px solid rgb(221, 221, 221); border-image: none; margin-right: 8px;
+}
+.dotted {
+	background: rgb(255, 255, 255); padding: 0px 4px; border: 1px solid rgb(221, 221, 221); border-image: none; margin-right: 8px;
+}
+.recoList h6 a {
+	color: rgb(34, 156, 160);
+}
+.shopDet a {
+	color: rgb(34, 156, 160);
+}
+.recoList ul {
+	float: left;
+}
+.shopkeeper .gz .img {
+	float: left;
+}
+.xiaouTit2 dt {
+	float: left;
+}
+.detpic {
+	width: 750px; height: auto;
+}
+.detpic li {
+	width: 750px; height: auto;
+}
+.dztj ul li {
+	background: url("../default/newimages/grey.gif") no-repeat 50% 40%; padding: 9px; border: 1px solid rgb(238, 238, 238); border-image: none; width: 146px; height: 211px; margin-right: 20px; float: left; display: inline;
+}
+.baifen_list ul li {
+	background: url("../default/newimages/grey.gif") no-repeat 50% 40%; padding: 9px; border: 1px solid rgb(238, 238, 238); border-image: none; width: 146px; height: 211px; margin-right: 20px; float: left; display: inline;
+}
+.dztj li h6 {
+	padding: 2px 0px 0px 3px;
+}
+.baifen_list li h6 {
+	padding: 2px 0px 0px 3px;
+}
+.dztj li p {
+	padding: 0px 0px 0px 5px; text-align: right; color: rgb(253, 131, 76); clear: right;
+}
+.baifen_list li p {
+	padding: 0px 0px 0px 5px; text-align: right; color: rgb(253, 131, 76); clear: right;
+}
+.dztj li p strong {
+	text-align: left; color: rgb(139, 138, 138); font-weight: 400; float: left;
+}
+.baifen_list li p strong {
+	text-align: left; color: rgb(139, 138, 138); font-weight: 400; float: left;
+}
+.dztj li p strong a {
+	color: rgb(139, 138, 138); text-decoration: none;
+}
+.baifen_list li p strong a {
+	color: rgb(139, 138, 138); text-decoration: none;
+}
+.dztj li p strong a:hover {
+	color: rgb(139, 138, 138); text-decoration: underline;
+}
+.baifen_list li p strong a:hover {
+	color: rgb(139, 138, 138); text-decoration: underline;
+}
+.service h4 img {
+	margin: 12px 0px;
+}
+.mjpl h4 img {
+	margin: 12px 0px;
+}
+.creatTxt h6 {
+	text-align: right; padding-top: 12px;
+}
+.creatTxt2 h6 {
+	text-align: right; padding-top: 12px;
+}
+.creatTxt h6 a {
+	padding-right: 17px; text-decoration: underline;
+}
+.creatTxt2 h6 a {
+	padding-right: 17px; text-decoration: underline;
+}
+.pop_tab td {
+	margin: 5px 0px; width: 12%; height: 25px; cursor: pointer;
+}
+#addr_list td {
+	margin: 5px 0px; width: 12%; height: 25px; cursor: pointer;
+}
+.pop_tab td span {
+	padding: 2px; display: inline-block;
+}
+#addr_list td span {
+	padding: 2px; display: inline-block;
+}
+.addr_on {
+	color: rgb(255, 255, 255); font-weight: 700; background-color: rgb(204, 0, 0);
+}
+#addr_list td:hover {
+	color: rgb(255, 255, 255); font-weight: 700; background-color: rgb(204, 0, 0);
+}

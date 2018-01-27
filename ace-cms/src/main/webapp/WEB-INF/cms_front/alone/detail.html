@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>3dMaking</title>
+    <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_news.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!-- Piwik -->
+    <link href="${base}/res/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/mall.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${base}/res/js/jquery.js"></script>
+    <script type="text/javascript" src="${base}/res/js/common.js"></script>
+    <style type="text/css">
+        .liuyan table tr td
+        {
+            line-height:35px;
+        }
+        .liuyan table tr td input[type='text']
+        {
+            border:#aaa solid 1px
+        }
+        .liuyan table tr td input[type='button']
+        {
+            background:#ff6600;
+            padding:10px 25px;
+            color:#fff;
+            border:#ff6600 solid 1px
+        }
+    </style>
+    <link href="${base}/res/css/cssNew.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--通用头部-->
+<#include "/cms_front/inc/top_nav.html"/>
+<!--头部结束-->
+
+<!--页面地址start-->
+<div class="width1100">
+    <div class="a_wd clearfix" style="margin-top: 10px;">
+        <div class="siteFont">
+            你现在的位置：智造网&nbsp;→&nbsp;<a href="#" title="3D商城" class="xin_c66 xin_bianse">联系我们</a>&nbsp;→&nbsp;正文</div>
+    </div>
+</div>
+
+<!--页面地址end-->
+<table class=" width1100 top_15"><tr><td class="bgWhite">
+    <!--中间内容列表start-->
+    <div class=" widthall">
+        <div class="design_channel">
+            <div class="container">
+                <div class="about_left">
+                    <ul>
+                        <li class="active"><a href="javascript:void(0)">公司简介<span class="rightArrow"></span></a></li>
+                        <li><a href="javascript:void(0)">版权声明<span class="rightArrow"></span> </a></li>
+                        <li><a href="javascript:void(0)">免责声明<span class="rightArrow"></span> </a></li>
+                        <li><a href="javascript:void(0)">关于隐私<span class="rightArrow"></span> </a></li>
+                        <li><a href="javascript:void(0)">关于智造网<span class="rightArrow"></span> </a></li>
+                        <li><a href="javascript:void(0)">联系方式<span class="rightArrow"></span> </a></li>
+                        <li><a href="javascript:void(0)">投稿方式<span class="rightArrow"></span> </a></li>
+                        <li><a href="javascript:void(0)">审核标准<span class="rightArrow"></span> </a></li>
+                        <li><a href="javascript:void(0)">网站留言<span class="rightArrow"></span> </a></li>
+                    </ul>
+                </div>
+                <div class="about_right">
+                    <div class="about_line">
+                        <b>公司简介</b>
+                        <div class="about_content">
+                            ${alone1.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>版权声明</b>
+                        <div class="about_content">
+                            ${alone2.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>免责声明</b>
+                        <div class="about_content">
+                            ${alone3.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>关于隐私</b>
+                        <div class="about_content">
+                            ${alone4.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>关于智造网</b>
+                        <div class="about_content" style="padding-left: 0; padding-bottom: 86px;">
+                            ${alone5.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>联系我们</b>
+                        <div class="about_content noIndent">
+                            ${alone6.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>投稿方式与要求</b>
+                        <div class="about_content noIndent">
+                            ${alone7.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>审核标准</b>
+                        <div class="about_content" style="padding-left: 0; padding-bottom: 86px;">
+                            ${alone8.content!}
+                        </div>
+                    </div>
+                    <div class="about_line">
+                        <b>网站留言</b>
+                        <div class="about_content liuyan" style="padding-left: 0; padding-bottom: 86px;">
+                            ${alone9.content!}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <script src="${base}/res/js/about.js" type="text/javascript"></script>
+        </div>
+    </div>
+    <!--中间内容列表end-->
+    <!--右侧浮窗-->
+    <div class="side-bar" id="side_bar">
+    </div>
+    <script type="text/javascript" src="${base}/res/js/goback_Top.js"></script>
+</td>
+</tr>
+    <!--底部bottom动态加载-->
+    <#include "/cms_front/inc/bottom.html"/>
+</table>
+</body>
+</html>

@@ -1,6 +1,6 @@
 package com.fighter.ace.cms.action.admin.main;
 
-import com.fighter.ace.cms.service.CmsLogService;
+import com.fighter.ace.cms.service.main.CmsLogService;
 import com.fighter.ace.framework.common.page.PageBean;
 import com.fighter.ace.framework.common.page.PageParam;
 import org.apache.commons.lang.StringUtils;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,0 +1,592 @@
+
+
+/*精 f1、佳 f2、荐 f3*/
+.f1
+{
+    color: #ff7200;
+}
+.f2
+{
+    color: #f34242;
+}
+.f3
+{
+    color: #ffa904;
+}
+
+.up_t
+{
+    margin-top: 20px;
+}
+.fl
+{
+    float: left;
+}
+.fr
+{
+    float: right;
+}
+
+.nav-toggle
+{
+    display: none;
+}
+
+.clearfix:before, .clearfix:after
+{
+    content: "";
+    display: table;
+}
+.clearfix:after
+{
+    clear: both;
+}
+.clearfix
+{
+    zoom: 1;
+}
+
+.sitename
+{
+    padding: 15px 0;
+}
+.sitename h2
+{
+    height: 52px;
+    line-height: 52px;
+    font-size: 48px;
+    color: #131313;
+    overflow: hidden;
+}
+.sitename h2 font
+{
+    font-weight: normal;
+    color: #464646;
+}
+.sitename span
+{
+    display: block;
+    height: 16px;
+    line-height: 20px;
+}
+.sitename span a
+{
+    color: #464646;
+}
+
+
+.title
+{
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+    overflow: hidden;
+}
+.title h3
+{
+    float: left;
+    font-size: 18px;
+}
+.title span
+{
+    float: right;
+}
+.title h4
+{
+    font-size: 18px;
+}
+.main_margin10
+{
+    margin-bottom: 22px;
+}
+
+
+
+pre
+{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word; /*pre自动换行*/
+}
+
+
+
+.a963top
+{
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    background: url(../images/header.gif) repeat-x;
+}
+.a963top .toplogin
+{
+    float: left;
+}
+.a963top .topleft
+{
+    float: right;
+    font-size: 12px;
+}
+.a963top .topleft a
+{
+    font-size: 12px;
+    padding: 0 5px;
+}
+
+.main_left
+{
+    width: 27.9661017%;
+}
+.design_mz
+{
+    border: 1px solid #eee;
+}
+.face, .face_top, .face_right .face_right1, .face_right .face_right2, .face_contart
+{
+    border-bottom: 1px solid #eee;
+}
+
+.face_left
+{
+    width: 40.2298851%;
+    float: left;
+    padding: 2.8735632%;
+    border-right: 1px solid #eee;
+}
+.face_pic
+{
+    width: 100%;
+    height: 0;
+    padding-bottom: 114.2857143%;
+    overflow: hidden;
+}
+.face_pic img
+{
+    width: 100%;
+}
+
+.face_right
+{
+    width: 43.7356322%;
+    float: left;
+    font-size: 14px;
+    line-height: 24px;
+}
+.face_right img
+{
+    vertical-align: middle;
+}
+.face_right h3, .face_right .face_right1
+{
+    padding: 0 10px;
+}
+.face_right h3
+{
+    padding-top: 10px;
+    font-size: 21px;
+}
+.face_right .face_right1
+{
+    padding-bottom: 10px;
+}
+.face_right .face_right2, .face_right .face_share, .face_button, .face_contart
+{
+    padding: 12px 10px;
+}
+.face_right .face_share
+{
+    padding-right: 5px;
+}
+.face_right .face_right1 span.arte
+{
+    margin-left: 10px;
+    color: #999;
+}
+.face_button a, .face_button a:hover
+{
+    display: inline-block;
+    padding: 5px 20px;
+    background: #00a3e7;
+    border-radius: 3px;
+    color: #fff;
+}
+.face_button a.hover
+{
+    background: #ff7200;
+    margin-left: 20px;
+}
+.face_contart ul
+{
+    float: left;
+    width: 50%;
+}
+.face_contart ul li
+{
+    padding-left: 18px;
+}
+.face_contart ul li.tel
+{
+    background: url(../images/des_face_03.gif) no-repeat left;
+}
+.face_contart ul li.phone
+{
+    background: url(../images/des_face_04.gif) no-repeat left;
+}
+.face_contart span
+{
+    float: right;
+    width: 50%;
+    background: url(../images/des_face_05.gif) no-repeat left;
+}
+.face_contart span a
+{
+    padding-left: 18px;
+}
+.face_contart span img
+{
+    vertical-align: middle;
+}
+
+.my_auout
+{
+    padding: 10px;
+    padding-top: 0;
+}
+.design_mome p
+{
+    word-wrap: break-word;
+    padding-top: 10px;
+}
+.design_mome p a
+{
+    color: #00a3e7;
+    margin-left: 5px;
+}
+.design_mome p.workstype_style a
+{
+    color: #333333;
+}
+
+.left_title
+{
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 10px;
+}
+.left_title h3
+{
+    font-size: 21px;
+    font-weight: normal;
+    float: left;
+}
+.left_title span
+{
+    float: right;
+    margin-top: 5px;
+}
+
+.main_left .main_padding
+{
+    padding: 0 10px;
+    border: 1px solid #eee;
+    border-top: 0;
+}
+.left_list
+{
+    padding: 10px 0;
+}
+.left_list li
+{
+    line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.left_list li a
+{
+    background: url(../images/item_01.gif) left center no-repeat;
+    padding-left: 10px;
+}
+
+.left_pic
+{
+    padding: 10px 0;
+    width: 103.6585366%;
+    margin-left: -3.6585366%;
+}
+.left_pic li
+{
+    width: 16.4705882%;
+    float: left;
+    margin-left: 3.5294118%;
+    padding: 10px 0;
+    font-size: 12px;
+}
+.left_pic li .left_pic_img
+{
+    width: 100%;
+    height: 0;
+    padding-bottom: 116.6666667%;
+    overflow: hidden;
+}
+.left_pic li .left_pic_img img
+{
+    width: 100%;
+}
+.left_pic li .left_pic_text
+{
+    text-align: center;
+}
+.left_pic li .left_pic_text a
+{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.left_pic li .left_pic_text span
+{
+    color: #999;
+    line-height: 16px;
+    display: block;
+}
+
+.left_pic li.photo
+{
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.main_right
+{
+    width: 68.6440678%;
+    overflow: hidden;
+}
+.border_solid
+{
+    border: 1px solid #eee;
+}
+
+.Label_Classification
+{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    padding: 10px;
+}
+.Label_Classification a
+{
+    padding: 0 4px 0 0;
+    color: #999999;
+}
+.Label_Classification span, .Label_Classification a
+{
+    font-size: 12px;
+}
+.right_text_pic
+{
+    text-align: center;
+    padding: 10px 0 20px 0;
+}
+.right_text_pic img
+{
+    width: 82.6446281%;
+}
+.right_text
+{
+    line-height: 24px;
+    padding: 10px;
+}
+.right_text p
+{
+    text-indent: 18px;
+}
+.Postedon_read_Comments
+{
+    line-height: 34px;
+    overflow: hidden;
+    padding: 10px;
+}
+.Postedon_read_CommentsL
+{
+    float: left;
+    color: #999;
+}
+.Postedon_read_CommentsL font
+{
+    color: #00a3e7;
+}
+.Postedon_read_CommentsR
+{
+    float: right;
+}
+.Postedon_read_CommentsR a
+{
+    color: #00a3e7;
+}
+
+/*底部滚动图片*/
+.ScrCont
+{
+    height: 114px;
+    position: relative;
+    overflow: hidden;
+}
+.ScrCont ul
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.ScrCont li
+{
+    float: left;
+    width: 229px;
+    height: 114px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.foot_Links
+{
+    background: #e7e7e7;
+}
+.foot_Links ul
+{
+    padding: 8px 15px;
+}
+.foot_Links li
+{
+    line-height: 24px;
+    float: left;
+    padding-right: 12px;
+    white-space: nowrap;
+}
+
+.celebrity_name
+{
+    height: 30px;
+    padding: 0 15px;
+    color: #999;
+    overflow: hidden;
+    line-height: 30px;
+}
+.NameScroll
+{
+    position: relative;
+}
+.NameScroll_ul
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left: 95px;
+}
+
+/*关于about*/
+.main_padding10
+{
+    padding: 15px;
+}
+.about
+{
+    padding: 20px;
+}
+.about dl
+{
+    margin-bottom: 25px;
+}
+.about h2
+{
+    color: #DA251D;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/*作品案例 works*/
+.works dl
+{
+    border-bottom: 1px dashed #eee;
+    padding: 15px 0;
+    position: relative;
+}
+.works dl dt
+{
+    width: 14.0625%;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+.works dl dt .allsitebox
+{
+    width: 100%;
+    height: 0;
+    padding-bottom: 85.1851852%;
+    overflow: hidden;
+}
+.works dl dt .allsitebox img
+{
+    width: 100%;
+}
+.works dl dd
+{
+    width: 84.375%;
+    float: right;
+}
+.works dl dd .allsiteinformation1
+{
+    line-height: 32px;
+    overflow: hidden;
+    font-size: 16px;
+}
+.works dl dd .allsiteinformation1 span
+{
+    color: #999;
+    padding-left: 12px;
+    font-size: 13px;
+}
+.works dl dd .allsiteinformation1 font
+{
+    padding: 0 5px;
+}
+.works dl dd .allsiteinformation2
+{
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    color: #999;
+}
+.works dl dd .allsiteinformation2 span
+{
+    padding-right: 20px;
+}
+.works dl dd .allsiteinformation2 span a
+{
+    color: #999;
+}
+.works dl dd .allsiteinformation3
+{
+    line-height: 28px;
+    overflow: hidden;
+}
+.works dl dd .allsiteinformation3 a, .works dl dd .allsiteinformation2 span a:hover
+{
+    color: #00a3e7;
+}
+.works dl dd .allsiteinformation3 a:hover
+{
+    text-decoration: underline;
+}
+
+.works dl.nonepic_designernewslist dd
+{
+    width: 100%;
+}
+.works dl.nonepic_designernewslist dd .allsiteinformation3
+{
+    line-height: 28px;
+    overflow: hidden;
+}
+

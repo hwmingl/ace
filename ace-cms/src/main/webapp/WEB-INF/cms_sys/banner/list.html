@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        function getTableForm() {
+            return document.getElementById("tableForm");
+        }
+        function optDelete() {
+            if(Pn.checkedCount("ids")<=0) {
+                alert("请选择您要操作的数据");
+                return;
+            }
+            if(!confirm("您确定删除吗？")) {
+                return;
+            }
+            var f = getTableForm();
+            f.action="batchDelete.do";
+            f.submit();
+        }
+    </script>
+    <script type="text/javascript">
+        function _gotoPage(pageNo) {
+            try{
+                var tableForm = getTableForm();
+                $("input[name=pageNo]").val(pageNo);
+                tableForm.action="v_list.do";
+                tableForm.onsubmit=null;
+                tableForm.submit();
+            } catch(e) {
+                alert('_gotoPage(pageNo)方法出错');
+            }
+        }
+
+
+        var max=200;
+        function showImage(a) {
+            var img = $("<img src='"+ a.href +"' style='border:1px solid #ccc;'/>");
+            var imgDiv = $("#sd").append(img);
+            imgDiv.show();
+
+            var	width = img.attr("width");
+            var	height = img.attr("height");
+            if(width>=height&&width>max) {
+                height = height*max/width;
+                width = max;
+            } else if(height>=width||height>max) {
+                width = width*max/height;
+                height = max;
+            }
+            var offset = $(a).offset();
+            imgDiv.css("left",offset.left+$(a).outerWidth()+3);
+            var buttom = $(window).height()+$(document).scrollTop()-max-offset.top;
+            if(buttom<0) {
+                imgDiv.css("top",offset.top+buttom-3);
+            } else {
+                imgDiv.css("top",offset.top-3);
+            }
+            img.width(width);
+            img.height(height);
+        }
+
+
+        function hideImage(a) {
+            $("#sd").empty().hide();
+        }
+    </script>
+</head>
+<body>
+<div id="sd" style="display:none;position:absolute;height:300px;width:300px"></div>
+<div class="box-positon">
+    <div class="rpos">当前位置: Banner管理 - 列表</div>
+    <div class="clear"></div>
+</div>
+<div class="body-box">
+    <form id="tableForm" method="post">
+        <input type="hidden" name="pageNo" value="${pageBean.currentPage}"/>
+        <input type="hidden" name="userName" value="${userName!}"/>
+        <table class="pn-ltable" style="" width="100%" cellspacing="1" cellpadding="0" border="0">
+            <thead class="pn-lthead"><tr>
+                <th>ID</th>
+                <th>Banner</th>
+                <th>链接地址</th>
+                <th>最后修改时间</th>
+                <th>操作选项</th>
+            </thead>
+            <tbody  class="pn-ltbody">
+            <#if pageBean.recordList??>
+                <#list pageBean.recordList as bean>
+                    <tr onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
+                        <td align="center">${bean.id}</td>
+                        <td align="left">
+                            <a href="${bean.picUrl!}" target="_blank" onmouseover="showImage(this)" onmouseout="hideImage(this)">
+                                <#if bean.title=='INDEX_BANNER'>${bean.title!}(首页banner)</#if>
+                                <#if bean.title=='NEED_REG_BANNER'>${bean.title!}(注册页banner)</#if>
+                                <#if bean.title=='NEED_LOGIN_BANNER'>${bean.title!}(登陆页banner)</#if>
+                                <#if bean.title=='MODEL_DETAIL_BANNER'>${bean.title!}(模型详细页小banner)</#if>
+                            </a>
+                        </td>
+                        <td align="left">&nbsp;${bean.link!}</td>
+                        <td align="center">${bean.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                        <td align="center">
+                            <a href="v_edit.do?id=${bean.id}&pageNo=${pageBean.currentPage}" class="pn-opt">修改</a>
+                        </td>
+                    </tr>
+                </#list>
+            </#if>
+            </tbody>
+        </table>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center" class="pn-sp">
+                    共 ${pageBean.totalCount} 条&nbsp;
+                    每页${pageBean.numPerPage}条&nbsp;
+
+                    <#if pageBean.currentPage=1>
+                        <input class="first-page" type="button" value="首 页" onclick="_gotoPage('1');" disabled="disabled"/>
+                        <input class="pre-page" type="button" value="上一页" onclick="_gotoPage(1);" disabled="disabled"/>
+                        <#else>
+                            <input class="first-page" type="button" value="首 页" onclick="_gotoPage('1');"/>
+                            <input class="pre-page" type="button" value="上一页" onclick="_gotoPage('${pageBean.currentPage-1}');"/>
+                    </#if>
+
+                    <#if pageBean.currentPage=pageBean.pageCount || pageBean.pageCount == 0>
+                        <input class="next-page" type="button" value="下一页" onclick="_gotoPage('${pageBean.pageCount}');" disabled="disabled"/>
+                        <input class="last-page" type="button" value="尾 页" onclick="_gotoPage('${pageBean.pageCount}');" disabled="disabled"/>&nbsp;
+                        <#else>
+                            <input class="next-page" type="button" value="下一页" onclick="_gotoPage('${pageBean.currentPage+1}');"/>
+                            <input class="last-page" type="button" value="尾 页" onclick="_gotoPage('${pageBean.pageCount}');"/>&nbsp;
+                    </#if>
+                    当前 ${pageBean.currentPage}/${pageBean.pageCount} 页 &nbsp;转到第<input type="text" id="_goPs" style="width:50px" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>页
+                    <input class="go" id="_goPage" type="button" value="转" onclick="_gotoPage($('#_goPs').val());" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+</body>
+</html>

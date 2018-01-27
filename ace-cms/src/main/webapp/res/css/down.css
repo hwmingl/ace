@@ -1,0 +1,128 @@
+
+
+.cor_01 {
+	color: #88B950;
+}
+
+.cor_02 {
+	color: #f38eab;
+}
+
+.cor_03 {
+	color: #6dc8d7;
+}
+
+.cor_04 {
+	color: #9f8cff;
+}
+
+.cor_05 {
+	color: #ff767b;
+}
+
+.cor_06 {
+	color: #88B950;
+}
+
+.green {
+	background: #88b94e;
+}
+
+.r_red {
+	background: #f386a5;
+}
+
+.qingse {
+	background: #61c5d5;
+}
+
+.purple {
+	background: #9f8cff;
+}
+
+.qingse2 {
+	background: #ff9d9e;
+}
+
+.green2 {
+	background: #88b94e;
+}
+
+
+.download {
+	clear: both;
+	padding: 40px 0 80px;
+}
+
+
+
+.download a {
+	display: block;
+	margin: 0 auto;
+	width: 232px;
+	height: 41px;
+	border-radius: 5px;
+	background: #008ee0;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	line-height: 41px;
+}
+
+.download a:hover {
+	background: #007dda;
+}
+
+
+
+
+/*下载页面strat*/
+.content2{min-width:800px;}
+.download-box{height: 50px;line-height: 50px;text-align: center;font-size: 16px;background: rgba(0,0,0,0.1);position: absolute;width: 100%;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000);}
+.down-center{width: 800px;margin: 0 auto}
+.download-item{width: 19.8%;float: left;cursor: pointer;position: relative;font-weight: normal;border-left:/*\**/ 1px solid #afb4c2\9;width: /*\**/ 24%\9;border-right: 1px solid #ddd;}
+.download-item:after{content: '';position: absolute;left: 0;top:10px;right: auto; height: 60%;width: 1px;background-color:rgba(255,255,255,0.3);display: block;z-index: 15;-webkit-transform-origin: 50% 100%;transform-origin: 50% 100%;}
+.download-item:last-child:before{content: '';position: absolute;right: 0;top:10px;height: 60%;width: 1px;background-color:rgba(255,255,255,0.3);display: block;z-index: 15;-webkit-transform-origin: 50% 100%;transform-origin: 50% 100%;}
+.download-item:hover,.download-item.active{background: rgba(0,142,224,0.9);/*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000);*/font-weight: normal;font-size: 18px;color:#FFF;}
+/*兼容ie8边框 背景*/
+.download-item:hover,.download-item.active{background:/*\**/ #5a74b8\9}
+.download-item.jr-css{border-right:/*\**/ 1px solid #afb4c2\9;}
+.download-item img{position: absolute;left:0px;top:0;}
+.content-title {padding: 50px 0 20px;}
+.content-title h3{font-size: 30px;color: #6E84FB;text-align: center;}
+.content-title h6{font-size: 14px;color: #cacaca;text-align: center;}
+.download-text{font-size: 18px;line-height: 35px;}
+a.download-cpsc{display: inline-block;margin: 50px auto 0 auto;border-radius: 5px;background: #008ee0;color: #fff;text-align: center;font-size: 16px;color: #fff;padding: 10px 40px;}
+a.download-cpsc:hover{background: #007dda;}
+
+.download-panel{background:#fff;border:1px solid #e4e3e8;margin-top: 30px;}
+.download-panel-item{/*margin:65px 80px 30px 80px;*/font-size: 14px;color: #a8a8a8;line-height: 24px;padding-right: 40%;border-bottom: 1px solid #e4e3e8;padding:65px 45% 65px 80px;position: relative;}
+.download-panel-item .title{font-size: 20px;color: #323131;border-left: 5px solid #7295fb;padding-left: 5px;}
+.download-panel-item .gx-time{margin-top:10px; }
+.download-panel-item .gx-time span{margin-right:15px;}
+.download-panel-item .cont{margin-top:10px; }
+.download-panel-item .cont span{font-weight: bold;color: #5f5f5f}
+.download-panel-item .cont a{color: #688eed}
+.download-panel-item .btn{margin-top:20px;}
+.download-panel-item .btn .xz{width: 158px;height: 44px;background: #76c906;border-bottom: 3px solid #6BA916;display: inline-block;color:#fff;text-align: center;line-height: 44px;margin-right:10px; font-size: 16px;position: relative;text-indent: 1em}
+.download-panel-item .btn a img{position: absolute;margin-top:12px; left: 25px;}
+.download-panel-item .btn .xz:hover{background-color: #80CF15}
+.download-panel-item .btn .qrcode { width: 164px; height: 164px; }
+.cp-pic{position: absolute;right: 80px;top:20%;}
+.cp-pic img{ width:260px;}
+.zl-download a{font-size: 12px;margin-right: 10px;display: inline;color: #688eed}
+.zl-download a:hover{text-decoration: underline;}
+
+.timeline ol{background:url(../images/3done/timeline.png) repeat-y 228px 0}
+.timeline ol li{overflow:hidden;padding:10px 0 10px 285px;position:relative}
+.timeline h2{position:absolute;left:0;top:20px;text-align:right;width:180px;font-size:24px;margin-right:105px}
+.timeline h2 span{display:block;font-size:14px;color:#7f7f7f}
+.timeline h2 em{display:inline-block;position:absolute;width:33px;height:44px;background:url(../images/3done/time.png) no-repeat;background-position:-134px 0;right:-67px;top:0}
+.timeline .detail{border:1px solid #dedede;position:relative;background:#fff;padding:10px 15px;color:#7f7f7f}
+.timeline .detail em{background:url(../images/3done/time.png) no-repeat;width:17px;height:26px;background-position:-150px -44px;left:-17px;top:20px;display:inline-block;position:absolute}
+
+.detail .title{font-size: 18px;margin-bottom: 10px;}
+.detail .btn{margin-top: 10px;}
+.detail .btn a{padding:5px 20px;background-color: #4999fb;color: #fff;font-size: 14px;display: inline-block;border-bottom: 2px solid #2D83EC;margin-right: 10px;}
+.detail .btn a:hover{background-color: #368BF3}
+/*下载页面end*/

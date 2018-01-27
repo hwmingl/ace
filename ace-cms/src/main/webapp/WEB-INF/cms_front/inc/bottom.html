@@ -1,0 +1,30 @@
+<tr>
+    <td class=" lineH5">
+    </td>
+</tr>
+<tr>
+    <td class=" bgWhite2" style="padding: 8px;">
+        <!--底部链接-->
+        <div class="a_wd_full" id="linkCom">
+        </div>
+        <div class="a_wd_full footer" id="footer">
+        </div>
+        <script type="text/javascript" language="javascript" src="${base}/res/js/html.js"></script>
+        <script type="text/javascript" language="javascript">
+            //页面加载top html公共部分
+            var top1Html = top1Html();
+            $("#top1").html(top1Html);
+            var top2Html = top2Html();
+            $("#top2").html(top2Html);
+            //加载linkCom
+            var linkComHtml = linkCom_Html();
+            $("#linkCom").html(linkComHtml);
+            //加载footer
+            var footHtml = footHtml();
+            $("#footer").html(footHtml);
+            //加载右侧浮窗
+            var side_barHtml = side_bar();
+            $("#side_bar").html(side_barHtml);
+        </script>
+    </td>
+</tr>

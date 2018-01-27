@@ -1,0 +1,20 @@
+@charset "utf-8";
+iframe{border:0; overflow:hidden;}
+
+.hvr-bounce-to-bottom,.hvr-bounce-to-bottom:before,.hvr-rectangle-out,.hvr-rectangle-out:before{background:none;}
+.nav ul li .on_nav,.hvr-bounce-to-bottom:hover{background:#00a3e7;}
+.nav .dropdown ul{background:url(../images/tran_bg_01.png);}
+.nav .dropdown ul .hvr-rectangle-out a{width:100%; text-align:center; padding:0;}
+.hvr-rectangle-out a:hover{background:#111; padding:0;}
+
+p.bjqs-caption,.da-thumbs li a div,.effect-zoe div,.accor_ad li div{background:url(../images/tran_bg_02.png);}
+
+.img_zoom div{background:url(../images/tran_bg_01.png);}
+.img_zoom:hover div {
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    filter: alpha(opacity=50); opacity:0.5; top:0;}
+#index_des_02 .img_zoom h2{font-size:18px;padding:0 15px;}
+#index_des_02 .img_zoom p{padding:0 15px;}
+
+.footer .footer_nav dl dd li span p{display:none;}
+.footer .footer_nav dl dd li span:hover p{display:block;}

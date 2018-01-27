@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>cms-left</title>
+    <#include "/cms_sys/head.html"/>
+    <script src="${base}/res/cms/js/highcharts.js" type="text/javascript"></script>
+
+    <script language="JavaScript">
+        $(document).ready(function() {
+            var title = {
+                text: '模型上传量趋势图'
+            };
+            var subtitle = {
+                text: 'Source: 3dmaking.com'
+            };
+            var xAxis = {
+                categories:${categories}
+            };
+            var yAxis = {
+                title: {
+                    text: '模型上传总量(个)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            };
+
+            var tooltip = {
+                valueSuffix: '个'
+            }
+
+            var legend = {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            };
+
+            var series =  [
+                {
+                    name: '模型上传',
+                    data: ${series}
+                }
+            ];
+
+            var json = {};
+            json.title = title;
+            json.subtitle = subtitle;
+            json.xAxis = xAxis;
+            json.yAxis = yAxis;
+            json.tooltip = tooltip;
+            json.legend = legend;
+            json.series = series;
+            $('#container').highcharts(json);
+        });
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <h1>当前位置: 统计 - 模型上传量走势图</h1>
+</div>
+<div class="body-box">
+    <div class="welcom-con">
+        <div id="container"></div>
+    </div>
+</body>
+</html>

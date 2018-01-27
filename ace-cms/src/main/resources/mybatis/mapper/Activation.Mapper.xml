@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.external.ActivationDao">
+
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.external.Activation">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="point" property="point" jdbcType="INTEGER"/>
+        <result column="expired_time" property="expiredTime" jdbcType="TIMESTAMP"/>
+        <result column="member_id" property="memberId" jdbcType="BIGINT"/>
+        <result column="member_name" property="memberName" jdbcType="VARCHAR"/>
+        <result column="source_ip" property="sourceIp" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.Activation" keyProperty="id" useGeneratedKeys="true">
+        INSERT t_activation(create_time,
+          code,
+          point,
+          expired_time,
+          status)
+        VALUES (
+          now(),
+          #{code},
+          #{point},
+          #{expiredTime},
+          0
+        )
+    </insert>
+
+    <select id="findActCode" parameterType="java.lang.String" resultMap="beanMap">
+        SELECT
+            id,
+            create_time,
+            modified_time,
+            code,
+            point,
+            expired_time,
+            member_id,
+            source_ip,
+            status
+        FROM
+        t_activation
+        WHERE status = 0 AND code = #{code}
+        LIMIT 1
+    </select>
+
+    <update id="update" parameterType="com.fighter.ace.cms.entity.external.Activation">
+        UPDATE t_activation
+        SET modified_time = now(),
+        source_ip = #{sourceIp},
+        member_id = #{memberId},
+        status = #{status}
+        where id = #{id}
+    </update>
+
+    <update id="deleteById" parameterType="java.lang.Long">
+        UPDATE t_activation
+        SET
+        modified_time = now(),
+        status = -1
+        where id = #{id}
+    </update>
+
+    <update id="batchDelete" parameterType="java.lang.Long">
+        UPDATE t_activation
+        SET
+        modified_time = now(),
+        status = -1
+        WHERE id in
+        <foreach item="id" collection="array" open="(" separator ="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <!-- 查询总条数 -->
+    <select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+        COUNT(1)
+        FROM
+        t_activation
+        WHERE status &gt; -1
+        <if test="null != code">
+            AND code LIKE #{code}
+        </if>
+    </select>
+
+    <!-- 查询分页模型 -->
+    <select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
+        SELECT
+            id,
+            create_time,
+            modified_time,
+            code,
+            point,
+            expired_time,
+            member_id,
+            source_ip,
+            status
+        FROM
+        t_activation
+        WHERE status &gt; -1
+        <if test="null != code">
+            AND code LIKE #{code}
+        </if>
+        ORDER BY id DESC
+        LIMIT #{pageFirst},#{pageSize}
+    </select>
+
+</mapper>

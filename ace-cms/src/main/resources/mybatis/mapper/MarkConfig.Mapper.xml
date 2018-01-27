@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.main.MarkConfigDao">
+
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.main.MarkConfig">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="is_on" property="on" jdbcType="BIT"/>
+        <result column="min_width" property="minWidth" jdbcType="INTEGER"/>
+        <result column="min_height" property="minHeight" jdbcType="INTEGER"/>
+        <result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="size" property="size" jdbcType="INTEGER"/>
+        <result column="color" property="color" jdbcType="VARCHAR"/>
+        <result column="alpha" property="alpha" jdbcType="INTEGER"/>
+        <result column="pos" property="pos" jdbcType="INTEGER"/>
+        <result column="offset_x" property="offsetX" jdbcType="INTEGER"/>
+        <result column="offset_y" property="offsetY" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.main.MarkConfig" keyProperty="id" useGeneratedKeys="true">
+        INSERT t_mark_config(create_time,
+            is_on,
+            min_width,
+            min_height,
+            image_path,
+            content,
+            size,
+            color,
+            alpha,
+            pos,
+            offset_x,
+            offset_y,
+            status)
+        VALUES (
+            now(),
+            #{on},
+            #{minWidth},
+            #{minHeight},
+            #{imagePath},
+            #{content},
+            #{size},
+            #{color},
+            #{alpha},
+            #{pos},
+            #{offsetX},
+            #{offsetY},
+            1
+        )
+    </insert>
+
+    <select id="getById" resultMap="beanMap" parameterType="java.lang.Long">
+        SELECT id,
+            is_on,
+            min_width,
+            min_height,
+            image_path,
+            content,
+            size,
+            color,
+            alpha,
+            pos,
+            offset_x,
+            offset_y
+        FROM t_mark_config
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.fighter.ace.cms.entity.main.MarkConfig">
+        UPDATE t_mark_config
+        SET modified_time = now()
+        <if test="on!=null">
+            ,is_on = #{on}
+        </if>
+        <if test="minWidth!=null">
+            ,min_width = #{minWidth}
+        </if>
+        <if test="minHeight!=null">
+            ,min_height = #{minHeight}
+        </if>
+        <if test="imagePath!=null">
+            ,image_path = #{imagePath}
+        </if>
+        <if test="content!=null">
+            ,content = #{content}
+        </if>
+        <if test="size!=null">
+            ,size = #{size}
+        </if>
+        <if test="color!=null">
+            ,color = #{color}
+        </if>
+        <if test="alpha!=null">
+            ,alpha = #{alpha}
+        </if>
+        <if test="pos!=null">
+            ,pos = #{pos}
+        </if>
+        <if test="offsetX!=null">
+            ,offset_x = #{offsetX}
+        </if>
+        <if test="offsetY!=null">
+            ,offset_y = #{offsetY}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,41 @@
+@charset "utf-8";
+body {padding:0px;margin:0px;}
+html,ul,li,dl,dt,dd,ol,th,td,form,h1,h2,h3,h4,h5,h6,img,p{margin:0;padding:0;border:none}
+ul,li{list-style-type:none}
+.div {font:0px/0px;clear:both;display:block}
+a{color:#000;text-decoration:none}
+a:hover{color:#00b5e7;text-decoration:none}
+/*.left{float:left}
+.right{float:right}
+.center{margin:0px auto}
+.main{width:950px;margin:0px auto}*/
+
+/*名人设计圈*/
+.celebrity{width:940px;border:solid 5px #6a6a6a;height:370px;margin-top:8px}
+.celebrity_title{height:70px}
+.celebrity_figure{height:285px;padding:10px 10px 0px 10px;border-right:solid 1px #c4c4c4;width:725px}
+.celebrity_keyword{line-height:30px}
+.celebrity_keyword span{font-weight:bold}
+.celebrity_keyword a{padding-right:8px}
+.celebrity_imges{height:225px;overflow:hidden}
+.avatarRolling{position:relative}
+.scroll_ul{position:absolute;left:0;top:0}
+
+.celebrity_imges .listhd{height:112px}
+.celebrity_imges dl{width:55px;height:105px;float:left;padding:7px 10px 0px 0px}
+.celebrity_imges dl dt{width:55px;height:73px}
+.celebrity_imges dl dd{height:20px;width:55px;text-align:center;overflow:hidden}
+.celebrity_name{height:30px;color:#666;line-height:30px;overflow:hidden}
+.NameScroll{position:relative}
+.NameScroll_ul{position:absolute;left:0;top:0}
+.NameScroll_ul a{margin:2px;}
+.celebrity_name a{color:#666}
+.celebrity_menu{width:180px;height:285px}
+.celebrity_menu ul li{width:65px;float:left;background:url(../images/list_dian.gif) no-repeat left center;padding:0px 10px;font-size:14px;line-height:25px;color:#2e2e2a;height:25px;overflow:hidden}
+
+.list_right_box .celebrity_imges{height:230px;}
+.list_right_box .scroll_ul{width:105.4545455%; margin-left:-5.1515152%;}
+.list_right_box .scroll_ul .listhd{height:115px;}
+.list_right_box .scroll_ul li dl{width:20.1149425%; margin-left:4.8850575%; padding:10px 0 0;}
+.list_right_box .scroll_ul li dl dt{width:100%; height:0; padding-bottom:118.5714286%; overflow:hidden;}
+.list_right_box .scroll_ul li dl dt img{width:100%;}

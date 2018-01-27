@@ -1,0 +1,88 @@
+@charset utf-8;
+a, a:link { text-decoration: none; }
+a:visited { }
+a:active, a:hover { text-decoration: none; }
+a:focus { outline: none; }
+.fixed:after { content: "."; display: block; clear: both; height: 0; visibility: hidden; }
+.fixed { display: block; min-height: 1%;}
+*html .fixed { height: 1%; }
+.clear { diplay: block!important; float: none!important; clear: both; overflow: hidden; width: auto!important; height: 0!important; margin: 0 auto!important; padding: 0!important; font-size: 0; line-height: 0; }
+.more { float: right; }
+.more a { font-weight: normal; font-size: 12px; }
+.fl, .fr { display: inline; float: left; }
+.fr { float: right; }
+.ju{ color:#ff7800;}
+.color999{ color:#999;}
+.color{ color:#00CCCC;}
+.fff{ color:#fff;}
+.black{ color:#000;}
+.size14{ font-size:14px;}
+.size16{ font-size:16px;}
+.size18{ font-size:18px;}
+.size20{ font-size:20px;}
+.size22{ font-size:22px;}
+.size24{ font-size:24px;}
+.size26{ font-size:26px;}
+.size28{ font-size:28px;}
+.size30{ font-size:30px;}
+.weight{ font-weight:bold;}
+
+.width814{ width:814px; margin:0 auto;}
+.pager {
+    margin: 50px 0 0;
+    text-align: center;
+}
+.pager_icon {
+    background: url("../images/page.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 18px;
+    margin: 9px auto 0;
+    width: 25px;
+}
+.pager ul li {
+    display: inline-block;
+    margin: 0 0 0 7px;
+}
+.pager ul li a, .pager ul li span {
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    width: 36px;
+}
+.pager ul li span.prev i {
+    background-position: 0 0;
+}
+.pager ul li a.prev i {
+    background-position: 0 -18px;
+}
+.pager ul li a.prev:hover i {
+    background-position: 0 -36px;
+}
+.pager ul li span.next i {
+    background-position: -25px -36px;
+}
+.pager ul li a.next i {
+    background-position: -25px -18px;
+}
+.pager ul li a.next:hover i {
+    background-position: -25px 0;
+}
+.pager ul li a.next:hover, .pager ul li a.prev:hover {
+    background-position: 0 -57px;
+}
+.pager a {
+    color: #00cccc;
+}
+.pager a:hover {
+    background: url(../images/page1.png) no-repeat scroll 0 -93px rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+}
+.pager span.now {
+    background: url(../images/page1.png) no-repeat scroll 0 -57px rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+}
+.pager ul li span.pager-sl {
+    color: #00cccc;
+    line-height: 25px;
+    width: auto;
+}

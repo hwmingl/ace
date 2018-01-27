@@ -40,4 +40,34 @@ public class FrameAct {
         return "frame/user_right";
     }
 
+    @RequestMapping("/frame/config_main.do")
+    public String configMain(ModelMap model) {
+        return "frame/config_main";
+    }
+
+    @RequestMapping("/frame/config_left.do")
+    public String configLeft(ModelMap model) {
+        return "frame/config_left";
+    }
+
+    @RequestMapping("/frame/config_right.do")
+    public String configRight(ModelMap model) {
+        return "frame/config_right";
+    }
+
+    @RequestMapping("/frame/statistic_main.do")
+    public String statisticMain(ModelMap model) {
+        return "frame/statistic_main";
+    }
+
+    @RequestMapping("/frame/statistic_left.do")
+    public String statisticLeft(ModelMap model) {
+        return "frame/statistic_left";
+    }
+
+    @RequestMapping("/frame/statistic_right.do")
+    public String statisticRight(ModelMap model) {
+        return "frame/statistic_right";
+    }
+
 }

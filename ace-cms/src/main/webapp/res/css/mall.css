@@ -1,0 +1,624 @@
+
+
+
+/***市集商品列表页***/
+.shijiGoods
+{
+    width: 100%;
+    background: #fff;
+    padding: 0 0 0 0;
+}
+.shijiGoodsNavL
+{
+    width: 142px;
+    height: 28px;
+    border: 1px solid #00CCCC;
+}
+.shijiGoodsNavL a
+{
+    width: 71px;
+    height: 28px;
+    color: #00CCCC;
+    display: block;
+    line-height: 28px;
+    float: left;
+}
+.shijiGoodsNavL a.on
+{
+    background: #00CCCC;
+    color: #fff;
+}
+.shijiGoodsNavL a:hover
+{
+    background: #e8ffff;
+}
+
+.shijiGoodsNavR ul li
+{
+    width: 70px;
+    height: 28px;
+    border: 1px solid #00CCCC;
+    margin: 0 0 0 10px;
+    float: right;
+    line-height: 28px;
+}
+.shijiGoodsNavR ul li:hover
+{
+    background: #e8ffff;
+}
+.shijiGoodsNavR ul li.conditions
+{
+    width: 180px;
+}
+.conditionsL
+{
+    width: 50px;
+}
+.shijiGoodsNavR ul li.conditions a
+{
+    width: 50px;
+    background: #00CCCC;
+    color: #fff;
+}
+.shijiGoodsList
+{
+    margin-top: 32px;
+    padding-bottom: 0px;
+}
+.shijiGoodsItem
+{
+   
+    width:275px;
+     margin:0 0.8% 2% 0.8%;
+    float:left;
+}
+.shijiGoodsItem img
+{
+ width:275px;
+ height:250px;line-height:25px;padding:0px;
+    
+}
+
+.shijiGoodsItem .price
+{
+    width:275px;
+    border:none;
+    padding:0;
+    margin:-30px 0 0 0;
+    display:block;
+    
+    
+}
+.shijiGoodsItem .price ul 
+{
+    
+    width:275px;
+    float:left;
+    background:#fda041;
+    
+}
+.shijiGoodsItem .price ul li
+{
+   
+    line-height:40px;
+    height:40px;
+    color:#fff;
+    padding:0 0 0 20px;
+     float:left;
+}
+.shijiGoodsItem .price ul li:first-child
+{
+   
+    width:140px;
+    background:#f55f43;
+}
+.shijiGoodsItem .price .gwcLi
+{
+    width:94px;
+    text-align:center;
+    background:url(../images/cart.png) no-repeat 12px center;
+}
+.shijiGoodsItem .price .gwcLi:hover
+{
+    text-align:center;
+    background:url(../images/cart.png) #f67f06 no-repeat 12px center;
+    color:#ffffff;
+}
+.icoRmb
+{
+    font-size:1.2em;
+   
+}
+
+
+.shijiGoodsItemLast
+{
+    margin-right: 0;
+}
+.shijiGoodsItem h3
+{
+    width:275px;
+    text-align:center;
+    line-height: 30px;
+    height: 30px;
+    padding:0 0 0 0;
+    position: relative;
+    z-index:9999;
+    top:-30px;
+    background:#333;
+    color:#fff;
+    opacity: 0.75; 
+    filter: alpha(opacity=75);
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.shijiGoodsItem h3 a
+{
+     color:#fff;
+}
+.shijiGoodsItem h3:hover a
+{
+    width:275px;
+    color: #fff;
+}
+.colorWhite
+{
+    color:#fff;
+}
+.shijiGoodsWarp
+{
+    width: 144px;
+    margin: 10px auto 0;
+    height: 20px;
+}
+.overlay
+{
+    height: 10px;
+    border-bottom: 1px solid #e2e2e2;
+}
+.goodsPrice
+{
+    width: 65px;
+    height: 15px;
+    padding: 0 10px;
+    background: #fff;
+    position: relative;
+    top: -10px;
+    z-index: 90;
+    margin: 0 auto;
+}
+
+.conditionNav
+{
+    width: 100%;
+    height: 53px;
+    background: url(../images/condition_bg.gif) repeat-x;
+    border-top: 1px solid #e1e1e1;
+}
+.conditionNavL ul li
+{
+    width: 50px;
+    height: 27px;
+    border: 1px solid #00CCCC;
+    float: left;
+    line-height: 27px;
+    font-size: 14px;
+    color: #00cccc;
+    background: url(../images/icon2.png) no-repeat #fff;
+    background-position: 0 -20px;
+    margin: 12px 9px 0 0;
+    padding: 0 0 0 36px;
+}
+.conditionNavL ul li.on
+{
+    background-position: 0 0;
+}
+.conditionNavR
+{
+    width: 144px;
+    height: 27px;
+    margin: 12px 0 0 0;
+}
+.conditionNavR a
+{
+    width: 71px;
+    height: 28px;
+    color: #00CCCC;
+    display: block;
+    line-height: 28px;
+    float: left;
+    background: #fff;
+}
+.conditionNavR a.lefta
+{
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #00cccc;
+    border-right: none;
+}
+.conditionNavR a.righta
+{
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #00cccc;
+    border-left: none;
+}
+.conditionNavR a.on, .conditionNavR a.on:hover
+{
+    background: #00CCCC;
+    color: #fff;
+}
+.conditionNavR a:hover
+{
+    background: #e8ffff;
+    color: #00CCCC;
+}
+
+.conditionCon
+{
+    border-bottom: 1px solid #e3e3e3;
+}
+.conditionCon p
+{
+    height: 56px;
+    width: 55px;
+    text-align: right;
+    line-height: 56px;
+    color: #545454;
+}
+.conditionCon ul
+{
+    width: 1045px;
+}
+.conditionCon ul li
+{
+    float: left;
+    padding: 20px 0 0 26px;
+}
+.conditionCon ul li a
+{
+    font-size: 14px;
+    color: #545454;
+}
+.conditionCon ul li a:hover
+{
+    color: #00cccc;
+}
+
+.goodsDiscount
+{
+    width: 66px;
+    height: 66px;
+    background: url(../images/discount.png) no-repeat;
+    position: absolute;
+    z-index: 10;
+    top: 170px;
+    left: 12px;
+}
+.goodsDiscount p
+{
+    width: 60px;
+    text-align: center;
+    color: #fff;
+    padding-top: 30px;
+}
+
+
+/**闪购**/
+.shangouTop
+{
+    background: #fff;
+    margin: 60px 0 0 0;
+    padding: 0 0 80px 0;
+}
+.shangouListLast
+{
+    margin-right: 0;
+}
+.shangouBottom
+{
+    background: #f6f6f6;
+    padding: 40px 0 80px 0;
+}
+
+
+
+/**商品详情页面***/
+.goodsWarp
+{
+    margin: 20px auto 0;
+    padding-bottom: 200px;
+}
+.goodsInfoBtn
+{
+    width: 214px;
+    margin: 35px 0;
+}
+.goodsInfoBtn a
+{
+    width: 98px;
+    height: 32px;
+    border: 1px solid #dcdcdc;
+    line-height: 32px;
+    display: block;
+    text-align: center;
+    float: left;
+    border-radius: 5px;
+    background-image: linear-gradient(#FFFFFF, #EBEBEB);
+    background-color: #fff;
+}
+
+.goodsHotLove
+{
+    width: 242px;
+    margin-top: 20px;
+}
+.goodsHotLove .ws_love_hot_nav a
+{
+    width: 121px;
+    height: 40px;
+    border-top: 2px solid #f5f5f1;
+    color: #229ca0;
+    float: left;
+    background: #f5f5f1;
+    line-height: 40px;
+    text-align: center;
+}
+.goodsHotLove .ws_love_hot_nav a:hover, .goodsHotLove .ws_love_hot_nav a.love_hot_checked
+{
+    border-top-color: #229ca0;
+    background: #ededed;
+}
+.goodsHotLove .ws_love_hot_list
+{
+    width: 219px;
+    border: 1px solid #d9d9d9;
+    padding: 7px 12px 19px 9px;
+}
+.goodsHotLove .ws_love_hot_list li dl dd
+{
+    width: 128px;
+    height: 81px;
+    float: left;
+    margin-left: 8px;
+}
+
+.goodsInfoR
+{
+    width: 828px;
+}
+.goodsInfoR .right_top
+{
+    width: 828px;
+}
+.goodsInfoR .right_top_left
+{
+    width: 420px;
+    float: left;
+    position: relative;
+}
+.goodsInfoR .right_top_left img
+{
+    width: 420px;
+    border: none;
+}
+.addLoveNew
+{
+    width: 74px;
+    height: 38px;
+    background: url(../images/icon5.png) no-repeat;
+    position: absolute;
+    right: 23px;
+    top: 23px;
+}
+.addLoveNew a
+{
+    width: 37px;
+    height: 37px;
+    display: block;
+}
+.addLoveNew p
+{
+    width: 37px;
+    height: 37px;
+    text-align: center;
+    line-height: 37px;
+    color: #fff;
+}
+
+.goodsInfoRight
+{
+    width: 378px;
+}
+.goodsInfoRight h2
+{
+    font-size: 18px;
+    color: #222;
+    line-height: 30px;
+    border-bottom: 1px solid #f3f3f3;
+    padding: 0 0 15px 0;
+    margin: 0 0 25px 0;
+}
+
+.goodsInfoRgui
+{
+    width: 378px;
+    float: left;
+    padding: 0 0 15px 0;
+}
+.goodsInfoRgui .goods_info_right_guige_one dt
+{
+    width: 80px;
+    float: left;
+    margin: 15px 0 0 0;
+}
+.goodsInfoRgui .goods_info_right_guige_one dd
+{
+    width: 287px;
+    float: left;
+}
+.goods_info_right_guige_one dd .list_chima li
+{
+    width: auto;
+    float: left;
+    border: 1px solid #c8c9ce;
+    background: white;
+    padding: 1px 10px;
+    line-height: 20px;
+    margin: 13px 0 0 5px;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+}
+.goods_info_right_guige_one dd .list_chima li span, .goods_info_right_guige_one dd .list_color li span
+{
+    z-index: 9999;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.goods_info_right_guige_one dd .list_color li
+{
+    width: auto;
+    height: 26px;
+    float: left;
+    border: 1px solid #c8c9ce;
+    background: white;
+    padding: 1px 10px;
+    line-height: 26px;
+    cursor: pointer;
+    margin-top: 11px;
+    margin-left: 5px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.goodsRightBtn
+{
+    width: 378px;
+    height: 86px;
+    float: left;
+    margin: 0 0 15px 0;
+    background: url(../images/diagonalMaskWhiteBg.gif) repeat center center #E5E5E5;
+}
+.goodsRightBtn a
+{
+    width: 261px;
+    height: 50px;
+    display: block;
+    margin: 18px auto 0;
+    line-height: 50px;
+    color: #fff;
+}
+.BuyBtn
+{
+    background: url(../images/buycar2.png) 44px 16px no-repeat #46c600;
+}
+.dingzhiBtn
+{
+    background: #636262;
+}
+
+/**新品***/
+.goodsNav
+{
+    width: 1100px;
+    margin: 40px auto;
+}
+.goodsNav li
+{
+    padding: 0 0 0 20px;
+    height: 20px;
+    line-height: 20px;
+}
+.goodsNav li:after
+{
+    content: '';
+    margin-left: 10px;
+}
+.goodsNav li.last:after
+{
+    content: '';
+}
+.goodsNav li a.on, .goodsNav li a:hover
+{
+    color: #00cccc;
+}
+
+
+.goodsNav1
+{
+    width: 1200px;
+    margin: 10px auto;
+}
+.goodsNav1 li
+{
+    padding: 0 0 0 20px;
+    height: 20px;
+    line-height: 20px;
+}
+.goodsNav1 li:after
+{
+    content: '';
+    margin-left: 10px;
+}
+.goodsNav1 li.last:after
+{
+    content: '';
+}
+.goodsNav1 li a.on, .goodsNav1 li a:hover
+{
+    color: #00cccc;
+}
+.goodsNav1 li a.on1
+{
+    color: #222;
+}
+
+
+/****公共弹出框样式***/
+.CommonBox
+{
+    width: 354px;
+    height: 161px;
+    background: #747474;
+    border-radius: 5px;
+    padding: 12px;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+}
+.CommonBoxCon
+{
+    width: 354px;
+    height: 126px;
+    padding-top: 35px;
+    background: #f2f2f2;
+    border-radius: 5px;
+}
+.CommonBoxBtn
+{
+    width: 111px;
+    height: 43px;
+    background: #00cccc;
+    line-height: 43px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 31px;
+    display: inline-block;
+}
+.CommonBoxBtnOk
+{
+    margin-left: 126px;
+}
+.CommonBoxBtnCancle
+{
+    background: #cbcbcb;
+    color: #222;
+    margin-left: 55px;
+}
+#confirm .CommonBoxBtnOk
+{
+    margin-left: 30px;
+}

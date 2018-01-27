@@ -2,8 +2,8 @@ package com.fighter.ace.cms.security;
 
 import com.fighter.ace.cms.entity.main.CmsRole;
 import com.fighter.ace.cms.entity.main.CmsUser;
-import com.fighter.ace.cms.service.CmsRoleService;
-import com.fighter.ace.cms.service.CmsUserService;
+import com.fighter.ace.cms.service.main.CmsRoleService;
+import com.fighter.ace.cms.service.main.CmsUserService;
 import com.fighter.ace.cms.util.CmsUtil;
 import com.fighter.ace.framework.utils.MD5Util;
 import com.fighter.ace.framework.web.RequestUtils;

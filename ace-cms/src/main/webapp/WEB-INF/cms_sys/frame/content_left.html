@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>jeecms-left</title>
+    <title>acecms-left</title>
     <#include "/cms_sys/head.html"/>
     <script type="text/javascript">
         $(function(){
@@ -15,16 +15,38 @@
     <#include "/cms_sys/date.html"/>
     <ul class="w-lful">
         <li><a href="../frame/content_right.do" target="rightFrame">欢迎页</a></li>
-        <li><a href="../model/list.do" target="rightFrame">模型管理</a></li>
-        <li><a href="../news/list.do" target="rightFrame">资讯管理</a></li>
-        <li><a href="../mall/list.do" target="rightFrame">商城管理</a></li>
-        <li><a href="../college/list.do" target="rightFrame">学院-资源管理</a></li>
-        <li><a href="../course/list.do" target="rightFrame">学院-课程管理</a></li>
-        <li><a href="../single_page/list.do" target="rightFrame">单页管理</a></li>
-        <li><a href="../notice/list.do" target="rightFrame">公告管理</a></li>
-        <li><a href="../extend/list.do" target="rightFrame">推广活动</a></li>
+        <@cms_perm url="/model/v_list.do">
+        <li><a href="../model/v_list.do" target="rightFrame">模型管理</a></li>
+        </@cms_perm>
+        <@cms_perm url="/news/v_list.do">
+        <li><a href="../news/v_list.do" target="rightFrame">资讯管理</a></li>
+        </@cms_perm>
+        <@cms_perm url="/mall/v_list.do">
+        <li><a href="../mall/v_list.do" target="rightFrame">商城管理</a></li>
+        </@cms_perm>
+        <@cms_perm url="/college/v_list.do">
+        <li><a href="../college/v_list.do" target="rightFrame">学院管理</a></li>
+        </@cms_perm>
+
+        <@cms_perm url="/alone/v_list.do">
+        <li><a href="../alone/v_list.do" target="rightFrame">单页管理</a></li>
+        </@cms_perm>
+
+        <@cms_perm url="/notice/v_list.do">
+        <li><a href="../notice/v_list.do" target="rightFrame">公告管理</a></li>
+        </@cms_perm>
+        <@cms_perm url="/activation/v_list.do">
+        <li><a href="../activation/v_list.do" target="rightFrame">积分卡管理</a></li>
+        </@cms_perm>
+        <@cms_perm url="/banner/v_list.do">
+        <li><a href="../banner/v_list.do" target="rightFrame">Banner管理</a></li>
+        </@cms_perm>
+
+<!--
         <li><a href="../activation/list.do" target="rightFrame">积分卡管理</a></li>
         <li><a href="../banner/v_list.do" target="rightFrame">Banner管理</a></li>
+        <li><a href="../extend/list.do" target="rightFrame">推广活动</a></li>
+-->
     </ul>
 </div>
 </body>

@@ -15,6 +15,14 @@
     <context:component-scan base-package="com.fighter.ace.cms.dao,com.fighter.ace.cms.service"/>
     <context:annotation-config/>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--图片处理-->
+    <bean id="imageScale" class="com.fighter.ace.framework.common.image.ImageScaleImpl" init-method="init">
+        <property name="tryMagick" value="false"/>
+    </bean>
+
+    <bean id="realPathResolver" class="com.fighter.ace.framework.common.web.springmvc.ServletContextRealPathResolver"/>
+    <bean id="fileRepository" class="com.fighter.ace.framework.common.upload.FileRepository"/>
 
     <!--自定义标签-->
     <!--后台权限标签-->

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.external.BannerDao">
+
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.external.Banner">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+        <result column="link" property="link" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <update id="update" parameterType="com.fighter.ace.cms.entity.external.Banner">
+        UPDATE t_banner
+        SET modified_time = now()
+        <if test="picUrl!=null">
+            ,pic_url = #{picUrl}
+        </if>
+        <if test="link!=null">
+            ,link = #{link}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询总页数 -->
+    <select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+          COUNT(1)
+        FROM
+          t_banner
+        WHERE status = 1
+    </select>
+
+    <!-- 查询分页 -->
+    <select id="listPage" parameterType="java.util.Map" resultMap="beanMap">
+        SELECT id,
+          create_time,
+          modified_time,
+          title,
+          link,
+          pic_url,
+          status
+        FROM
+          t_banner
+        WHERE status = 1
+        LIMIT #{pageFirst},#{pageSize}
+    </select>
+
+    <select id="getById" resultMap="beanMap" parameterType="java.lang.Long">
+        SELECT id,
+          create_time,
+          modified_time,
+          title,
+          link,
+          pic_url,
+          status
+        FROM
+          t_banner
+        WHERE id = #{id}
+    </select>
+
+    <select id="getByTitle" parameterType="java.util.Map" resultMap="beanMap">
+        SELECT id,
+          create_time,
+          modified_time,
+          title,
+          link,
+          pic_url,
+          status
+        FROM
+          t_banner
+        WHERE title = ${title}
+        LIMIT 1
+    </select>
+
+
+</mapper>

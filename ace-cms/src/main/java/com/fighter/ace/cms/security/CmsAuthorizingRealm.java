@@ -2,7 +2,7 @@ package com.fighter.ace.cms.security;
 
 
 import com.fighter.ace.cms.entity.main.CmsUser;
-import com.fighter.ace.cms.service.CmsUserService;
+import com.fighter.ace.cms.service.main.CmsUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

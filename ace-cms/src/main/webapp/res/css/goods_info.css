@@ -1,0 +1,204 @@
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+.ms_yahei {
+	font-family: "Microsoft Yahei",Î¢ÈíÑÅºÚ;
+}
+.fontSize {
+	font-size: 14px;
+}
+.fontSize1 {
+	font-size: 18px;
+}
+.color1 {
+	color: rgb(92, 92, 92);
+}
+.color2 {
+	color: rgb(137, 137, 137);
+}
+.ed_clear::after {
+	height: 0px; line-height: 0; overflow: hidden; clear: both; font-size: 0px; display: block; visibility: hidden; content: ".";
+}
+.store-banner {
+	background: url("../store_index/store_banner_yy.gif") no-repeat bottom; margin: 0px 0px 10px; height: 127px;
+}
+.custom_area {
+	background: rgb(92, 92, 92); margin: 0px 0px 20px; height: 516px;
+}
+.store-index-nav {
+	background: url("../two_level_page/twoLevelPage.png") no-repeat -347px 0px; width: 978px; height: 45px; border-bottom-color: rgb(29, 185, 190); border-bottom-width: 2px; border-bottom-style: solid;
+}
+.store-index-nav-price {
+	height: 45px; border-bottom-color: rgb(29, 185, 190); border-bottom-width: 2px; border-bottom-style: solid; float: left;
+}
+.store-index-nav-price li {
+	padding: 10px 0px 0px; height: 35px; margin-right: 6px; float: left;
+}
+.store-index-nav-price li a {
+	line-height: 23px; padding-left: 10px; font-size: 12px; float: left;
+}
+.store-index-nav-price li a span {
+	line-height: 23px; padding-right: 10px; float: left; cursor: pointer;
+}
+.store-index-nav-price li a:hover {
+	background: url("../two_level_page/calc.gif") no-repeat left -66px; color: rgb(34, 156, 160);
+}
+.store-index-nav-price li a:hover span {
+	background: url("../two_level_page/calc.gif") no-repeat right -92px;
+}
+.store-index-nav-price li.current a {
+	background: url("../two_level_page/calc.gif") no-repeat left -9px; color: white;
+}
+.store-index-nav-price li.current a:hover {
+	background: url("../two_level_page/calc.gif") no-repeat left -9px; color: white;
+}
+.store-index-nav-price li.current a span {
+	background: url("../two_level_page/calc.gif") no-repeat right -38px;
+}
+.store-index-nav-price li.current a:hover span {
+	background: url("../two_level_page/calc.gif") no-repeat right -38px;
+}
+.line {
+	background: rgb(197, 197, 197); margin: 10px 15px 0px 0px; width: 1px; height: 23px; float: left;
+}
+.store_info {
+	background: rgb(245, 245, 241); padding: 20px 0px 0px;
+}
+.store_info h2 {
+	padding: 0px 10px; color: rgb(92, 92, 92); line-height: 30px; font-size: 20px; windth: 210px;
+}
+.store_info_list {
+	margin: 15px 0px 0px 10px; width: 190px; line-height: 25px; padding-bottom: 8px; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.store_level span {
+	float: left;
+}
+.store_level img {
+	margin: 5px 0px 0px; float: left;
+}
+.store_info_list li span {
+	color: rgb(137, 137, 137);
+}
+.store_info_other {
+	margin: 15px 0px 0px 10px; width: 190px; padding-bottom: 15px; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.store_info_other dl dt {
+	width: 66px; height: 66px; float: left;
+}
+.store_info_other dl dd {
+	margin: 0px 0px 0px 10px; width: 114px; color: rgb(137, 137, 137); float: left;
+}
+.store_info_other dl dd p span a {
+	color: rgb(34, 156, 160);
+}
+.store_num_info {
+	margin: 15px 0px 0px; color: rgb(137, 137, 137);
+}
+.store_num_info em {
+	color: rgb(29, 185, 190); font-size: 25px; font-style: normal;
+}
+.brand_story {
+	margin: 15px 0px 0px 10px; width: 190px;
+}
+.brand_story p {
+	line-height: 20px;
+}
+.brand_story p img {
+	margin-top: 4px; margin-right: 8px; float: left;
+}
+.store_save_share {
+	margin: 15px 0px 0px; width: 200px; height: 44px; padding-bottom: 27px;
+}
+.store_save_share a {
+	margin: 0px 1px 0px 0px; width: 198px; height: 44px; float: left;
+}
+.store_save {
+	background: url("../store_index/store_button2.png") no-repeat 0px 0px;
+}
+.store_save_already {
+	background: url("../store_index/store_button1.gif") no-repeat 0px 0px;
+}
+.store_save:hover {
+	background: url("../store_index/store_button2.png") no-repeat 0px -45px;
+}
+.store_goods_cate {
+	background: rgb(245, 245, 241); margin: 20px 0px 0px; padding: 0px 11px 17px;
+}
+.store_goods_cate h3 {
+	height: 31px; line-height: 41px; text-indent: 5px; font-size: 14px;
+}
+.store_goods_cate_list {
+	width: 188px;
+}
+.store_goods_cate_list li.cate_1f {
+	background: url("../store_index/littleCate.png") no-repeat 8px 13px white; margin: 10px 0px 0px; height: 32px; font-size: 14px; border-bottom-color: rgb(197, 197, 197); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.store_goods_cate_list li.cate_2f {
+	background: white; margin: 2px 0px 0px; height: 22px; border-bottom-color: rgb(197, 197, 197); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.store_goods_cate_list li span {
+	color: rgb(137, 137, 137); margin-right: 8px; float: right;
+}
+.store_goods_cate_list li a {
+	margin: 0px 0px 0px 17px; color: rgb(34, 156, 160); float: left;
+}
+.cate_1f span {
+	line-height: 32px;
+}
+.cate_1f a {
+	line-height: 32px;
+}
+.cate_2f span {
+	color: rgb(204, 204, 204); line-height: 22px;
+}
+.cate_2f a {
+	color: rgb(204, 204, 204); line-height: 22px;
+}
+.right_column {
+	margin: 0px 0px 0px 20px; width: 730px; float: left;
+}
+.right_column dl {
+	text-align: center;
+}
+.right_column dl dt {
+	padding: 20px 0px;
+}
+.right_column dl dd {
+	color: rgb(186, 186, 184); font-family: "Microsoft Yahei",Î¢ÈíÑÅºÚ; font-size: 20px;
+}
+.ws_love_hot {
+	width: 210px; margin-top: 20px;
+}
+.ws_love_hot_nav a {
+	background: rgb(245, 245, 241); width: 105px; height: 40px; text-align: center; color: rgb(34, 156, 160); line-height: 40px; border-top-color: rgb(245, 245, 241); border-top-width: 2px; border-top-style: solid; float: left;
+}
+.ws_love_hot_nav a:hover {
+	background: rgb(237, 237, 237); border-top-color: rgb(34, 156, 160);
+}
+.ws_love_hot_nav a.love_hot_checked {
+	background: rgb(237, 237, 237); border-top-color: rgb(34, 156, 160);
+}
+.ws_love_hot_list {
+	padding: 7px 12px 19px 9px; border: 1px solid rgb(217, 217, 217); border-image: none; width: 187px;
+}
+.ws_love_hot_list li {
+	float: left;
+}
+.ws_love_hot_list li dl {
+	margin-top: 10px;
+}
+.ws_love_hot_list li dl dt {
+	padding: 5px 0px 0px 5px; border: 1px solid rgb(217, 217, 217); border-image: none; width: 74px; height: 74px; float: left;
+}
+.ws_love_hot_list li dl dd {
+	width: 98px; height: 81px; margin-left: 8px; float: left;
+}
+.ws_love_hot_list li dl dd a {
+	height: 40px; color: rgb(34, 156, 160);
+}
+.ws_love_hot_list li dl dd span {
+	color: rgb(253, 131, 76);
+}
