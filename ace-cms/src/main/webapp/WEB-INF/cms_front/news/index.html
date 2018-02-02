@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>3dMaking</title>
+    <#include "/cms_front/inc/top_meta.html"/>
     <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
     <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
     <!--[if lte IE 8]><link href="${base}/res/css/ie8_news.css" rel="stylesheet" type="text/css"><!<![endif]-->
@@ -25,28 +25,29 @@
         <td class="bgWhite2">
             <!--中间内容列表start-->
             <div class="">
-                <a title="test" class="zx_tuijian fl" style="width: 663px; height: 408px;" href="#"
+                <a title="test" class="zx_tuijian fl" style="width: 663px; height: 408px;" href="${base}/cms/news/${focus1.id}"
                    target="_blank">
-                    <img src="${base}/res/images/080304092787075.jpg">
-                    <span style="height: 70px; bottom: 0px; line-height: 70px; font-size: 24px;">&nbsp;&nbsp;test设计标题test设计标题test设计标题</span>
+                    <img src="${focus1.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                    <span style="height: 70px; bottom: 0px; line-height: 70px; font-size: 24px;">&nbsp;&nbsp;<@text_cut s=focus1.title len=27 append='...'/></span>
                 </a>
                 <div class="fr" style="width: 522px;">
                     <div style="height: 228px;">
-                        <a title="test" class="zx_tuijian" style="width: 100%; height: 228px;" href="#" target="_blank">
-                            <img src="${base}/res/images/080331489050526.jpg">
-                            <span style="height: 36px; bottom: 0px; line-height: 36px; font-size: 16px;">&nbsp;&nbsp;test设计标题test设计标题test设计标题</span>
+                        <a title="test" class="zx_tuijian" style="width: 100%; height: 228px;" href="${base}/cms/news/${focus2.id}" target="_blank">
+                            <img src="${focus2.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                            <span style="height: 36px; bottom: 0px; line-height: 36px; font-size: 16px;">&nbsp;&nbsp;<@text_cut s=focus2.title len=27 append='...'/></span>
                         </a>
                     </div>
                     <div style="height: 170px; margin-top: 10px;">
-                        <a title="test" class="fl zx_tuijian" style="width: 260px; height: 170px;" href="#"
+                        <a title="test" class="fl zx_tuijian" style="width: 260px; height: 170px;" href="${base}/cms/news/${focus3.id}"
                            target="_blank">
-                            <img src="${base}/res/images/050237047950753.jpg">
-                            <span style="height: 36px; bottom: 0px; line-height: 36px; font-size: 16px;">&nbsp;&nbsp;test设计标题test设计标题test设计标</span>
-                        </a><a title="test" class="fr zx_tuijian" style="width: 260px; height: 170px;" href="#"
+                            <img src="${focus3.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                            <span style="height: 36px; bottom: 0px; line-height: 36px; font-size: 16px;">&nbsp;&nbsp;<@text_cut s=focus3.title len=14 append='...'/></span>
+                        </a>
+                        <a title="test" class="fr zx_tuijian" style="width: 260px; height: 170px;" href="${base}/cms/news/${focus4.id}"
                                target="_blank">
-                        <img src="${base}/res/images/090246310906596.jpg">
-                        <span style="height: 36px; bottom: 0px; line-height: 36px; font-size: 16px;">&nbsp;&nbsp;test设计标题test设计标题</span>
-                    </a>
+                        <img src="${focus4.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                        <span style="height: 36px; bottom: 0px; line-height: 36px; font-size: 16px;">&nbsp;&nbsp;<@text_cut s=focus4.title len=14 append='...'/></span>
+                        </a>
                     </div>
                 </div>
                 <div class="clear">
@@ -60,69 +61,57 @@
                 <div class="zx_info fl">
                     <a class="zx_sjzx" href="#">设计资讯</a>
                     <div class="zx_lanmu">
-                        <a title="今日看点" class="xin_posturl zx_dianji zx_dianjix " href="#">今日看点</a> <a title="设计前沿"
-                                                                                                       class="xin_posturl zx_dianji " href="#">设计前沿</a> <a title="行业动态" class="xin_posturl zx_dianji "
-                                                                                                                                                           href="#">行业动态</a> <a title="活动公告" class="xin_posturl zx_dianji " href="#">活动公告</a>
+                        <!--zx_dianjix-->
+                        <#if style??>
+                            <a title="今日看点" class="xin_posturl zx_dianji <#if style == 1>zx_dianjix</#if>" href="${base}/cms/news/index?style=1">今日看点</a>
+                            <a title="设计前沿" class="xin_posturl zx_dianji <#if style == 2>zx_dianjix</#if>" href="${base}/cms/news/index?style=2">设计前沿</a>
+                            <a title="行业动态" class="xin_posturl zx_dianji <#if style == 3>zx_dianjix</#if>" href="${base}/cms/news/index?style=3">行业动态</a>
+                            <a title="活动公告" class="xin_posturl zx_dianji <#if style == 4>zx_dianjix</#if>" href="${base}/cms/news/index?style=4">活动公告</a>
+                            <#else>
+                                <a title="今日看点" class="xin_posturl zx_dianji" href="${base}/cms/news/index?style=1">今日看点</a>
+                                <a title="设计前沿" class="xin_posturl zx_dianji" href="${base}/cms/news/index?style=2">设计前沿</a>
+                                <a title="行业动态" class="xin_posturl zx_dianji" href="${base}/cms/news/index?style=3">行业动态</a>
+                                <a title="活动公告" class="xin_posturl zx_dianji" href="${base}/cms/news/index?style=4">活动公告</a>
+                        </#if>
+
                     </div>
                     <ul>
                         <!--中间内容列表1start-->
-                        <li class="zc_cont"><a title="testImage" class="zc_cont_lianjie fl" href="#" target="_blank">
-                            <img class="zc_cont_img" src="${base}/res/images/140332488732404.jpg">
-                            <span class="zc_cont_title">今日看点</span> </a>
+                        <#if pageBean??>
+                            <#list pageBean.recordList as bean>
+                        <li class="zc_cont">
+                            <a title="testImage" class="zc_cont_lianjie fl" href="${base}/cms/news/${bean.id}" target="_blank">
+                            <img class="zc_cont_img" src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                            <span class="zc_cont_title">
+                                <#if bean.style == 1>今日看点</#if>
+                                <#if bean.style == 2>设计前沿</#if>
+                                <#if bean.style == 3>行业动态</#if>
+                                <#if bean.style == 4>活动公告</#if>
+                            </span> </a>
                             <div class="fl" style="width: 580px; margin-left: 30px;">
                                 <dl>
                                     <dd style="font-size: 20px;">
-                                        <a title="test" class="listTitle" href="#" target="_blank">test新闻标题，大家看看</a></dd>
-                                    <dd class="listTime">
-                                        2018-01-14</dd>
+                                        <a title="test" class="listTitle" href="${base}/cms/news/${bean.id}" target="_blank"><@text_cut s=bean.title len=27 append='...'/></a></dd>
+                                    <dd class="listTime">${bean.createTime?string('yyyy-MM-dd')}</dd>
                                     <dd class="listCont">
-                                        test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊...
-                                        <a title="更多" style="color: rgb(136, 136, 136); font-size: 100%;" href="#" target="_blank">
+                                        <@html_cut s=bean.content len=80 append='...'/>
+                                        <a title="更多" style="color: rgb(136, 136, 136); font-size: 100%;" href="${base}/cms/news/${bean.id}" target="_blank">
                                             更多</a></dd></dl>
                             </div>
                         </li>
+                            </#list>
+                        </#if>
                         <!--中间内容列表1end-->
-                        <!--中间内容列表2start-->
-                        <li class="zc_cont"><a title="testImage" class="zc_cont_lianjie fl" href="#" target="_blank">
-                            <img class="zc_cont_img" src="${base}/res/images/140332488732404.jpg">
-                            <span class="zc_cont_title">今日看点</span> </a>
-                            <div class="fl" style="width: 580px; margin-left: 30px;">
-                                <dl>
-                                    <dd style="font-size: 20px;">
-                                        <a title="test" class="listTitle" href="#" target="_blank">test新闻标题，大家看看</a></dd>
-                                    <dd class="listTime">
-                                        2018-01-14</dd>
-                                    <dd class="listCont">
-                                        test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊...
-                                        <a title="更多" style="color: rgb(136, 136, 136); font-size: 100%;" href="#" target="_blank">
-                                            更多</a></dd></dl>
-                            </div>
-                        </li>
-                        <!--中间内容列表2end-->
-                        <!--中间内容列表3start-->
-                        <li class="zc_cont"><a title="testImage" class="zc_cont_lianjie fl" href="#" target="_blank">
-                            <img class="zc_cont_img" src="${base}/res/images/140332488732404.jpg">
-                            <span class="zc_cont_title">今日看点</span> </a>
-                            <div class="fl" style="width: 580px; margin-left: 30px;">
-                                <dl>
-                                    <dd style="font-size: 20px;">
-                                        <a title="test" class="listTitle" href="#" target="_blank">test新闻标题，大家看看</a></dd>
-                                    <dd class="listTime">
-                                        2018-01-14</dd>
-                                    <dd class="listCont">
-                                        test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊test新闻内容页，大家看看啊...
-                                        <a title="更多" style="color: rgb(136, 136, 136); font-size: 100%;" href="#" target="_blank">
-                                            更多</a></dd></dl>
-                            </div>
-                        </li>
-                        <!--中间内容列表3end-->
                     </ul>
                     <!--分页开始-->
                     <div class="pagelinks">
-                        <a class="a1">当前页1/376条</a> <a href="#" class="a1">上一页</a> <span>首页</span> <a href="#">
-                        2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>
-                        <a href="#">7</a> <a href="#">8</a> <a href="#">9</a> <a href="#">10</a> ..<a href="#">35</a>
-                        <a href="#" class="a1">下一页</a> <a href="#" class="a1">尾页</a>
+                        <#if pageBean??>
+                        <a href="${base}/cms/news/index?style=${style!}" class="a1">首 页</a> <span>第 ${pageBean.currentPage} 页</span>
+                        <a href="${base}/cms/news/index?style=${style!}&pageNo=${pageBean.currentPage+1}" class="a1">下一页</a>
+                        <a href="${base}/cms/news/index?style=${style!}&pageNo=${pageBean.pageCount}" class="a1">尾 页</a>
+                        <a class="a1">共 ${pageBean.pageCount} 页</a>
+                        <a class="a1">${pageBean.totalCount}条</a>
+                        </#if>
                     </div>
                     <!--分页结束-->
                 </div>
@@ -131,65 +120,28 @@
                         <p class="zc_zouzx">
                             本周热门资讯&gt;</p>
                         <ul>
-                            <li class="zc_remenzx"><a title="test" class="fl" style="width: 100px; height: 76px;"
-                                                      href="#" target="_blank">
-                                <img width="100%" height="100%" src="${base}/res/images/110249315196089.jpg">
-                            </a>
+                            <#if hotList??>
+                            <#list hotList as bean>
+                            <li class="zc_remenzx">
+                                <a title="test" class="fl" style="width: 100px; height: 76px;" href="${base}/cms/news/${bean.id}" target="_blank">
+                                <img width="100%" height="100%" src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                                </a>
                                 <div class="fl zc_remenzx_info">
-                                    <a title="test" class="zc_remenzx_title" href="#" target="_blank">test本周热门资讯标题1</a>
-                                    <p class="zc_remenzx_time">
-                                        01-11</p>
+                                    <a title="${bean.title}" class="zc_remenzx_title" href="${base}/cms/news/${bean.id}" target="_blank"><@text_cut s=bean.title len=10 append='...'/></a>
+                                    <p class="zc_remenzx_time">${bean.createTime?string('yyyy-MM-dd')}</p>
                                 </div>
                             </li>
-                            <li class="zc_remenzx"><a title="test" class="fl" style="width: 100px; height: 76px;"
-                                                      href="#" target="_blank">
-                                <img width="100%" height="100%" src="${base}/res/images/110249315196089.jpg">
-                            </a>
-                                <div class="fl zc_remenzx_info">
-                                    <a title="test" class="zc_remenzx_title" href="#" target="_blank">test本周热门资讯标题1</a>
-                                    <p class="zc_remenzx_time">
-                                        01-11</p>
-                                </div>
-                            </li>
-                            <li class="zc_remenzx"><a title="test" class="fl" style="width: 100px; height: 76px;"
-                                                      href="#" target="_blank">
-                                <img width="100%" height="100%" src="${base}/res/images/110249315196089.jpg">
-                            </a>
-                                <div class="fl zc_remenzx_info">
-                                    <a title="test" class="zc_remenzx_title" href="#" target="_blank">test本周热门资讯标题1</a>
-                                    <p class="zc_remenzx_time">
-                                        01-11</p>
-                                </div>
-                            </li>
-                            <li class="zc_remenzx"><a title="test" class="fl" style="width: 100px; height: 76px;"
-                                                      href="#" target="_blank">
-                                <img width="100%" height="100%" src="${base}/res/images/110249315196089.jpg">
-                            </a>
-                                <div class="fl zc_remenzx_info">
-                                    <a title="test" class="zc_remenzx_title" href="#" target="_blank">test本周热门资讯标题1</a>
-                                    <p class="zc_remenzx_time">
-                                        01-11</p>
-                                </div>
-                            </li>
-                            <li class="zc_remenzx"><a title="test" class="fl" style="width: 100px; height: 76px;"
-                                                      href="#" target="_blank">
-                                <img width="100%" height="100%" src="${base}/res/images/110249315196089.jpg">
-                            </a>
-                                <div class="fl zc_remenzx_info">
-                                    <a title="test" class="zc_remenzx_title" href="#" target="_blank">test本周热门资讯标题1</a>
-                                    <p class="zc_remenzx_time">
-                                        01-11</p>
-                                </div>
-                            </li>
+                            </#list>
+                            </#if>
                         </ul>
                     </div>
                     <div class="xq_redian" style="padding: 0px; width: 255px; margin-bottom: 20px;">
                         <ul>
                             <li>
-                                <img src="${base}/res/images/des_join_01.jpg" alt="广告1" />
+                                <img src="${base}/res/images/des_join_01.jpg" width="270" height="150" alt="广告1" />
                             </li>
                             <li>
-                                <img src="${base}/res/images/des_join_01.jpg" alt="广告2" />
+                                <img src="${base}/res/images/des_join_01.jpg" width="270" height="150" alt="广告2" />
                             </li>
                         </ul>
                     </div>

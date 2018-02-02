@@ -96,9 +96,9 @@ public class NewsAct {
 
     @RequestMapping("/news/v_edit.do")
     public String toEdit(String id, String pageNo, HttpServletRequest req, HttpServletResponse res) {
-        News news = newsService.getById(Integer.parseInt(id));
+        News news = newsService.getById(Long.valueOf(id));
         req.setAttribute("news", news);
-        req.setAttribute("id", id);
+        req.setAttribute("id", Long.valueOf(id));
         req.setAttribute("pageNo", pageNo);
         return "news/edit";
     }
@@ -133,10 +133,14 @@ public class NewsAct {
 
     @RequestMapping("/news/delete.do")
     public String deleteNews(String id, String pageNo, HttpServletRequest request) {
-        newsService.deleteNews(Integer.parseInt(id));
-        //新增操作日志
-        cmsLogService.record(request, TITLE_DELETED, "id=" + id);
-        return "redirect:list.do?pageNo=" + pageNo;
+        try {
+            newsService.deleteNews(Integer.parseInt(id));
+            //新增操作日志
+            cmsLogService.record(request, TITLE_DELETED, "id=" + id);
+        }catch (Exception e){
+            log.error("deleteNews Error",e);
+        }
+        return "redirect:v_list.do?pageNo=" + pageNo;
     }
 
     @RequestMapping("/news/batchDelete.do")
@@ -146,7 +150,7 @@ public class NewsAct {
         for (int i = 0; i < ids.length; i++) {
             cmsLogService.record(request, TITLE_DELETED, "id=" + ids[i]);
         }
-        return "redirect:list.do?pageNo=" + pageNo;
+        return "redirect:v_list.do?pageNo=" + pageNo;
     }
 
     @RequestMapping("/news/check.do")

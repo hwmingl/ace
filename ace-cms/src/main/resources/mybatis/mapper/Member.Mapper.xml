@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.external.MemberDao">
+
+    <resultMap id="memberBeanMap" type="com.fighter.ace.cms.entity.external.Member">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="card_no" property="cardNo" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="coin" property="coin" jdbcType="VARCHAR"/>
+        <result column="point" property="point" jdbcType="VARCHAR"/>
+        <result column="model_path" property="modelPath" jdbcType="VARCHAR"/>
+        <result column="contract_path" property="contractPath" jdbcType="VARCHAR"/>
+        <result column="view_count" property="viewCount" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="qq" property="qq" jdbcType="VARCHAR"/>
+        <result column="ext1" property="ext1" jdbcType="VARCHAR"/>
+        <result column="ext2" property="ext2" jdbcType="VARCHAR"/>
+        <result column="ext3" property="ext3" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.Member" keyProperty="id" useGeneratedKeys="true">
+        INSERT t_member(create_time,
+            user_name,
+            user_pwd,
+            real_name,
+            nick_name,
+            email,
+            pic_url,
+            phone,
+            card_no,
+            sex,
+            birthday,
+            city,
+            point,
+            type,
+            status,
+            view_count)
+        VALUES (
+            now(),
+            #{userName},
+            #{userPwd},
+            #{realName},
+            #{nickName},
+            #{email},
+            #{picUrl},
+            #{phone},
+            #{cardNo},
+            0,
+            #{birthday},
+            #{city},
+            #{point},
+            0,
+            1,
+            0
+        )
+    </insert>
+
+
+    <!-- 查询总页数 -->
+    <select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+           COUNT(1)
+        FROM
+           t_member
+        WHERE status != -1
+        <if test="type!=null"> and type = #{type}</if>
+        <if test="username != null">AND username LIKE #{username}</if>
+        <if test="phone != null">AND phone LIKE #{phone}</if>
+
+    </select>
+
+    <!-- 查询分页用户 -->
+    <select id="listPage" parameterType="java.util.Map" resultMap="memberBeanMap">
+        SELECT
+            *
+        FROM
+            t_member
+        WHERE status != -1
+        <if test="type!=null"> and type = #{type}</if>
+        <if test="username != null">AND username LIKE #{username}</if>
+        <if test="phone != null">AND phone LIKE #{phone}</if>
+        ORDER BY id DESC
+            LIMIT #{pageFirst},#{pageSize}
+    </select>
+    <!-- 根据ID获得会员-->
+    <select id="getById" parameterType="java.lang.Long" resultMap="memberBeanMap">
+        SELECT
+            *
+        FROM
+            t_member
+        WHERE
+            id = #{id}
+    </select>
+
+    <!-- 删除会员 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from t_member
+        where id = #{id}
+    </delete>
+    <update id="deleteMember" parameterType="java.lang.Long">
+        UPDATE t_member
+        SET status = -1
+        WHERE id = #{id}
+    </update>
+    <!-- 批量删除会员
+    <delete id="deleteBatch" parameterType="java.lang.Integer">
+        delete from t_member
+        where id IN
+            <foreach item="id" collection="array" open="(" separator ="," close=")">
+                #{id}
+            </foreach>
+    </delete> -->
+    <update id="deleteBatch" parameterType="java.lang.Integer">
+        UPDATE t_member
+              SET status = -1
+        where id IN
+            <foreach item="id" collection="array" open="(" separator = "," close=")">
+                #{id}
+            </foreach>
+    </update>
+
+
+    <!-- 根据name查询学院 -->
+    <select id="listBy" parameterType="java.util.Map" resultMap="memberBeanMap">
+        select *
+        from t_college
+        where name = #{name}
+    </select>
+
+
+    <select id="findMemberByUserName" parameterType="java.lang.String" resultMap="memberBeanMap">
+        SELECT *
+        FROM t_member
+        WHERE user_name = #{username}
+        AND status != -1
+    </select>
+
+    <select id="findByEmail" parameterType="java.lang.String" resultMap="memberBeanMap">
+        SELECT *
+        FROM t_member
+        WHERE email = #{email}
+        AND status != -1
+        LIMIT 1
+    </select>
+
+    <update id="update" parameterType="com.fighter.ace.cms.entity.external.Member">
+        UPDATE t_member
+        SET modified_time = now()
+        <if test="userName!=null">
+            ,user_name = #{userName}
+        </if>
+        <if test="realName!=null">
+            ,real_name = #{realName}
+        </if>
+        <if test="userPwd!=null">
+            ,user_pwd = #{userPwd}
+        </if>
+        <if test="nickName!=null">
+            ,nick_name = #{nickName}
+        </if>
+        <if test="picUrl!=null">
+            ,pic_url = #{picUrl}
+        </if>
+        <if test="phone!=null">
+            ,phone = #{phone}
+        </if>
+        <if test="cardNo!=null">
+            ,card_no = #{cardNo}
+        </if>
+        <if test="sex!=null">
+            ,sex = #{sex}
+        </if>
+        <if test="birthday!=null">
+            ,birthday = #{birthday}
+        </if>
+        <if test="province!=null">
+            ,province = #{province}
+        </if>
+        <if test="city!=null">
+            ,city = #{city}
+        </if>
+        <if test="qq!=null">
+            ,qq = #{qq}
+        </if>
+        <if test="coin!=null">
+            ,coin = #{coin}
+        </if>
+        <if test="point!=null">
+            ,point = #{point}
+        </if>
+        <if test="type!=null">
+            ,type = #{type}
+        </if>
+        <if test="status!=null">
+            ,status = #{status}
+        </if>
+        <if test="ext1!=null">
+            ,ext1 = #{ext1}
+        </if>
+        <if test="ext2!=null">
+            ,ext2 = #{ext2}
+        </if>
+        <if test="ext3!=null">
+            ,ext3 = #{ext3}
+        </if>
+        <if test="modelPath!=null">
+            ,model_path = #{modelPath}
+        </if>
+        <if test="contractPath!=null">
+            ,contract_path = #{contractPath}
+        </if>
+        <if test="viewCount!=null">
+            ,view_count = #{viewCount}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

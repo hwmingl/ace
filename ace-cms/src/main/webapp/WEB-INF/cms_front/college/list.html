@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <#include "/cms_front/inc/top_meta.html"/>
+    <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/global_old.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_news.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!-- Piwik -->
+    <link href="${base}/res/css/sjpd_css.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/show_works.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${base}/res/js/jquery.js"></script>
+    <script type="text/javascript" src="${base}/res/js/common.js"></script>
+    <link href="${base}/res/css/cssNew.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--通用头部-->
+<#include "/cms_front/inc/top_nav.html"/>
+<!--头部结束-->
+<!--页面地址start-->
+<div class="width1100">
+    <div class="a_wd clearfix" style="margin-top: 10px;">
+        <div class="siteFont">
+            你现在的位置：智造网&nbsp;→&nbsp;<a href="#" title="展览模型" class="xin_c66 xin_bianse">3D学院</a>&nbsp;→&nbsp;文字课程</div>
+    </div>
+</div>
+<!--页面地址end-->
+<table class=" width1100 top_5"><tr><td class="bgWhite">
+
+    <!--中间内容列表start-->
+    <div class=" widthall">
+        <div class="design_channel clearfix top_10">
+            <div class="channel_left left">
+                <div class="index_title clearfix">
+                    <h4>
+                        <#if style??>
+                            <#if style == 1>视频资料</#if>
+                            <#if style == 2>文章资料</#if>
+                            <#if style == 3>软件下载</#if>
+                        </#if>
+                    </h4>
+                </div>
+                <div class="design_introd">
+                    <!-- 课程循环列表start-->
+                    <#if pageBean??>
+                        <#list pageBean.recordList as bean>
+                    <div class="DesignZl clearfix">
+                        <div class="DesignZl_left1 left clearfix">
+                            <dl class="clearfix">
+                                <dt><a href="${base}/cms/college/${bean.id}" target="_blank">
+                                    <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}"></a></dt>
+                                <dd>
+                                    <h1>
+                                        <b><a href="${base}/cms/college/${bean.id}" target="_blank">${bean.title!}</a></b>
+                                    </h1>
+                                    <p class="Specialty">
+                                        <b>作者：</b>${bean.author!}&nbsp;&nbsp;&nbsp;&nbsp;<span class="TextColor2 fr">更新时间：${bean.createTime?string('yyyy-MM-dd')}</span>
+                                    </p>
+                                    <p class="DesignAbout">
+                                        <a href="${base}/cms/college/${bean.id}" target="_blank"><@html_cut s=bean.content len=80 append='...'/>..</a></p>
+                                    <p class="Specialty">
+                                        <em>人气：</em><span class="TextColor2">${bean.viewCount!}</span></p>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                        </#list>
+                    </#if>
+                    <!-- 课程循环列表end-->
+
+                    <div class="pagelinks">
+                        <#if pageBean??>
+                            <a href="${base}/cms/college/list?style=${style!}" class="a1">首 页</a> <span>第 ${pageBean.currentPage} 页</span>
+                            <a href="${base}/cms/college/list?style=${style!}&pageNo=${pageBean.currentPage+1}" class="a1">下一页</a>
+                            <a href="${base}/cms/college/list?style=${style!}&pageNo=${pageBean.pageCount}" class="a1">尾 页</a>
+                            <a class="a1">共 ${pageBean.pageCount} 页</a>
+                            <a class="a1">${pageBean.totalCount}条</a>
+                        </#if>
+                    </div>
+                    <div class="div">
+                    </div>
+                </div>
+            </div>
+            <!--右侧栏目start-->
+            <div class="channel_right right">
+                <p>
+                    <a href="#" title="点击立即注册" target="_blank">
+                        <img src="${base}/res/images/des_join_01.jpg"></a></p>
+                <div class="left_title">
+                    课程推荐</div>
+                <div class="Dynamic">
+                    <ul>
+                        <#if hotList??>
+                            <#list hotList as bean>
+                                <li><span class=" TextColor">
+                                    <#if bean.style == 1>视频</#if>
+                                    <#if bean.style == 2>文章</#if>
+                                    <#if bean.style == 3>软件</#if>
+                                </span> <b>
+                                    <a href="${base}/cms/college/${bean.id}" target="_blank"><@text_cut s=bean.title len=17 append='...'/></a></b></li>
+                            </#list>
+                        </#if>
+                    </ul>
+                </div>
+                <div class="left_title  up_t">
+                    热门软件下载</div>
+                <div class="Dynamic">
+                    <ul>
+                        <#if recmmList??>
+                            <#list recmmList as bean>
+                                <li><b><a href="${base}/cms/college/${bean.id}" target="_blank"><@text_cut s=bean.title len=17 append='...'/></a></b></li>
+                            </#list>
+                        </#if>
+
+                    </ul>
+
+                </div>
+            </div>
+            <!--右侧栏目end-->
+
+        </div>
+    </div>
+    <!--中间内容列表end-->
+    <!--右侧浮窗-->
+    <div class="side-bar" id="side_bar">
+    </div>
+    <script type="text/javascript" src="${base}/res/js/goback_Top.js"></script>
+</td>
+</tr>
+    <!--底部bottom动态加载-->
+    <#include "/cms_front/inc/bottom.html"/>
+</table>
+</body>
+</html>

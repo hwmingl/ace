@@ -5,6 +5,7 @@ import com.fighter.ace.cms.entity.external.News;
 import com.fighter.ace.framework.common.page.PageBean;
 import com.fighter.ace.framework.common.page.PageParam;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,13 +15,17 @@ public interface NewsService {
 
     Long addNews(News news);
 
+    List<News> findHotList(Integer count);
+
+    List<News> findRecommendList(Integer count);
+
     PageBean getListPage(PageParam pageParam, Map<String, Object> paramMap);
 
     int deleteNews(int id);
 
     int batchDeleteNews(int[] ids);
 
-    News getById(int id);
+    News getById(Long id);
 
     int updateNews(News news);
 

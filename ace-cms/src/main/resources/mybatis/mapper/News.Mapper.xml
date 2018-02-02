@@ -31,6 +31,7 @@
         FROM
         t_news
         WHERE status != -1
+        <if test="style != null">AND style = #{style}</if>
         <if test="status != null">AND status = #{status}</if>
         <if test="title != null">AND title LIKE #{title}</if>
         <if test="author != null">AND author LIKE #{author}</if>
@@ -44,6 +45,7 @@
         FROM
         t_news
         WHERE status != -1
+        <if test="style != null">AND style = #{style}</if>
         <if test="status != null">AND status = #{status}</if>
         <if test="title != null">AND title LIKE #{title}</if>
         <if test="author != null">AND author LIKE #{author}</if>
@@ -55,30 +57,30 @@
     <!--添加新闻-->
     <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.News" keyProperty="id" useGeneratedKeys="true">
         INSERT t_news(
-                create_time,
-                title,
-                type,
-                style,
-                summary,
-                content,
-                source,
-                author,
-                recommend,
-                pic_url,
-                status)
+        create_time,
+        title,
+        type,
+        style,
+        summary,
+        content,
+        source,
+        author,
+        recommend,
+        pic_url,
+        status)
         VALUES (
-                now(),
-                #{title},
-                #{type},
-                #{style},
-                #{summary},
-                #{content},
-                #{source},
-                #{author},
-                #{recommend},
-                #{picUrl},
-                0
-                )
+        now(),
+        #{title},
+        #{type},
+        #{style},
+        #{summary},
+        #{content},
+        #{source},
+        #{author},
+        #{recommend},
+        #{picUrl},
+        0
+        )
     </insert>
 
     <!-- 删除新闻 -->
@@ -92,11 +94,11 @@
 
     <!-- 批量删除新闻 -->
     <update id="batchDelete" parameterType="java.lang.Integer">
-<!--        delete from t_news
-        where id in
-        <foreach item="id" collection="array" open="(" separator ="," close=")">
-            #{id}
-        </foreach>-->
+        <!--        delete from t_news
+                where id in
+                <foreach item="id" collection="array" open="(" separator ="," close=")">
+                    #{id}
+                </foreach>-->
         UPDATE t_news
         SET
         modified_time = now(),
@@ -165,18 +167,18 @@
 
     <select id="findRecommendList" resultMap="beanMap" parameterType="java.lang.Integer">
         SELECT
-            id,
-            create_time,
-            title,
-            style,
-            summary,
-            content,
-            source,
-            author,
-            view_count,
-            hot,
-            recommend,
-            pic_url
+        id,
+        create_time,
+        title,
+        style,
+        summary,
+        content,
+        source,
+        author,
+        view_count,
+        hot,
+        recommend,
+        pic_url
         FROM t_news
         WHERE status = 1 and recommend = 1
         ORDER BY create_time DESC

@@ -60,7 +60,7 @@
 
 
 <div class="body-box">
-    <form action="list.do" method="post" style="padding-top:5px;">
+    <form action="v_list.do" method="post" style="padding-top:5px;">
         <div>
             标题: <input type="text" name="title" value="<#if queryTitle??>${queryTitle}</#if>"/>
             发布者: <input type="text" name="author" value="<#if queryAuthor??>${queryAuthor}</#if>"/>
@@ -159,6 +159,8 @@
             <input type="button" value="审核" onclick="optCheck()" class="check"/>
         </div>
     </form>
+
+    <div><br><br></div>
 </div>
 </body>
 </html>

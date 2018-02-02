@@ -1,6 +1,6 @@
 .td-banner{padding: 0; width:1180px; margin:0 auto}
 
-.series-item{width:272px;margin:0.8%;float:left;  border:#eee solid 1px; }
+.series-item{width:272px;margin:0.8%;float:left;  border:#eee solid 1px;border-radius:6px 6px 0 0; }
 .series-item .series-img{width:272px;height:179px}
 .series-item .series-img img{width:272px;height: 179px; border-radius:6px 6px 0 0;}
 .series-item p{padding:0 10px;height:38px;font-size:16px;line-height:38px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

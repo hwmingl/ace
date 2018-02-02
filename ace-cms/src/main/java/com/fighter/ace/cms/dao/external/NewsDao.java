@@ -18,42 +18,19 @@ public class NewsDao extends BaseDaoImpl<News> {
     public static final String SQL_BATCH_DELETE = "batchDelete";
     public static final String SQL_BATCH_CHECK = "batchCheck";
 
-    @Autowired
-    SqlSessionTemplate sessionTemplate;
-    SqlSession sqlSession;
-
-    @Override
-    public SqlSessionTemplate getSessionTemplate() {
-        return sessionTemplate;
-    }
-
-    @Override
-    public void setSessionTemplate(SqlSessionTemplate sessionTemplate) {
-        this.sessionTemplate = super.getSessionTemplate();
-    }
-
-    @Override
-    public SqlSession getSqlSession() {
-        return sqlSession;
-    }
-
-    public void setSqlSession(SqlSession sqlSession) {
-        this.sqlSession = super.getSqlSession();
-    }
-
     public int batchDeleteNews(int[] ids) {
-        return sessionTemplate.delete(getStatement(SQL_BATCH_DELETE), ids);
+        return getSessionTemplate().delete(getStatement(SQL_BATCH_DELETE), ids);
     }
 
     public int checkNews(int[] ids) {
-        return sessionTemplate.delete(getStatement(SQL_BATCH_CHECK), ids);
+        return getSessionTemplate().delete(getStatement(SQL_BATCH_CHECK), ids);
     }
 
     public List<News> findRecommendList(Integer count){
-        return getSessionTemplate().selectList("findRecommendList", count);
+        return getSessionTemplate().selectList(getStatement("findRecommendList"), count);
     }
 
     public List<News> findHotList(Integer count){
-        return getSessionTemplate().selectList("com.jiutian.cms.making.dao.NewsDao.findHotList",count);
+        return getSessionTemplate().selectList(getStatement("findHotList"),count);
     }
 }

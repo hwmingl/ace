@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fighter.ace.cms.dao.external.NewsDao">
+<mapper namespace="com.fighter.ace.cms.dao.external.ArticleDao">
 
-    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.external.News">
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.external.Article">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
 
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="style" property="style" jdbcType="INTEGER"/>
         <result column="summary" property="summary" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="source" property="source" jdbcType="VARCHAR"/>
@@ -30,6 +31,7 @@
         FROM
         t_article
         WHERE status != -1
+        <if test="style != null">AND style = #{style}</if>
         <if test="status != null">AND status = #{status}</if>
         <if test="title != null">AND title LIKE #{title}</if>
         <if test="author != null">AND author LIKE #{author}</if>
@@ -43,6 +45,7 @@
         FROM
         t_article
         WHERE status != -1
+        <if test="style != null">AND style = #{style}</if>
         <if test="status != null">AND status = #{status}</if>
         <if test="title != null">AND title LIKE #{title}</if>
         <if test="author != null">AND author LIKE #{author}</if>
@@ -57,6 +60,7 @@
         create_time,
         title,
         type,
+        style,
         summary,
         content,
         source,
@@ -68,6 +72,7 @@
         now(),
         #{title},
         #{type},
+        #{style},
         #{summary},
         #{content},
         #{source},
@@ -100,7 +105,7 @@
     </update>
 
     <!-- 更新 -->
-    <update id="update" parameterType="com.fighter.ace.cms.entity.external.Article">
+    <update id="update" parameterType="com.fighter.ace.cms.entity.external.News">
         UPDATE t_article
         SET modified_time = now()
         <if test="title != null">
@@ -108,6 +113,9 @@
         </if>
         <if test="type != null">
             ,type = #{type}
+        </if>
+        <if test="style != null">
+            ,style = #{style}
         </if>
         <if test="summary != null">
             ,summary = #{summary}
@@ -157,6 +165,7 @@
         id,
         create_time,
         title,
+        style,
         summary,
         content,
         source,
@@ -173,17 +182,18 @@
 
     <select id="findHotList" resultMap="beanMap" parameterType="java.lang.Integer">
         SELECT
-        id,
-        create_time,
-        title,
-        summary,
-        content,
-        source,
-        author,
-        view_count,
-        hot,
-        recommend,
-        pic_url
+            id,
+            create_time,
+            title,
+            style,
+            summary,
+            content,
+            source,
+            author,
+            view_count,
+            hot,
+            recommend,
+            pic_url
         FROM t_article
         WHERE status = 1
         ORDER BY view_count DESC

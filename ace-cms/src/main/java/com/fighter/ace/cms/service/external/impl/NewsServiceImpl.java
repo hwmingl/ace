@@ -9,6 +9,7 @@ import com.fighter.ace.framework.common.page.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +28,16 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public List<News> findHotList(Integer count) {
+        return newsDao.findHotList(count);
+    }
+
+    @Override
+    public List<News> findRecommendList(Integer count) {
+        return newsDao.findRecommendList(count);
+    }
+
+    @Override
     public PageBean getListPage(PageParam pageParam, Map<String, Object> paramMap) {
         return newsDao.listPage(pageParam, paramMap);
     }
@@ -42,7 +53,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News getById(int id) {
+    public News getById(Long id) {
         return newsDao.getById(id);
     }
 

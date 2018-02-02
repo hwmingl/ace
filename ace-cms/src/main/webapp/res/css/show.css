@@ -1,5 +1,5 @@
 .xin_titlemsg dd {
-	margin: 8px 0px; color: rgb(147, 161, 173); float: left;display: inline-block;
+	margin: 8px 0px; color: rgb(147, 161, 173); float: left; display: inline-block;
 }
 .xin_titlemsg li {
 	margin: 8px 0px; color: rgb(147, 161, 173); float: left; display: inline-block;
@@ -125,7 +125,7 @@
 	background: url("img/jingpin4.png") no-repeat; left: -2px; top: -2px; width: 55px; height: 55px; position: absolute;
 }
 .show_xg {
-	border-width: medium 1px 1px; border-style: none solid solid; border-color: currentColor rgb(231, 231, 231) rgb(231, 231, 231); padding: 10px 14px 30px; border-image: none; color: rgb(101, 101, 101); line-height: 30px; background-color: rgb(255, 255, 255);
+	padding: 10px 14px 30px; border-image: none; color: rgb(101, 101, 101); line-height: 30px; background-color: rgb(255, 255, 255);
 }
 .show_xgcont {
 	border-width: 1px 1px medium; border-style: solid solid none; border-color: rgb(231, 231, 231) rgb(231, 231, 231) currentColor; margin: 12px auto 0px; padding: 0px 14px 30px; border-image: none; background-color: rgb(255, 255, 255);

@@ -69,7 +69,7 @@
 /*作品所属设计版块样式*/
 .design_fixed1{width:100%; height:380px; font-size:14px;}
 /*.design_fixed{z-index:100;height:380px; border:1px solid #ddd; width:87.2727273%; padding:4.5454545% 6.0606061%; background:#fff;}*/
-.design_fixed{z-index:100; border:1px solid #ddd; width:296px; padding:15px 20px; background:#fff; margin-left:260px; }
+.design_fixed{z-index:100; width:296px; padding:15px 20px; background:#fff; margin-left:260px; }
 .design_fixed .design_fixed_vip{width:76px;height:76px;position:absolute;right:-6px;top:-6px;}
 .design_fixed dl{width:100%; text-align:center;}
 .design_fixed dl dt{width:122px; height:122px; border:2px solid #00a3e7; border-radius:50%; overflow:hidden; margin:10px auto 5px;}

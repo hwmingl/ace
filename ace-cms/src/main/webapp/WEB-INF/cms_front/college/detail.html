@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <#include "/cms_front/inc/top_meta.html"/>
+    <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/global_old.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_news.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!-- Piwik -->
+    <link href="${base}/res/css/sjpd_css.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/show_works.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${base}/res/js/jquery.js"></script>
+    <script type="text/javascript" src="${base}/res/js/common.js"></script>
+    <link href="${base}/res/css/cssNew.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/article.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--通用头部-->
+<#include "/cms_front/inc/top_nav.html"/>
+<!--头部结束-->
+<!--页面地址start-->
+<div class="width1100">
+    <div class="a_wd clearfix" style="margin-top: 10px;">
+        <div class="siteFont">
+            你现在的位置：智造网&nbsp;→&nbsp;<a href="${base}/cms/college/index" title="3D学院" class="xin_c66 xin_bianse">3D学院</a>&nbsp;→&nbsp;内容正文</div>
+    </div>
+</div>
+<!--页面地址end-->
+<table class=" width1100 top_5">
+    <tr>
+        <td>
+            <!--中间内容列表start-->
+            <div class="zx_dqwz">
+                <div style="margin: 0px auto; ">
+                    <div class="xq_content fl bgWhite2">
+                        <div class="xq_cont borderbottom">
+                            <h1>${article.title!}</h1>
+                            <p class="xq_info">
+                                文章分类：
+                                <a class="xin_c66 xin_bianse" style="color: rgb(52, 152, 219);
+                                        font-size: 12px;" href="${base}/cms/college/list?style=${article.style!}">
+                                    <#if article.style == 1>视频资料</#if>
+                                    <#if article.style == 2>文章资料</#if>
+                                    <#if article.style == 3>软件下载</#if>
+                                </a>
+                                <span class="xq_info_fb">发布时间：${article.createTime?string('yyyy-MM-dd')}</span>
+                            </p>
+                        </div>
+                        <div class="xq_cont">
+                            ${article.content!}
+                        </div>
+                    </div>
+                    <div class="fr">
+                        <div class="xq_redian bgWhite2" style="margin-bottom: 10px;">
+                            <ul>
+                                <li>
+                                    <img src="${base}/res/images/des_join_01.jpg" alt="广告1" width="100%" />
+                                </li>
+                                <li class="top_5">
+                                    <img src="${base}/res/images/des_join_01.jpg" alt="广告2" width="100%" />
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="xq_redian" style="margin-bottom:10px;">
+                            <ul>
+                                <li class="xq_new">热门资料</li>
+                                <#if hotNewsList??>
+                                    <#list hotNewsList as bean>
+                                        <li class="xq_redian_li">
+                                            <a title="${bean.title!}" class="xq_redian_tt" href="${base}/cms/college/${bean.id}"><@text_cut s=bean.title len=20 append='...'/></a>
+                                        </li>
+                                    </#list>
+                                </#if>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <!--中间内容列表end-->
+            <!--右侧浮窗-->
+            <div class="side-bar" id="side_bar">
+            </div>
+            <script type="text/javascript" src="${base}/res/js/goback_Top.js"></script>
+        </td>
+    </tr>
+    <!--底部bottom动态加载-->
+    <#include "/cms_front/inc/bottom.html"/>
+</table>
+</body>
+</html>

@@ -26,6 +26,14 @@
 
     <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/WEB-INF"/>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="uuid" value-ref="uuid"/>
+                <entry key="process_time" value-ref="process_time"/>
+                <entry key="text_cut" value-ref="text_cut"/>
+                <entry key="html_cut" value-ref="html_cut"/>
+            </map>
+        </property>
         <property name="freemarkerSettings">
             <props>
                 <prop key="template_update_delay">0</prop>
@@ -42,6 +50,10 @@
         </property>
     </bean>
 
-
+    <!--执行时间标签-->
+    <bean id="uuid" class="com.fighter.ace.framework.directive.UUIDDirective"/>
+    <bean id="process_time" class="com.fighter.ace.framework.directive.ProcessTimeDirective"/>
+    <bean id="text_cut" class="com.fighter.ace.framework.directive.TextCutDirective"/>
+    <bean id="html_cut" class="com.fighter.ace.framework.directive.HtmlCutDirective"/>
 
 </beans>

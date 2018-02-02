@@ -1,5 +1,5 @@
 .zx_dqwz {
-	margin: auto; width:1180px;
+	margin: auto; width: 1196px;
 }
 .zx_h {
 	line-height: 38px; padding-top: 10px;
@@ -62,13 +62,13 @@
 	left: 0px; bottom: 0px; color: rgb(153, 153, 153); font-size: 12px; position: absolute;
 }
 .xq_content {
-	padding: 20px 10px; width: 850px; background-color: rgb(255, 255, 255);
+	padding: 20px 10px; width: 872px; background-color: rgb(255, 255, 255);
 }
 .xq_content h1 {
 	font-size: 24px; font-weight: 500;
 }
 .xq_cont {
-	margin: 20px auto; width: 800px; padding-top: 20px; border-top-color: rgb(232, 235, 240); border-top-width: 1px; border-top-style: solid;
+	margin: 20px auto; width: 800px; 
 }
 .xq_cont a {
 	color: rgb(0, 102, 255); text-decoration: none;
@@ -80,19 +80,22 @@
 	margin: 15px 0px; line-height: 20px;
 }
 .xq_info {
-	height: 40px; color: rgb(153, 153, 153); line-height: 40px;
+	height: 30px; color: rgb(153, 153, 153); line-height: 30px;
 }
 .xq_info_fb {
 	color: rgb(153, 153, 153); padding-left: 50px; font-size: 12px;
 }
 .xq_redian {
-	padding: 20px 10px; width: 270px; background-color: rgb(255, 255, 255);
+	padding: 10px; width: 272px; background-color: rgb(255, 255, 255);
 }
 .xq_new {
-	color: rgb(51, 51, 51); font-size: 18px;
+	color:#222; 
+	font-size: 18px;
+	font-weight:bold;
+	font-family:'ËÎÌו';
 }
 .xq_redian_li {
-	padding: 18px 0px; border-bottom-color: rgb(232, 235, 240); border-bottom-width: 1px; border-bottom-style: solid;
+	padding: 10px 0px; border-bottom-color: rgb(232, 235, 240); border-bottom-width: 1px; border-bottom-style: solid;
 }
 .xq_redian_tt {
 	color: rgb(51, 51, 51); font-size: 14px;
@@ -124,4 +127,8 @@ a.xq_biaoqian_duo:hover {
     width: 129px; 
     height: 92px; 
     margin-bottom: 6px;
+}
+.borderbottom
+{
+    border-bottom:#ccc solid 1px;
 }

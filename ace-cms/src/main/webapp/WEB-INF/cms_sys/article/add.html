@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+
+    <script type="text/javascript">
+        var types = [];
+        types[0] = {hasImage:false,imgWidth:100,imgHeight:100};
+        types[1] = {hasImage:true,imgWidth:143,imgHeight:98};
+        types[2] = {hasImage:true,imgWidth:590,imgHeight:276};
+        types[3] = {hasImage:false,imgWidth:0,imgHeight:0};
+        function typeChange(n) {
+            var tr = $('#tr-typeImg');
+            tr.toggle(types[n].hasImage);
+            $('#zoomWidth0').val(types[n].imgWidth);
+            $('#zoomHeight0').val(types[n].imgHeight);
+        }
+    </script>
+    <style type="text/css">
+        .sel-disabled{background-color:#ccc}
+    </style>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 内容管理 - 添加</div>
+    <form class="ropt">
+        <input type="submit" value="返回列表" onclick="this.form.action='v_list.do';" class="return-button"/>
+        <input type="hidden" name="cid" value=""/>
+    </form>
+    <div class="clear"></div>
+</div>
+<div class="body-box">
+    <script type="text/javascript">
+        //上传图片
+        function upload(n) {
+            var of = $("#uploadFile"+n);
+            //检查是否选择了图片
+            if(of.val()=="") {
+                alert("请先选择图片");
+                return;
+            }
+            //将file移动至上传表单
+            $("#fileContent").empty();
+            $("#fileContent").append(of);
+            //复制一个file放至原处
+            $("#ufc"+n).append(of.clone().attr("value",""));
+            //修改属性
+            $("#uploadFileText"+n).attr("value","");
+            of.attr("id","");
+            of.attr("name","uploadFile");
+            //其他表单
+            $("#ufFileName").val($("#fileName"+n).val());
+            $("#ufWidth").val($("#zoomWidth"+n).val());
+            $("#ufHeight").val($("#zoomHeight"+n).val());
+            //先清除
+            $("#ufMark").val("");
+            $("#ufMark").val($("#mark"+n).val());
+            $("#uploadNum").val(n);
+            $("#uploadForm").submit();
+        }
+        //剪裁图片
+        function imgCut(n) {
+            if($("#uploadImgPath"+n).val()=="") {
+                alert("请先上传图片");
+                return;
+            }
+            var url = "../common/v_image_area_select.do?uploadNum="+n+"&imgSrcPath="
+                    +$("#uploadImgPath"+n).val()+"&zoomWidth="+$("#zoomWidth"+n).val()+"&zoomHeight="+$("#zoomHeight"+n).val();
+            window.open(url,"imgcut","height=550, width=1000, top=0, left=0, toolbar=no, menubar=no, scrollbars=auto, resizable=yes,location=no, status=no");
+        }
+        //预览图片
+        function previewImg(n) {
+            var img = $("#uploadImgPath"+n).val();
+            if(img!="") {
+                if(img.indexOf("?")==-1) {
+                    $("#preImg"+n).attr("src",img+"?d="+new Date()*1);
+                } else {
+                    $("#preImg"+n).attr("src",img+"&d="+new Date()*1);
+                }
+                if(!$("#preImg"+n).attr("noResize")) {
+                    $("#preImg"+n).css("width","auto");
+                    $("#preImg"+n).css("height","auto");
+                }
+            } else {
+                $("#preImg"+n).removeAttr("src");
+            }
+        }
+    </script>
+    <form id="uploadForm" action="../common/o_upload_image.do" method="post" enctype="multipart/form-data" target="hiddenIframe" style="display:none;width:0px;height:0px;">
+        <span id="fileContent"></span>
+        <input id="ufWidth" type="hidden" name="zoomWidth"/>
+        <input id="ufHeight" type="hidden" name="zoomHeight"/>
+        <input id="ufFileName" type="hidden" name="fileName"/>
+        <input id="ufMark" type="hidden" name="mark"/>
+        <input id="uploadNum" type="hidden" name="uploadNum"/>
+    </form>
+    <iframe name="hiddenIframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe><script type="text/javascript">
+    //上传附件
+    function uploadAttachment(n) {
+        var af = $('#attachmentFile'+n);
+        //检查是否选择了文件
+        if(af.val()=='') {
+            alert('请选择要上传的文件');
+            return;
+        }
+        //将file移动至上传表单
+        $('#attachmentContent').empty();
+        $('#attachmentContent').append(af);
+        //复制一个file放至原处
+        $('#afc'+n).append(af.clone().attr('value',''));
+        $('#attachmentText'+n).attr('value','');
+        //修改属性
+        af.attr('id','');
+        //其他表单
+        $('#attachmentNum').val(n);
+        $('#attachmentForm').submit();
+    }
+</script>
+    <form id="attachmentForm" action="o_upload_attachment.do" method="post" enctype="multipart/form-data" target="attachment_iframe" style="display:none;width:0px;height:0px;">
+        <span id="attachmentContent"></span>
+        <input type="hidden" id="attachmentNum" name="attachmentNum"/>
+    </form>
+    <iframe name="attachment_iframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe><script type="text/javascript">
+    //上传附件
+    function uploadMedia() {
+        var mf = $("#mediaFile");
+        //检查是否选择了文件
+        if(mf.val()=="") {
+            alert("请选择要上传的文件");
+            return;
+        }
+        //将file移动至上传表单
+        $("#mediaContent").empty();
+        $("#mediaContent").append(mf);
+        //复制一个file放至原处
+        $("#mfc").append(mf.clone().attr('value',''));
+        //修改属性
+        mf.attr("id","");
+        $("#mediaFileText").attr('value','');
+        //其他表单
+        $("#mediaFilename").val($("#origFilename").val());
+        $("#mediaForm").submit();
+    }
+</script>
+    <form method="post" action="o_save.do" id="jvForm">
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr id="tr-title">
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>标题:</td>
+                    <td colspan="3" width="90%" class="pn-fcontent">
+                        <input type="text" maxlength="100" name="title" class="required" size="70" onchange="generateTags()"/>
+                    </td>
+                </td>
+            </tr>
+            <tr id="tr-description">
+                <td width="10%" class="pn-flabel pn-flabel-h">摘要:</td>
+                <td colspan="3" width="90%" class="pn-fcontent">
+                    <textarea cols="70" rows="3" name="summary" maxlength="100"></textarea>
+                </td>
+            </tr>
+            <tr id="tr-author">
+                <td width="10%" class="pn-flabel pn-flabel-h">作者:</td><td colspan="1" width="40%" class="pn-fcontent">
+                    <input type="text" name="author" maxlength="50" value="本站编辑"/></td>
+                    <td width="10%" class="pn-flabel pn-flabel-h">来源:</td><td colspan="1" width="40%" class="pn-fcontent">
+                    <input type="text" name="source" size="70" maxlength="100"/>
+                </td>
+            </tr>
+            <tr id="tr-typeId">
+                <td width="10%" class="pn-flabel pn-flabel-h">内容类型:</td>
+                <td colspan="1" width="40%" class="pn-fcontent">
+                    <select name="type" onchange="typeChange(this.selectedIndex)">
+                        <option value="0">普通</option>
+                        <option value="1">图文</option>
+                    </select>
+                    &nbsp; <label><input type="checkbox" onclick="$('#recommend').val(this.checked)"/>推荐<input type="hidden" id="recommend" name="recommend" value="false"/></label>
+                </td>
+                <td width="10%" class="pn-flabel pn-flabel-h">所属种类</td>
+                <td colspan="1" width="40%" class="pn-fcontent">
+                    <select name="style">
+                        <option value="1">视频</option>
+                        <option value="2">文章</option>
+                        <option value="3">软件</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="tr-typeImg" style="display:none">
+                <td id="typeImg" width="10%" class="pn-flabel">缩略图:</td>
+                <td colspan="1" width="40%" class="pn-fcontent">
+                    <input type="text" id="uploadImgPath0" name="typeImg" style="width:220px"/>
+                    <input type="button" value="预览" onclick="previewImg(0);" class="preview-button"/>
+                    <br/>
+                    <span id="ufc0" style="position:relative">
+                        <input type='text' id='uploadFileText0' size="14"/>
+                        <input class="browse" type='button' value='浏览'/>
+                        <input onchange="$('#uploadFileText0').val(this.value)" size="14" type="file" id="uploadFile0" class="file-button"/>
+                    </span>
+                    <label><input type="checkbox" onclick="$('#mark0').val(this.checked);"/>水印</label>
+                    <input type="hidden" id="mark0" value="false"/>
+                    <input type="button" value="上传" onclick="upload(0);" class="upload-button"/>
+                    <br/>
+                    宽: <input type="text" id="zoomWidth0" value="100" size="5"/>
+                    高: <input type="text" id="zoomHeight0" value="100" size="5"/>
+                    <input type="button" value="裁剪" onclick="imgCut(0);" class="cut-button"/>
+                </td>
+                <td colspan="2" class="pn-fbutton">
+                    <img id="preImg0" alt="预览" style="width:100px;height:70px;background-color:#ccc;border:1px solid #333"/>
+                </td>
+            </tr>
+            <tr id="tr-txt">
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>内容:</td>
+                <td colspan="3" width="90%" class="pn-fcontent">
+                    <textarea id="txt" name="content" class="required" onchange="generateTags()"></textarea>
+                    <script type="text/javascript">
+                        $(function() {
+                            CKEDITOR.replace( 'txt' ,
+                                    {
+                                        filebrowserUploadUrl : '${base}/admin/cms/fck/upload.do',
+                                        filebrowserImageUploadUrl : '${base}/admin/cms/fck/upload.do?Type=Image',
+                                        filebrowserFlashUploadUrl : '${base}/admin/cms/fck/upload.do?Type=Flash',
+                                        filebrowserMediaUploadURL : '${base}/admin/cms/fck/upload.do?Type=Media'
+                                    }
+                            );
+                        });
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="pn-fbutton">
+                    <input type="submit" value="提交" class="submit" class="submit"/> &nbsp;
+                    <input type="reset" value="重置" class="reset" class="reset"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

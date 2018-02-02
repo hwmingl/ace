@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        function getTableForm() {
+            return document.getElementById('tableForm');
+        }
+        function optDelete() {
+            if(0 >= Pn.checkedCount('ids')) {
+                alert("请选择您要操作的数据");
+                return;
+            }
+            alert(Pn.checkedCount('ids'));
+            if(!confirm("您确定删除吗？")) {
+                return;
+            }
+            var f = getTableForm();
+            f.action="batchDelete.do";
+            f.submit(Pn.checkedCount('ids'));
+        }
+    </script>
+    <script type="text/javascript">
+        function _gotoPage(pageNo) {
+             try{
+                 var tableForm = getTableForm();
+                 $("input[name=pageNo]").val(pageNo);
+                 tableForm.action="v_list.do";
+                 tableForm.onsubmit=null;
+                 tableForm.submit();
+             } catch(e) {
+                alert('_gotoPage(pageNo)方法出错');
+             }
+        }
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 会员管理 - 列表</div>
+    <div class="clear"></div>
+</div>
+<div class="body-box">
+    <form action="v_list.do" method="post" style="padding-top:5px;">
+        <div>
+            用户名: <input type="text" name="username" value="<#if username??>${username}</#if>"/>
+            手机: <input type="text" name="phone" value="<#if phone??>${phone}</#if>"/>
+            会员类型: <select name="type">
+                        <option value="">请选择</option>
+                        <option value="0" <#if type?? && type=='0'>selected</#if> >普通</option>
+                        <option value="1" <#if type?? && type=='1'>selected</#if>>认证</option>
+                    </select>
+            <input class="query" type="submit" value="查询"/>
+        </div>
+    </form>
+    <form id="tableForm" method="post">
+        <input type="hidden" name="username" value="${username!}"/>
+        <input type="hidden" name="phone" value="${phone!}"/>
+        <input type="hidden" name="type" value="${type!}"/>
+        <input type="hidden" name="pageNo" value="${pageBean.currentPage}"/>
+        <table class="pn-ltable" style="" width="100%" cellspacing="1" cellpadding="0" border="0">
+            <thead class="pn-lthead"><tr>
+                <th width="20"><input type='checkbox' onclick='Pn.checkbox("ids",this.checked)'/></th>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>电话</th>
+                <th>邮箱</th>
+                <th>创建时间</th>
+                <th>最后修改时间</th>
+                <th>设计师状态</th>
+                <th>操作选项</th></tr></thead>
+            <tbody  class="pn-ltbody">
+            <#if pageBean.recordList??>
+                <#list pageBean.recordList as member>
+
+                        <tr onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
+                            <td><input type='checkbox' name='ids' value='${member.id}'/></td>
+                            <td align="center">${member.id}</td>
+                            <td align="center">${member.userName}</td>
+                            <td align="center">${member.phone!}</td>
+                            <td align="center">${member.email!}</td>
+                            <td align="center">${member.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                            <td align="center">${member.modifiedTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                            <td align="center">
+                                <#if member.type =1>
+                                    <#if member.status =1>已认证</#if>
+                                </#if>
+                                <#if member.type =0>
+                                    <#if member.status =1>未申请
+                                        <#elseif member.status =2>待审核&nbsp;&nbsp;&nbsp;<a href="v_check.do?id=${member.id}&pageNo=${pageBean.currentPage}" class="pn-opt">查看</a>
+                                        <#elseif  member.status =3>未通过审核&nbsp;&nbsp;&nbsp;<a href="v_check.do?id=${member.id}&pageNo=${pageBean.currentPage}" class="pn-opt">查看</a>
+                                    </#if>
+                                </#if>
+                            </td>
+                            <td align="center">		<!--<a href="toUpdate.do?id=${member.id}&pageNo=${pageBean.currentPage}" class="pn-opt">修改</a> |--> <a href="delete.do?id=${member.id}&pageNo=${pageBean.currentPage}" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a></td>
+                        </tr>
+                </#list>
+            </#if>
+            </tbody>
+        </table>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center" class="pn-sp">
+                    共 ${pageBean.totalCount} 条&nbsp;
+                    每页${pageBean.numPerPage}条&nbsp;
+                    <#if pageBean.currentPage=1>
+                        <input class="first-page" type="button" value="首 页" onclick="_gotoPage('1');" disabled="disabled"/>
+                        <input class="pre-page" type="button" value="上一页" onclick="_gotoPage(1);" disabled="disabled"/>
+                    <#else>
+                        <input class="first-page" type="button" value="首 页" onclick="_gotoPage('1');"/>
+                        <input class="pre-page" type="button" value="上一页" onclick="_gotoPage('${pageBean.currentPage-1}');"/>
+                    </#if>
+
+                    <#if pageBean.currentPage=pageBean.pageCount || pageBean.pageCount == 0>
+                        <input class="next-page" type="button" value="下一页" onclick="_gotoPage('${pageBean.pageCount}');" disabled="disabled"/>
+                        <input class="last-page" type="button" value="尾 页" onclick="_gotoPage('${pageBean.pageCount}');" disabled="disabled"/>&nbsp;
+                        <#else>
+                            <input class="next-page" type="button" value="下一页" onclick="_gotoPage('${pageBean.currentPage+1}');"/>
+                            <input class="last-page" type="button" value="尾 页" onclick="_gotoPage('${pageBean.pageCount}');"/>&nbsp;
+                    </#if>
+                    当前 ${pageBean.currentPage}/${pageBean.pageCount} 页 &nbsp;转到第<input type="text" id="_goPs" style="width:50px" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>页
+                    <input class="go" id="_goPage" type="button" value="转" onclick="_gotoPage($('#_goPs').val());" />
+                </td>
+            </tr>
+        </table>
+
+        <div style="margin-top:15px;"><input class="del-button" type="button" value="删除" onclick="optDelete();"/></div>
+    </form>
+
+    <div><br><br></div>
+</div>
+</body>
+</html>

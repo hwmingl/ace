@@ -10,16 +10,17 @@ import lombok.Data;
 public class Article extends BaseEntity {
 
     private String title;
-    private int type;
+    private Integer type;
+    private Integer style;
     private String summary;
     private String content;
     private String source;
     private String author;
-    private int viewCount;
-    private int hot;
-    private int recommend;
+    private Integer viewCount;
+    private Integer hot;
+    private Integer recommend;
     private String picUrl;
-    private int status;
+    private Integer status;
     private String ext1;
     private String ext2;
     private String ext3;

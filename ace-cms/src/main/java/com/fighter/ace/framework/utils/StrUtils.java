@@ -1,7 +1,15 @@
 package com.fighter.ace.framework.utils;
 
 import org.apache.commons.lang.StringUtils;
+import org.htmlparser.Node;
+import org.htmlparser.lexer.Lexer;
+import org.htmlparser.nodes.TextNode;
+import org.htmlparser.util.ParserException;
+import org.wltea.analyzer.core.IKSegmenter;
+import org.wltea.analyzer.core.Lexeme;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.regex.Pattern;
 
 /**
@@ -158,7 +166,7 @@ public class StrUtils {
 		}
 	}
 
-    /*
+
 	public static String htmlCut(String s, int len, String append) {
 		String text = html2Text(s, len * 2);
 		return textCut(text, len, append);
@@ -182,7 +190,7 @@ public class StrUtils {
 		} catch (ParserException e) {
 			throw new RuntimeException(e);
 		}
-	}*/
+	}
 	
 	/**
 	 * 
@@ -191,7 +199,7 @@ public class StrUtils {
 	 * @return 分词词组(,拼接)
 	 */
 
-    /*
+
 	public static String getKeywords(String keyword, boolean smart) {
 		StringReader reader = new StringReader(keyword);
 		IKSegmenter iks = new IKSegmenter(reader, smart);
@@ -208,7 +216,7 @@ public class StrUtils {
 			buffer.setLength(buffer.length() - 1);
 		}
 		return buffer.toString();
-	}*/
+	}
 
 	/**
 	 * 检查字符串中是否包含被搜索的字符串。被搜索的字符串可以使用通配符'*'。

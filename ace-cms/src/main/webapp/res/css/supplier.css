@@ -23,7 +23,7 @@ h4 {
 	background: url("img/banner_supplier.jpg") no-repeat center; height: 350px;
 }
 .supplier-list {
-	margin: 0px auto; width: 1240px; position: relative; background-color: rgb(255, 255, 255);
+	margin: 0px auto; width: 1252px; position: relative; background-color: rgb(255, 255, 255);
 }
 .supplier-list h3 {
 	height: 80px; text-align: center; line-height: 120px; font-size: 28px; font-weight: 400;
@@ -38,10 +38,10 @@ h4 {
 	margin: 0px 25px; width: 90px; height: 0px; vertical-align: middle; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: solid; display: inline-block;
 }
 .supplier-list ul {
-	margin: 0px auto; width: 1200px;
+	margin: 0px auto; width: 1240px;
 }
 .supplier-list ul li {
-	padding: 40px 20px; border: 1px solid rgb(229, 229, 229); border-image: none; width: 359px; height: 120px; margin-right: -1px; margin-bottom: -1px; float: left;
+	padding: 40px 20px; border: 1px solid rgb(229, 229, 229); border-image: none; width: 372px; height: 120px; margin-right: -1px; margin-bottom: -1px; float: left;
 }
 .supplier-list ul li h4 {
 	font-size: 18px;
@@ -79,6 +79,81 @@ h4 {
 .supplier-list .btn-view {
 	border-radius: 5px; width: 110px; height: 30px; text-align: center; color: rgb(255, 255, 255); line-height: 30px; font-size: 12px; display: block; background-color: rgb(255, 120, 0);
 }
+
+
+
+
+
+
+
+
+
+
+.supplier-list1 {
+	margin: 0px auto; width: 1180px; position: relative; background-color: rgb(255, 255, 255);
+}
+.supplier-list1 h3 {
+	height: 80px; text-align: center; line-height: 120px; font-size: 28px; font-weight: 400;
+}
+.supplier-list1 .supplier_ruzhu {
+	padding: 0px 10px; height: 20px; right: 10px; line-height: 0px; display: inline-block; position: absolute;
+}
+.supplier-list1 .supplier-line {
+	width: 100%; height: 120px; line-height: 120px;
+}
+.supplier-list1 .line {
+	margin: 0px 25px; width: 90px; height: 0px; vertical-align: middle; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: solid; display: inline-block;
+}
+.supplier-list1 ul {
+	margin: 0px auto; width: 1180px;
+}
+.supplier-list1 ul li {
+	padding: 40px 20px; border: 1px solid rgb(229, 229, 229); border-image: none; width: 352px; height: 120px; margin-right: -1px; margin-bottom: -1px; float: left;
+}
+.supplier-list1 ul li h4 {
+	font-size: 18px;
+}
+.supplier-list1 ul li p {
+	color: rgb(153, 153, 153); line-height: 20px; font-size: 12px;
+}
+.supplier-list1 ul li .contact {
+	margin: 2px 0px 10px; color: rgb(51, 51, 51);
+}
+.supplier-list1 ul li .contact strong {
+	padding: 0px 12px 0px 5px; font-size: 16px;
+}
+.supplier-list ul li .contact span {
+	font-size: 14px;
+}
+.supplier-list1 ul li .contact i {
+	background: url("img/phone.png") no-repeat center; width: 20px; height: 20px; vertical-align: text-bottom; display: inline-block;
+}
+.supplier-list1 ul li .contact a {
+	border: 1px solid rgb(223, 223, 223); border-image: none; width: 100px; height: 26px; text-align: center; color: rgb(51, 51, 51); line-height: 26px; font-size: 14px; text-decoration: none; display: inline-block; cursor: pointer; background-color: rgb(244, 244, 244);
+}
+.supplier-list1 ul li .contact a:hover {
+	background: rgb(51, 51, 51); color: rgb(255, 255, 255);
+}
+.supplier-list1 .item-detail {
+	margin-left: 20px; vertical-align: top; display: inline-block;
+}
+.supplier-list1 .item-detail a {
+	color: rgb(51, 51, 51);
+}
+.supplier-list1 .item-detail a:hover {
+	color: rgb(18, 167, 255);
+}
+.supplier-list1 .btn-view {
+	border-radius: 5px; width: 110px; height: 30px; text-align: center; color: rgb(255, 255, 255); line-height: 30px; font-size: 12px; display: block; background-color: rgb(255, 120, 0);
+}
+
+
+
+
+
+
+
+
 .gap {
 	height: 30px; background-color: rgb(244, 244, 244);
 }
