@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>3dMaking</title>
+    <#include "/cms_front/inc/top_meta.html"/>
     <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
     <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
     <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
@@ -30,11 +30,11 @@
                                 <div class="goodsCon fixed">
                                     <ul class="goodsNav1 fixed">
                                         <li class="fl on1 ">产品大类：</li>
-                                        <li class="fl"><a href="#" class="size14 on">全部</a></li>
-                                        <li class="fl"><a href="#" class="size14 ">打印机</a></li>
-                                        <li class="fl"><a href="#" class="size14 ">打印耗材</a></li>
-                                        <li class="fl"><a href="#" class="size14 ">配件</a></li>
-                                        <li class="fl"><a href="#" class="size14 ">其他</a></li>
+                                        <li class="fl"><a href="${base}/cms/mall/index" <#if show=='all'> class="size14 on" <#else> class="size14 "</#if> >全部</a></li>
+                                        <li class="fl"><a href="${base}/cms/mall/index?type=0" <#if show=='0'> class="size14 on" <#else> class="size14 "</#if>>打印机</a></li>
+                                        <li class="fl"><a href="${base}/cms/mall/index?type=1" <#if show=='1'> class="size14 on" <#else> class="size14 "</#if>>打印耗材</a></li>
+                                        <li class="fl"><a href="${base}/cms/mall/index?type=2" <#if show=='2'> class="size14 on" <#else> class="size14 "</#if>>配件</a></li>
+                                        <li class="fl"><a href="${base}/cms/mall/index?type=3" <#if show=='3'> class="size14 on" <#else> class="size14 "</#if>>其他</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -54,84 +54,37 @@
                 <div class="width1100 center">
                     <div class="goodsCon fixed">
                         <div class="width1100 shijiGoodsList fixed" style="text-align: left;">
-                            <!--循环列表1start-->
-                            <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
 
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题模型标题一模型标题模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
-                            </div>
-                            <!--循环列表1end-->
                             <!--循环列表1start-->
+                            <#if pageBean??>
+                                <#list pageBean.recordList as bean>
                             <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
+                                <a href="${base}/cms/mall/detail/${bean.id!}" target="_blank">
+                                    <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" /></a>
 
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
+                                <h3><a href="${base}/cms/mall/detail/${bean.id!}"  target="_blank">${bean.name!}</a></h3>
+                                <div class="price">
+                                    <ul>
+                                        <li><span class="icoRmb">￥</span>${bean.price!}</li>
+                                        <li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li>
+                                    </ul>
+                                </div>
                             </div>
+                                </#list>
+                            </#if>
                             <!--循环列表1end-->
-                            <!--循环列表1start-->
-                            <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
 
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
+                            <div class="clear">
                             </div>
-                            <!--循环列表1end-->
-                            <!--循环列表1start-->
-                            <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
-
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
-                            </div>
-                            <!--循环列表1end-->
-                            <!--循环列表1start-->
-                            <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
-
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
-                            </div>
-                            <!--循环列表1end-->
-                            <!--循环列表1start-->
-                            <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
-
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
-                            </div>
-                            <!--循环列表1end-->
-                            <!--循环列表1start-->
-                            <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
-
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
-                            </div>
-                            <!--循环列表1end-->
-                            <!--循环列表1start-->
-                            <div class="shijiGoodsItem  fl">
-                                <a href="3dMallGoodsContent.htm" target="_blank">
-                                    <img src="${base}/res/images/testima1.jpg" /></a>
-
-                                <h3><a href="3dMallGoodsContent.htm"  target="_blank">模型标题一模型标题</a></h3>
-                                <div class="price"><ul><li><span class="icoRmb">￥</span>111234.00</li><li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li></ul></div>
-                            </div>
-                            <!--循环列表1end-->
                             <!--翻页start-->
                             <div class="pagelinks">
-                                <a class="a1">当前页1/376条</a> <a href="#" class="a1">上一页</a> <span>首页</span> <a href="#">
-                                2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>
-                                <a href="#">7</a> <a href="#">8</a> <a href="#">9</a> <a href="#">10</a> ..<a href="#">35</a>
-                                <a href="#" class="a1">下一页</a> <a href="#" class="a1">尾页</a>
+                                <#if pageBean??>
+                                    <a href="${base}/cms/mall/index?type=${type!}" class="a1">首 页</a> <span>第 ${pageBean.currentPage} 页</span>
+                                    <a href="${base}/cms/mall/index?type=${type!}&pageNo=${pageBean.currentPage+1}" class="a1">下一页</a>
+                                    <a href="${base}/cms/mall/index?type=${type!}&pageNo=${pageBean.pageCount}" class="a1">尾 页</a>
+                                    <a class="a1">共 ${pageBean.pageCount} 页</a>
+                                    <a class="a1">${pageBean.totalCount}条</a>
+                                </#if>
                             </div>
                             <!--翻页end-->
                         </div>

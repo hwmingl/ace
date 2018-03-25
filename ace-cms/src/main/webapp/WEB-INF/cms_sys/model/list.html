@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        function getTableForm() {
+            return document.getElementById("tableForm");
+        }
+        function optDelete() {
+            if(Pn.checkedCount("ids")<=0) {
+                alert("请选择您要操作的数据");
+                return;
+            }
+            if(!confirm("您确定删除吗？")) {
+                return;
+            }
+            var f = getTableForm();
+            f.action="o_delete.do";
+            f.submit();
+        }
+
+        function optCheck() {
+            if(Pn.checkedCount('ids')<=0) {
+                alert("请选择您要操作的数据");
+                return;
+            }
+            var f = getTableForm();
+            f.action="o_check.do";
+            f.submit();
+        }
+
+        function _gotoPage(pageNo) {
+            try{
+                var tableForm = getTableForm();
+                $("input[name=pageNo]").val(pageNo);
+                tableForm.action="v_list.do";
+                tableForm.onsubmit=null;
+                tableForm.submit();
+            } catch(e) {
+                alert('_gotoPage(pageNo)方法出错');
+            }
+        }
+
+        function approve(id){
+            $.ajax({
+                url: 'o_ok.do?id='+id,
+                dataType:'json',
+                success: function(data) {
+                    if(data.result=='success'){
+                        alert('审核操作成功!');
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+        function back(id){
+            $.ajax({
+                url: 'o_back.do?id='+id,
+                dataType:'json',
+                success: function(data) {
+                    if(data.result=='success'){
+                        alert('打回操作成功!');
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+        function deleteById(id){
+            if(!confirm("您确定删除吗？")) {
+                return;
+            }
+            $.ajax({
+                url: 'o_deleteById.do?id='+id,
+                dataType:'json',
+                success: function(data) {
+                    if(data.result=='success'){
+                        alert('删除成功!');
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+
+        var max=300;
+        function showImage(a) {
+            var img = $("<img src='"+ a.href +"' style='border:1px solid #ccc;'/>");
+            var imgDiv = $("#sd").append(img);
+            imgDiv.show();
+
+            var	width = img.attr("width");
+            var	height = img.attr("height");
+            if(width>=height&&width>max) {
+                height = height*max/width;
+                width = max;
+            } else if(height>=width||height>max) {
+                width = width*max/height;
+                height = max;
+            }
+            var offset = $(a).offset();
+            imgDiv.css("left",offset.left+$(a).outerWidth()+3);
+            var buttom = $(window).height()+$(document).scrollTop()-max-offset.top;
+            if(buttom<0) {
+                imgDiv.css("top",offset.top+buttom-3);
+            } else {
+                imgDiv.css("top",offset.top-3);
+            }
+            img.width(width);
+            img.height(height);
+        }
+        function hideImage(a) {
+            $("#sd").empty().hide();
+        }
+
+
+
+    </script>
+</head>
+<body>
+<div id="sd" style="display:none;position:absolute;height:300px;width:300px"></div>
+<div class="box-positon">
+    <div class="rpos">当前位置: 模型管理 - 列表</div>
+    <form class="ropt">
+        <div style="width:78px; float:left;">
+            <input class="add" type="submit" value="添加" onclick="this.form.action='v_add.do';"/>
+        </div>
+        <input type="hidden" name="cid" value=""/>
+    </form>
+    <div class="clear"></div>
+</div>
+<div class="body-box">
+    <form action="v_list.do" method="post" style="padding-top:5px;">
+        <div>类目:
+            <select name="categoryId">
+                <option value="">--选择类目--</option>
+                <#if treeDtoList?size gt 0>
+                    <#list treeDtoList as tree>
+                        <option value="${tree.id}" <#if categoryId??> <#if tree.id == categoryId>selected</#if></#if> >${tree.name}</option>
+                        <#if tree.childs?size gt 0>
+                            <#list tree.childs as subTree>
+                            <option value="${subTree.id}" <#if categoryId??> <#if subTree.id == categoryId>selected</#if></#if> >&nbsp;&nbsp;&nbsp;&nbsp;--${subTree.name}</option>
+                            </#list>
+                        </#if>
+                    </#list>
+                </#if>
+            </select>&nbsp;&nbsp;
+            名称: <input type="text" name="name" valtue="${name!}" style="width:100px"/>
+            作者: <input type="text" name="memberName" value="${memberName!}" style="width:70px"/>&nbsp;&nbsp;
+            <select name="queryOrderBy">
+                <option value="">--默认排序--</option>
+                <option value="1" <#if queryOrderBy == '1'>selected</#if> >创建时间降序</option>
+                <option value="2" <#if queryOrderBy == '2'>selected</#if> >创建时间升序</option>
+                <option value="3" <#if queryOrderBy == '3'>selected</#if> >下载次数降序</option>
+                <option value="4" <#if queryOrderBy == '4'>selected</#if> >下载次数升序</option>
+            </select>&nbsp;&nbsp;
+            <input class="query" type="submit" value="查询"/>
+        </div>
+    </form>
+
+    <form id="tableForm" method="post">
+        <input type="hidden" name="pageNo" value="${pageNo!}"/>
+        <input type="hidden" name="name" value="${name!}"/>
+        <input type="hidden" name="memberName" value="${memberName!}"/>
+        <input type="hidden" name="categoryId" value="${categoryId!}"/>
+        <input type="hidden" name="queryOrderBy" value="${queryOrderBy!}"/>
+        <table class="pn-ltable" style="" width="100%" cellspacing="1" cellpadding="0" border="0">
+            <thead class="pn-lthead"><tr>
+                <th width="20"><input type='checkbox' onclick='Pn.checkbox("ids",this.checked)'/></th>
+                <th>ID</th>
+                <th>素材编号</th>
+                <th>名称</th>
+                <th>所属类目</th>
+                <th>作者</th>
+                <th>长宽高</th>
+                <th>文件大小</th>
+                <th>下载次数</th>
+                <th>排序值</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作选项</th></tr></thead>
+            <tbody  class="pn-ltbody">
+            <#if pageBean??>
+            <#list pageBean.recordList as bean>
+                <tr onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
+                    <td><input type='checkbox' name='ids' value='${bean.id}'/></td>
+                    <td align="center">${bean.id}</td>
+                    <td align="center">${bean.modelNo!}</td>
+                    <td> <a href="http://www.3dmaking.com.cn${bean.picUrl!}" target="_blank" onmouseover="showImage(this)" onmouseout="hideImage(this)">${bean.name!}</a> </td>
+                    <td align="center">${bean.categoryName}</td>
+                    <td align="center">${bean.memberName!}</td>
+                    <td >${bean.length!}*${bean.width!}*${bean.height!}cm</td>
+                    <td align="right">${bean.size!}(KB)</td>
+                    <td align="right">${bean.downCount!}</td>
+                    <td align="right">${bean.rank!}</td>
+                    <td align="center">
+                        <#if bean.status==0><font color="red">待审</font></#if>
+                        <#if bean.status==1><font color="blue">已核</font></#if>
+                        <#if bean.status==403><font color="#a52a2a">打回</font></#if>
+                    </td>
+                    <td align="center">${bean.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                    <td align="center">
+                        <a href="javascript:approve(${bean.id});" class="pn-opt">审核</a>
+                        <a href="javascript:back(${bean.id});" class="pn-opt">打回</a>
+                        <a href="v_edit.do?id=${bean.id}&pageNo=${pageBean.currentPage}" class="pn-opt">修改</a>
+                        <a href="javascript:deleteById(${bean.id});" class="pn-opt">删除</a>
+                    </td>
+                </tr>
+            </#list>
+            </#if>
+            </tbody>
+        </table>
+        <#if pageBean??>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center" class="pn-sp">
+                    共 ${pageBean.totalCount} 条&nbsp;
+                    每页${pageBean.numPerPage}条&nbsp;
+                    <#if pageBean.currentPage=1>
+                        <input class="first-page" type="button" value="首 页" onclick="_gotoPage('1');" disabled="disabled"/>
+                        <input class="pre-page" type="button" value="上一页" onclick="_gotoPage(1);" disabled="disabled"/>
+                        <#else>
+                            <input class="first-page" type="button" value="首 页" onclick="_gotoPage('1');"/>
+                            <input class="pre-page" type="button" value="上一页" onclick="_gotoPage('${pageBean.currentPage-1}');"/>
+                    </#if>
+
+                    <#if pageBean.currentPage=pageBean.totalCount>
+                        <input class="next-page" type="button" value="下一页" onclick="_gotoPage('${pageBean.totalCount}');" disabled="disabled"/>
+                        <input class="last-page" type="button" value="尾 页" onclick="_gotoPage('${pageBean.totalCount}');" disabled="disabled"/>&nbsp;
+                        <#else>
+                            <input class="next-page" type="button" value="下一页" onclick="_gotoPage('${pageBean.currentPage+1}');"/>
+                            <input class="last-page" type="button" value="尾 页" onclick="_gotoPage('${pageBean.pageCount}');"/>&nbsp;
+                    </#if>
+                    当前 ${pageBean.currentPage}/${pageBean.pageCount} 页 &nbsp;转到第<input type="text" id="_goPs" style="width:50px" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>页
+                    <input class="go" id="_goPage" type="button" value="转" onclick="_gotoPage($('#_goPs').val());" />
+                </td>
+            </tr>
+        </table>
+        </#if>
+        <div style="margin-top:15px;">
+                <input type="button" value="删除" onclick="optDelete();" class="del-button"/>
+                <input type="button" value="审核" onclick="optCheck();" class="check"/>
+        </div>
+    </form>
+    <div style="margin-bottom:15px;">&nbsp;<br></div>
+</div>
+</body>
+</html>

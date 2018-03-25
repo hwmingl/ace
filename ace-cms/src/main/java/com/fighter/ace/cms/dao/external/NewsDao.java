@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hanebert on 16/5/21.
@@ -28,6 +29,9 @@ public class NewsDao extends BaseDaoImpl<News> {
 
     public List<News> findRecommendList(Integer count){
         return getSessionTemplate().selectList(getStatement("findRecommendList"), count);
+    }
+    public List<News> findListByStyle(Map<String,Object> paramMap){
+        return getSessionTemplate().selectList(getStatement("findListByStyle"), paramMap);
     }
 
     public List<News> findHotList(Integer count){

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("input[name='downCount']").keyup(function () {
+                var tmptxt = $(this).val();
+                $(this).val(tmptxt.replace(/\D|^0/g, ''));
+            }).bind("paste", function () {
+                var tmptxt = $(this).val();
+                $(this).val(tmptxt.replace(/\D|^0/g, ''));
+            }).css("ime-mode", "disabled");
+            $("input[name='rank']").keyup(function () {
+                var tmptxt = $(this).val();
+                $(this).val(tmptxt.replace(/\D|^0/g, ''));
+            }).bind("paste", function () {
+                var tmptxt = $(this).val();
+                $(this).val(tmptxt.replace(/\D|^0/g, ''));
+            }).css("ime-mode", "disabled");
+        });
+
+
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 模型管理 - 修改</div>
+    <form class="ropt">
+        <input type="submit" value="返回列表" onclick="this.form.action='list.do';" class="return-button"/>
+    </form>
+    <div class="clear"/>
+</div>
+<div class="body-box">
+    <div class="form_wrap" style="background:none;height:auto;">
+    <form method="post" action="o_edit.do" id="jvForm">
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span style="color:red;">*</span>模型名称:</td>
+                <td colspan="3" class="pn-fcontent">
+                    <input type="text" id="name" name="name" class="required" value="${model.name!}" size="50" maxlength="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span style="color:red;">*</span>下载次数:</td>
+                <td colspan="3" class="pn-fcontent">
+                    <input type="text" id="downCount" name="downCount" class="required" value="${model.downCount!('0')}" size="50" maxlength="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span style="color:red;">*</span>排序值:</td>
+                <td colspan="3" class="pn-fcontent">
+                    <input type="text" id="rank" name="rank" class="required" value="${model.rank!}" size="50" maxlength="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span style="color:red;">*</span>需求设计尺寸：</td>
+                <td bgcolor="#FFFFFF" style="font-size: 14px;">长
+                    <input type="text" id="length" name="length" value="${model.length!}" style="width:35px;height:20px;">宽
+                    <input type="text" id="width" name="width" value="${model.width!}" style="width:35px;height:20px;">高
+                    <input type="text" id="height" name="height" value="${model.height!}" style="width:35px;height:20px;"> mm</td>
+            </tr>
+
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">
+                    <span class="pn-frequired">*</span>素材:</td>
+                <td bgcolor="#FFFFFF"colspan="3" class="pn-fcontent">
+                    <span class="fontblue"><a href="${uploadFileBase}${model.modelPath!}">查看素材</a></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="pn-fbutton">
+                    <input type="submit" value="提交" class="submit"/> &nbsp; <input type="reset" value="重置" class="reset"/>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name ="id" id="mark0" value="${model.id!}"/>
+        <input type="hidden" id="mark2" name ="pageNo" value="${pageNo!}"/>
+    </form>
+    <#include "/cms_sys/common/error_message.html"/>
+</div>
+</body>
+</html>

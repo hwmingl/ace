@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>3dMaking</title>
+    <#include "/cms_front/inc/top_meta.html"/>
     <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
     <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
     <!--[if lte IE 8]><link href="${base}/res/css/ie8_news.css" rel="stylesheet" type="text/css"><!<![endif]-->
@@ -36,223 +36,45 @@
                             <span class="line"></span>设计师<span class="line"></span></h3>
                     </div>
                     <ul>
+                        <#if pageBean??>
+                            <#list pageBean.recordList as bean>
+                        <!--设计师列表1start-->
+                        <li><a href="${base}/cms/designer/detail/${bean.id!}">
+                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
+                        </a>
+                            <div class="item-detail">
+                                <a href="${base}/cms/designer/detail/${bean.id!}" target="_blank">
+                                    <h4 title="${bean.nickName}">${bean.nickName!}</h4>
+                                </a>
+                                <p style="line-height: 30px;">
+                                    ${bean.province!}&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    案例：<a style="color: #ccc; font-size: 12px;" href="${base}/cms/designer/detail/${bean.id!}"target="_blank">62</a></p>
+                                <div class="contact">
+                                    <i></i><strong>${bean.phone!}</strong>
+                                </div>
+                                <div class="contact">
+                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=${bean.qq!}&amp;site=qq&amp;menu=yes" target="_blank"
+                                       rel="nofollow"><span class="zixun">在线咨询</span> </a>
+                                    <a href="${base}/cms/designer/detail/${bean.id!}" target="_blank"><span class="zixun">他的作品</span> </a>
+                                </div>
+                            </div>
+                        </li>
+                            </#list>
+                        </#if>
+                        <!--设计师列表1end-->
 
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
-                        <!--设计师列表1start-->
-                        <li><a href="#">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
-                        </a>
-                            <div class="item-detail">
-                                <a href="#" target="_blank">
-                                    <h4 title="王某某">
-                                        王某某</h4>
-                                </a>
-                                <p style="line-height: 30px;">
-                                    陕西省&nbsp;&nbsp;|&nbsp;&nbsp;案例：<a style="color: #ccc; font-size: 12px;" href="#"
-                                                                      target="_blank">62</a></p>
-                                <div class="contact">
-                                    <i></i><strong>13266668888</strong>
-                                </div>
-                                <div class="contact">
-                                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=36862742&amp;site=qq&amp;menu=yes" target="_blank"
-                                       rel="nofollow"><span class="zixun">在线咨询</span> </a><a href="#" target="_blank"><span
-                                        class="zixun">他的作品</span> </a>
-                                </div>
-                            </div>
-                        </li>
-                        <!--设计师列表1end-->
                         <div class="clear">
                         </div>
                     </ul>
                     <!--翻页start-->
                     <div class="pagelinks">
-                        <a class="a1">当前页1/376条</a> <a href="#" class="a1">上一页</a> <span>首页</span> <a href="#">
-                        2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>
-                        <a href="#">7</a> <a href="#">8</a> <a href="#">9</a> <a href="#">10</a> ..<a href="#">35</a>
-                        <a href="#" class="a1">下一页</a> <a href="#" class="a1">尾页</a>
+                        <#if pageBean??>
+                            <a href="${base}/cms/designer/index" class="a1">首 页</a> <span>第 ${pageBean.currentPage} 页</span>
+                            <a href="${base}/cms/designer/index?pageNo=${pageBean.currentPage+1}" class="a1">下一页</a>
+                            <a href="${base}/cms/designer/index?pageNo=${pageBean.pageCount}" class="a1">尾 页</a>
+                            <a class="a1">共 ${pageBean.pageCount} 页</a>
+                            <a class="a1">${pageBean.totalCount}条</a>
+                        </#if>
                     </div>
                     <!--翻页end-->
                     <div class="task">

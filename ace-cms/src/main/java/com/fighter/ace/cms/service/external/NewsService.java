@@ -17,6 +17,8 @@ public interface NewsService {
 
     List<News> findHotList(Integer count);
 
+    List<News> findListByStyle(Integer style,Integer count);
+
     List<News> findRecommendList(Integer count);
 
     PageBean getListPage(PageParam pageParam, Map<String, Object> paramMap);

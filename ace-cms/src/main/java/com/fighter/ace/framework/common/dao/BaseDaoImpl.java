@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,7 @@ public class BaseDaoImpl<T extends BaseEntity> extends SqlSessionDaoSupport impl
      * 可以调用sessionTemplate完成数据库操作.
      */
     @Autowired
+    @Qualifier("sessionTemplate")
     private SqlSessionTemplate sessionTemplate;
 
     public SqlSessionTemplate getSessionTemplate() {

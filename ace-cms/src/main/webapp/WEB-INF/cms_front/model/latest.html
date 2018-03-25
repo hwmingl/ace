@@ -43,7 +43,7 @@
                                         <li class="fl"><a href="${base}/cms/model/list" class="size14 <#if showParent==-1>on</#if>">全部</a></li>
                                         <#if parentList??>
                                             <#list parentList as bean>
-                                        <li class="fl"><a href="${base}/cms/model/list?categoryId=${bean.id!}" class="size14 <#if showParent==bean.id>on</#if>">${bean.name}</a></li>
+                                                <li class="fl"><a href="${base}/cms/model/list?categoryId=${bean.id!}" class="size14 <#if showParent==bean.id>on</#if>">${bean.name}</a></li>
                                             </#list>
                                         </#if>
                                     </ul>
@@ -51,15 +51,15 @@
 
 
                                     <#if showSub??>
-                                    <ul class="goodsNav1 fixed">
-                                        <li class="fl on1 ">模型小类：</li>
-                                        <li class="fl"><a href="#" class="size14 <#if showSub==-1>on</#if>">全部</a></li>
-                                        <#if categoryList??>
-                                            <#list categoryList as bean>
-                                                <li class="fl"><a href="${base}/cms/model/list?categoryId=${bean.id!}" class="size14 <#if showSub==bean.id>on</#if>">${bean.name!}</a></li>
-                                            </#list>
-                                        </#if>
-                                    </ul>
+                                        <ul class="goodsNav1 fixed">
+                                            <li class="fl on1 ">模型小类：</li>
+                                            <li class="fl"><a href="#" class="size14 <#if showSub==-1>on</#if>">全部</a></li>
+                                            <#if categoryList??>
+                                                <#list categoryList as bean>
+                                                    <li class="fl"><a href="${base}/cms/model/list?categoryId=${bean.id!}" class="size14 <#if showSub==bean.id>on</#if>">${bean.name!}</a></li>
+                                                </#list>
+                                            </#if>
+                                        </ul>
                                     </#if>
                                 </div>
                             </div>
@@ -88,30 +88,30 @@
                                 <!--model列表单元1开始-->
                                 <#if pageBean??>
                                     <#list pageBean.recordList as bean>
-                                <div class="series-item ">
-                                    <div class="series-img">
-                                        <a href="${base}/cms/model/detail/${bean.id!}" target="_blank">
-                                            <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" title="${bean.name!}">
-                                        </a>
-                                    </div>
-                                    <p class="txt_l">
-                                        <a href="${base}/cms/model/detail/${bean.id!}" target="_blank">${bean.name!}</a></p>
-                                    <div class="series-btinfo">
-                                        <table width="100%">
-                                            <tr>
-                                                <td class=" txt_l">
-                                                    <a href="${base}/cms/designer/detail/${bean.memberId!}" class="headP" target="_blank">
-                                                        <img src="${bean.memberPicUrl!('/jz3d/res/images/avatar.jpg')}" width="25" height="25" alt="${bean.memberName!}" />
-                                                    </a><i>&nbsp;&nbsp;${bean.memberName!}</i>
-                                                </td>
-                                                <td class="txt_r">
-                                                    <a class="zan fr " id="a22"><font id="Fontdd9">64</font></a>
-                                                    <a onclick="common_add_likes(this);" class="liulan fr " id="a0"><font id="Font2">2864</font></a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
+                                        <div class="series-item ">
+                                            <div class="series-img">
+                                                <a href="${base}/cms/model/detail/${bean.id!}" target="_blank">
+                                                    <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" title="${bean.name!}">
+                                                </a>
+                                            </div>
+                                            <p class="txt_l">
+                                                <a href="${base}/cms/model/detail/${bean.id!}" target="_blank">${bean.name!}</a></p>
+                                            <div class="series-btinfo">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td class=" txt_l">
+                                                            <a href="${base}/cms/designer/detail/${bean.memberId!}" class="headP" target="_blank">
+                                                                <img src="${bean.memberPicUrl!('/jz3d/res/images/avatar.jpg')}" width="25" height="25" alt="${bean.memberName!}" />
+                                                            </a><i>&nbsp;&nbsp;${bean.memberName!}</i>
+                                                        </td>
+                                                        <td class="txt_r">
+                                                            <a class="zan fr " id="a22"><font id="Fontdd9">64</font></a>
+                                                            <a onclick="common_add_likes(this);" class="liulan fr " id="a0"><font id="Font2">2864</font></a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </#list>
                                 </#if>
                                 <!--model列表单元1结束-->
@@ -120,9 +120,9 @@
                                 <!--分页开始-->
                                 <div class="pagelinks">
                                     <#if pageBean??>
-                                        <a href="${base}/cms/model/list?style=${style!}" class="a1">首 页</a> <span>第 ${pageBean.currentPage} 页</span>
-                                        <a href="${base}/cms/model/list?style=${style!}&pageNo=${pageBean.currentPage+1}" class="a1">下一页</a>
-                                        <a href="${base}/cms/model/list?style=${style!}&pageNo=${pageBean.pageCount}" class="a1">尾 页</a>
+                                        <a href="${base}/cms/model/latest" class="a1">首 页</a> <span>第 ${pageBean.currentPage} 页</span>
+                                        <a href="${base}/cms/model/latest?pageNo=${pageBean.currentPage+1}" class="a1">下一页</a>
+                                        <a href="${base}/cms/model/latest?pageNo=${pageBean.pageCount}" class="a1">尾 页</a>
                                         <a class="a1">共 ${pageBean.pageCount} 页</a>
                                         <a class="a1">${pageBean.totalCount}条</a>
                                     </#if>

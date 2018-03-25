@@ -18,6 +18,11 @@
             $('#zoomHeight0').val(types[n].imgHeight);
         }
     </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#jvForm").validate();
+        });
+    </script>
     <style type="text/css">
         .sel-disabled{background-color:#ccc}
     </style>
@@ -147,46 +152,62 @@
     <form method="post" action="o_save.do" id="jvForm">
         <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
             <tr id="tr-title">
-                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>标题:</td>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>商品名称:</td>
                 <td colspan="3" width="90%" class="pn-fcontent">
-                    <input type="text" maxlength="100" name="title" class="required" size="70" onchange="generateTags()"/>
+                    <input type="text" maxlength="100" name="name" class="required" size="70"/>
                 </td>
                 </td>
             </tr>
-            <tr id="tr-description">
-                <td width="10%" class="pn-flabel pn-flabel-h">摘要:</td>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>商品品牌:</td>
+                <td colspan="3" width="40%" class="pn-fcontent">
+                    <input type="text" name="label" maxlength="100" class="required" size="70"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>商品系列:</td>
+                <td colspan="3" width="40%" class="pn-fcontent">
+                    <input type="text" name="series" maxlength="100" class="required" size="70"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">商品材料:</td>
+                <td colspan="3" width="40%" class="pn-fcontent">
+                    <input type="text" name="material" maxlength="100" size="70"/>
+                </td>
+            </tr>
+
+            <tr id="tr-price">
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>商品价格:</td>
+                <td colspan="3" width="40%" class="pn-fcontent">
+                <input type="text" name="price" maxlength="50" class="number" value=""/>
+                </td>
+            </tr>
+            <tr id="tr-size">
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>商品尺寸:</td>
                 <td colspan="3" width="90%" class="pn-fcontent">
-                    <textarea cols="70" rows="3" name="summary" maxlength="100"></textarea>
+                    <input type="text" maxlength="100" name="size" class="required" size="70"/>
+                </td>
                 </td>
             </tr>
-            <tr id="tr-author">
-                <td width="10%" class="pn-flabel pn-flabel-h">作者:</td><td colspan="1" width="40%" class="pn-fcontent">
-                <input type="text" name="author" maxlength="50" value="本站编辑"/></td>
-                <td width="10%" class="pn-flabel pn-flabel-h">来源:</td><td colspan="1" width="40%" class="pn-fcontent">
-                <input type="text" name="source" size="70" maxlength="100"/>
-            </td>
-            </tr>
+
+
+
+
+
             <tr id="tr-typeId">
-                <td width="10%" class="pn-flabel pn-flabel-h">内容类型:</td>
-                <td colspan="1" width="40%" class="pn-fcontent">
-                    <select name="type" onchange="typeChange(this.selectedIndex)">
-                        <option value="0">普通</option>
-                        <option value="1">图文</option>
-                    </select>
-                    &nbsp; <label><input type="checkbox" onclick="$('#recommend').val(this.checked)"/>推荐<input type="hidden" id="recommend" name="recommend" value="false"/></label>
-                </td>
-                <td width="10%" class="pn-flabel pn-flabel-h">所属种类</td>
-                <td colspan="1" width="40%" class="pn-fcontent">
-                    <select name="style">
-                        <option value="1">今日看点</option>
-                        <option value="2">设计前沿</option>
-                        <option value="3">行业动态</option>
-                        <option value="4">活动公告</option>
+                <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>所属种类:</td>
+                <td colspan="3" width="40%" class="pn-fcontent">
+                    <select name="type">
+                        <option value="0">打印机</option>
+                        <option value="1">打印耗材</option>
+                        <option value="2">配件</option>
+                        <option value="3">其它</option>
                     </select>
                 </td>
             </tr>
-            <tr id="tr-typeImg" style="display:none">
-                <td id="typeImg" width="10%" class="pn-flabel">缩略图:</td>
+            <tr id="tr-typeImg">
+                <td id="typeImg" width="10%" class="pn-flabel"><span class="pn-frequired">*</span>商品缩略图:</td>
                 <td colspan="1" width="40%" class="pn-fcontent">
                     <input type="text" id="uploadImgPath0" name="typeImg" style="width:220px"/>
                     <input type="button" value="预览" onclick="previewImg(0);" class="preview-button"/>
@@ -211,7 +232,7 @@
             <tr id="tr-txt">
                 <td width="10%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>内容:</td>
                 <td colspan="3" width="90%" class="pn-fcontent">
-                    <textarea id="txt" name="content" class="required" onchange="generateTags()"></textarea>
+                    <textarea id="txt" name="mark" class="required"></textarea>
                     <script type="text/javascript">
                         $(function() {
                             CKEDITOR.replace( 'txt' ,

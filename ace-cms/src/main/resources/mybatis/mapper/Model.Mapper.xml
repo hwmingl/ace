@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.external.ModelDao">
+
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.external.Model">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="keyword" property="keyword" jdbcType="VARCHAR"/>
+        <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
+        <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+        <result column="pic_urls" property="picUrls" jdbcType="VARCHAR"/>
+        <result column="member_id" property="memberId" jdbcType="VARCHAR"/>
+        <result column="model_path" property="modelPath" jdbcType="VARCHAR"/>
+        <result column="down_limit" property="downLimit" jdbcType="INTEGER"/>
+
+        <result column="coin" property="coin" jdbcType="INTEGER"/>
+        <result column="point" property="point" jdbcType="INTEGER"/>
+        <result column="style" property="style" jdbcType="VARCHAR"/>
+        <result column="size" property="size" jdbcType="VARCHAR"/>
+        <result column="length" property="length" jdbcType="VARCHAR"/>
+        <result column="width" property="width" jdbcType="VARCHAR"/>
+        <result column="height" property="height" jdbcType="VARCHAR"/>
+        <result column="down_count" property="downCount" jdbcType="INTEGER"/>
+        <result column="rank" property="rank" jdbcType="INTEGER"/>
+        <result column="model_no" property="modelNo" jdbcType="VARCHAR"/>
+        <result column="soft_version" property="softVersion" jdbcType="VARCHAR"/>
+        <result column="mark" property="mark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="ext1" property="ext1" jdbcType="VARCHAR"/>
+        <result column="ext2" property="ext2" jdbcType="VARCHAR"/>
+        <result column="ext3" property="ext3" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="mmcBeanMap" type="com.fighter.ace.cms.entity.external.ModelMemCate">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="keyword" property="keyword" jdbcType="VARCHAR"/>
+        <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
+        <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="member_id" property="memberId" jdbcType="VARCHAR"/>
+        <result column="member_name" property="memberName" jdbcType="VARCHAR"/>
+        <result column="member_pic_url" property="memberPicUrl" jdbcType="VARCHAR"/>
+        <result column="model_path" property="modelPath" jdbcType="VARCHAR"/>
+        <result column="down_limit" property="downLimit" jdbcType="INTEGER"/>
+        <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+
+        <result column="coin" property="coin" jdbcType="INTEGER"/>
+        <result column="point" property="point" jdbcType="INTEGER"/>
+        <result column="style" property="style" jdbcType="VARCHAR"/>
+        <result column="size" property="size" jdbcType="VARCHAR"/>
+        <result column="length" property="length" jdbcType="VARCHAR"/>
+        <result column="width" property="width" jdbcType="VARCHAR"/>
+        <result column="height" property="height" jdbcType="VARCHAR"/>
+        <result column="down_count" property="downCount" jdbcType="INTEGER"/>
+        <result column="rank" property="rank" jdbcType="INTEGER"/>
+        <result column="model_no" property="modelNo" jdbcType="VARCHAR"/>
+        <result column="soft_version" property="softVersion" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="mark" property="mark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.Model" keyProperty="id" useGeneratedKeys="true">
+        INSERT t_model(
+                create_time,
+                name,
+                keyword,
+                category_id,
+                pic_url,
+                pic_urls,
+                model_path,
+                member_id,
+                coin,
+                point,
+                style,
+                size,
+                length,
+                width,
+                height,
+                down_count,
+                rank,
+                model_no,
+                soft_version,
+                mark,
+                status)
+        VALUES (
+                now(),
+                #{name},
+                #{keyword},
+                #{categoryId},
+                #{picUrl},
+                #{picUrls},
+                #{modelPath},
+                #{memberId},
+                #{coin},
+                #{point},
+                #{style},
+                #{size},
+                #{length},
+                #{width},
+                #{height},
+                #{downCount},
+                #{rank},
+                #{modelNo},
+                #{softVersion},
+                #{mark},
+                0
+        )
+    </insert>
+
+
+    <!-- 查询总条数 -->
+    <select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+          COUNT(1)
+        FROM
+          t_model AS m,t_category AS cate,t_member AS member
+        WHERE m.category_id = cate.id AND m.member_id = member.id
+        <if test="null != name">
+            AND m.name LIKE #{name}
+        </if>
+        <if test="null != categoryId">
+            AND m.categoryId = #{categoryId}
+        </if>
+        <if test="null != categoryIds">
+            AND m.category_id IN
+            <foreach collection="categoryIds" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        <if test="null != memberName">
+            AND member.nick_name LIKE #{memberName}
+        </if>
+        <if test="null != status">
+            AND m.status = #{status}
+        </if>
+        <if test="null != memberId">
+            AND m.member_id = #{memberId}
+        </if>
+    </select>
+
+    <!-- 查询分页模型 -->
+    <select id="listPage" parameterType="java.util.Map" resultMap="mmcBeanMap">
+        SELECT
+                m.id,
+                m.create_time,
+                m.name,
+                m.keyword,
+                m.category_id,
+                cate.name AS category_name,
+                m.pic_url,
+                m.model_path,
+                m.member_id,
+                member.nick_name as member_name,
+                member.pic_url as member_pic_url,
+                m.coin,
+                m.point,
+                m.style,
+                m.size,
+                m.length,
+                m.width,
+                m.height,
+                m.down_count,
+                m.mark,
+                m.rank,
+                m.model_no,
+                m.status
+        FROM
+        t_model AS m,t_category AS cate,t_member AS member
+        WHERE m.category_id = cate.id AND m.member_id = member.id
+        <if test="null != name">
+            AND m.name LIKE #{name}
+        </if>
+        <if test="null != categoryIds">
+            AND m.category_id IN
+            <foreach collection="categoryIds" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        <if test="null != memberName">
+            AND member.nick_name LIKE #{memberName}
+        </if>
+        <if test="null != status">
+            AND m.status = #{status}
+        </if>
+        <if test="null == status">
+            AND m.status > -1
+        </if>
+        <if test="null != memberId">
+            AND m.member_id = #{memberId}
+        </if>
+        <if test="queryOrderBy==1">
+            ORDER BY m.create_time DESC
+        </if>
+        <if test="queryOrderBy==2">
+            ORDER BY m.create_time ASC
+        </if>
+        <if test="queryOrderBy==3">
+            ORDER BY m.down_count DESC
+        </if>
+        <if test="queryOrderBy==4">
+            ORDER BY m.down_count ASC
+        </if>
+        <if test="queryOrderBy==5">
+            ORDER BY m.rank DESC
+        </if>
+        LIMIT #{pageFirst},#{pageSize}
+    </select>
+
+    <select id="getById" resultMap="beanMap" parameterType="java.lang.Long">
+        SELECT id,
+            create_time,
+            name,
+            keyword,
+            category_id,
+            pic_url,
+            model_path,
+            member_id,
+            coin,
+            point,
+            style,
+            size,
+            length,
+            width,
+            height,
+            down_count,
+            rank,
+            model_no,
+            soft_version,
+            mark,
+            status
+        FROM t_model
+        WHERE id = #{id}
+    </select>
+
+    <select id="getMmcById" resultMap="mmcBeanMap" parameterType="java.lang.Long">
+        SELECT
+                m.id,
+                m.create_time,
+                m.name,
+                m.keyword,
+                m.category_id,
+                cate.name AS category_name,
+                m.pic_url,
+                m.model_path,
+                m.member_id,
+                member.nick_name as member_name,
+                member.pic_url as member_pic_url,
+                m.coin,
+                m.point,
+                m.style,
+                m.size,
+                m.length,
+                m.width,
+                m.height,
+                m.down_count,
+                m.rank,
+                m.model_no,
+                m.soft_version,
+                m.mark,
+                m.status
+        FROM
+        t_model AS m,t_category AS cate,t_member AS member
+        WHERE m.category_id = cate.id AND m.member_id = member.id
+        AND m.id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.fighter.ace.cms.entity.external.Model">
+        UPDATE t_model
+        SET modified_time = now()
+            <if test="downCount!=null">
+              ,down_count = #{downCount}
+            </if>
+            <if test="status!=null">
+                ,status = #{status}
+            </if>
+        <if test="mark!=null">
+            ,mark = #{mark}
+        </if>
+        <if test="picUrl!=null">
+            ,pic_url = #{picUrl}
+        </if>
+        <if test="name!=null">
+            ,name = #{name}
+        </if>
+        <if test="keyword!=null">
+            ,keyword = #{keyword}
+        </if>
+        <if test="categoryId!=null">
+            ,category_id = #{categoryId}
+        </if>
+        <if test="point!=null">
+            ,point = #{point}
+        </if>
+        <if test="coin!=null">
+            ,coin = #{coin}
+        </if>
+        <if test="rank!=null">
+            ,rank = #{rank}
+        </if>
+        <if test="length!=null">
+            ,length = #{length}
+        </if>
+        <if test="width!=null">
+            ,width = #{width}
+        </if>
+        <if test="height!=null">
+            ,height = #{height}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除model -->
+    <update id="deleteById" parameterType="java.lang.Long">
+        UPDATE t_model
+        SET status = -1
+        WHERE id = #{id}
+    </update>
+
+    <!-- 批量删除model -->
+    <update id="batchDelete" parameterType="java.lang.Long">
+        UPDATE t_model
+        SET status = -1
+        where id IN
+        <foreach item="id" collection="array" open="(" separator = "," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <!-- 批量审核model -->
+    <update id="approveByBatch" parameterType="java.lang.Long">
+        UPDATE t_model
+        SET status = 1
+        where id IN
+        <foreach item="id" collection="array" open="(" separator = "," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

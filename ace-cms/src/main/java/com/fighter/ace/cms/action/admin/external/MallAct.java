@@ -1,5 +1,6 @@
 package com.fighter.ace.cms.action.admin.external;
 
+import com.fighter.ace.cms.entity.external.Mall;
 import com.fighter.ace.cms.service.external.MallService;
 import com.fighter.ace.cms.service.main.CmsLogService;
 import com.fighter.ace.framework.common.page.PageBean;
@@ -61,6 +62,54 @@ public class MallAct {
             log.error("getNewsList error", e);
         }
         return "mall/list";
+    }
+
+    @RequestMapping("/mall/v_add.do")
+    public String add() {
+        return "mall/add";
+    }
+
+    @RequestMapping("/mall/o_save.do")
+    public String save(Mall mall, String typeImg,HttpServletRequest request){
+        try {
+            if (StringUtils.isNotBlank(typeImg)){
+                mall.setPicUrl(typeImg);
+            }
+            mallService.createMall(mall);
+        }catch (Exception e){
+            log.error("save error",e);
+        }
+        return "redirect:v_list.do";
+    }
+
+    @RequestMapping("/mall/v_edit.do")
+    public String edit(String id, String pageNo,ModelMap modelMap) {
+        try {
+            Mall mall = mallService.getById(Long.valueOf(id));
+            modelMap.addAttribute("mall",mall);
+
+            modelMap.addAttribute("id",id);
+            modelMap.addAttribute("pageNo",pageNo);
+        } catch (Exception e){
+            log.error("edit error",e);
+        }
+        return "mall/edit";
+    }
+
+    @RequestMapping("/mall/o_update.do")
+    public String update(String pageNo,Long id,Mall mall, String typeImg,HttpServletRequest request ){
+        try {
+            mall.setId(id);
+            if (StringUtils.isNotBlank(typeImg)){
+                mall.setPicUrl(typeImg);
+            }
+            mallService.updateMall(mall);
+            //新增操作日志
+            cmsLogService.record(request, TITLE_UPDATED, "id=" + id + ";title=" + mall.getName());
+        } catch (Exception e){
+            log.error("update error",e);
+        }
+        return "redirect:v_list.do?pageNo=" + pageNo;
     }
 
 

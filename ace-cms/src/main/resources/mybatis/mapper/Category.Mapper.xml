@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.external.CategoryDao">
+
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.external.Category">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="deep" property="deep" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.Category" keyProperty="id" useGeneratedKeys="true">
+        INSERT t_category(create_time,
+            name,
+            parent_id,
+            status)
+        VALUES (
+            now(),
+            #{name},
+            #{parentId},
+            1
+        )
+    </insert>
+
+
+    <select id="selectListByParentId" resultMap="beanMap" parameterType="java.lang.Long">
+        SELECT *
+        FROM t_category
+        WHERE status = 1
+        AND parent_id = #{parentId}
+    </select>
+
+    <select id="selectListByName" resultMap="beanMap" parameterType="java.util.Map">
+        SELECT *
+        FROM t_category
+        WHERE status = 1
+        AND parent_id = #{parentId}
+        AND name = #{name}
+    </select>
+
+    <select id="getById" resultMap="beanMap" parameterType="java.lang.Long">
+        SELECT *
+        FROM t_category
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.fighter.ace.cms.entity.external.Category">
+        UPDATE t_category
+        SET modified_time = now()
+        <if test="name!=null">
+            ,name = #{name}
+        </if>
+        <if test="status!=null">
+            ,status = #{status}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteByBatch" parameterType="java.lang.Long">
+        UPDATE t_category
+        SET modified_time = now(),status = -1
+        WHERE id IN
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -205,4 +205,25 @@
         limit #{count}
     </select>
 
+    <select id="findListByStyle" resultMap="beanMap" parameterType="java.util.Map">
+        SELECT
+            id,
+            create_time,
+            title,
+            style,
+            summary,
+            content,
+            source,
+            author,
+            view_count,
+            hot,
+            recommend,
+            pic_url
+        FROM t_news
+        WHERE status = 1
+        <if test="style != null"> and style = #{style} </if>
+        ORDER BY id DESC
+        limit #{count}
+    </select>
+
 </mapper>

@@ -9,6 +9,7 @@ import com.fighter.ace.framework.common.page.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,14 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public List<News> findHotList(Integer count) {
         return newsDao.findHotList(count);
+    }
+
+    @Override
+    public List<News> findListByStyle(Integer style, Integer count) {
+        Map<String,Object> paramMap = new HashMap<>();
+        paramMap.put("style",style);
+        paramMap.put("count",count);
+        return newsDao.findListByStyle(paramMap);
     }
 
     @Override
