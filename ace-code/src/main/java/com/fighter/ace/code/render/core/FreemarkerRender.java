@@ -3,7 +3,7 @@ package com.fighter.ace.code.render.core;
 
 import com.fighter.ace.code.render.Render;
 import com.fighter.ace.code.render.RenderClass;
-import com.prochanges.framework.template.util.FileUtil;
+import com.fighter.ace.code.render.RenderException;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.*;
 import org.slf4j.Logger;
@@ -45,7 +45,7 @@ public class FreemarkerRender implements Render {
 
     }
 
-    public void render(RenderClass target, String template, String outPath) throws com.prochanges.framework.template.render.RenderException {
+    public void render(RenderClass target, String template, String outPath) throws RenderException {
         if(this.hashKey == null) {
             System.err.println("Simple HashKey is not null.");
         }
@@ -56,8 +56,8 @@ public class FreemarkerRender implements Render {
             SimpleHash root = new SimpleHash();
             root.put(this.hashKey, target);
             tl.process(root, e);
-            FileUtil.createNewFile(outPath);
-            FileUtil.writeTofileWithUTF8(outPath, e.toString());
+            //FileUtil.createNewFile(outPath);
+            //FileUtil.writeTofileWithUTF8(outPath, e.toString());
             logger.info("生成文件" + outPath + "成功!");
         } catch (IOException var7) {
             var7.printStackTrace();

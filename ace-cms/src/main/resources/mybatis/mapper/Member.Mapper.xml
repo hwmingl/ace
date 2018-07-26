@@ -105,6 +105,14 @@
             id = #{id}
     </select>
 
+    <select id="getByPhone" parameterType="java.lang.String" resultMap="memberBeanMap">
+        SELECT *
+        FROM t_member
+        WHERE phone = #{phone}
+        AND status != -1
+        LIMIT 1
+    </select>
+
     <!-- 删除会员 -->
     <delete id="deleteById" parameterType="java.lang.Long">
         delete from t_member
@@ -146,7 +154,10 @@
         FROM t_member
         WHERE user_name = #{username}
         AND status != -1
+        LIMIT 1
     </select>
+
+
 
     <select id="findByEmail" parameterType="java.lang.String" resultMap="memberBeanMap">
         SELECT *

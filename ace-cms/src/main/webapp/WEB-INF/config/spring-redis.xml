@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xsi:schemaLocation="  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!-- 说明一个pool可以有多少个Jedis实例 -->
+        <property name="maxTotal" value="300"/>
+        <!-- 最大Idle-->
+        <property name="maxIdle" value="50"/>
+        <!-- 最小Idle -->
+        <property name="minIdle" value="10"/>
+        <!-- 获得一个jedis实例的时候是否检查连接可用性（ping()） -->
+        <property name="testOnBorrow" value="true"/>
+        <!-- return 一个jedis实例给pool时，是否检查连接可用性（ping()） -->
+        <property name="testOnReturn" value="true"/>
+        <!-- idle状态监测用异步线程evict进行检查， -->
+        <property name="testWhileIdle" value="true"/>
+        <!-- 一次最多evict的pool里的jedis实例个数 -->
+        <property name="numTestsPerEvictionRun" value="10"/>
+        <!-- test idle 线程的时间间隔 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!--最大等待wait时间-->
+        <property name="maxWaitMillis" value="3000"/>
+    </bean>
+
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="127.0.0.1"/>
+        <property name="port" value="6379"/>
+        <property name="poolConfig" ref="poolConfig"/>
+    </bean>
+
+    <bean id="stringSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    <!-- 开启事务，可以通过transcational注解控制 -->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="keySerializer" ref="stringSerializer" />
+    </bean>
+
+</beans>

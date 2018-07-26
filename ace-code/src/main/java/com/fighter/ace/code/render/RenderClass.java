@@ -1,7 +1,5 @@
 package com.fighter.ace.code.render;
 
-import com.prochanges.framework.template.render.pojo.Property;
-
 import java.util.List;
 
 /**

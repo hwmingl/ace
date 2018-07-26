@@ -31,7 +31,14 @@ public interface MemberService {
      * @param id
      * @return
      */
-    Member getById(long id);
+    Member getById(Long id);
+
+    /**
+     *
+     * @param phone
+     * @return
+     */
+    Member getByPhone(String phone);
 
     /**
      *

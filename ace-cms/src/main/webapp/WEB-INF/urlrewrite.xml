@@ -6,6 +6,14 @@
         <from>^/index.html</from>
         <to>/cms/index.do</to>
     </rule>
+    <rule>
+        <from>^/register.html</from>
+        <to>/cms/goRegister.do</to>
+    </rule>
+    <rule>
+        <from>^/login.html</from>
+        <to>/cms/goLogin.do</to>
+    </rule>
 
     <rule>
         <from>^/admin/cms/login.html</from>

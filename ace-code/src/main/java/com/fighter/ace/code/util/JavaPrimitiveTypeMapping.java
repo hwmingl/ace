@@ -1,6 +1,5 @@
 package com.fighter.ace.code.util;
 
-import com.prochanges.framework.template.util.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,7 +17,7 @@ public class JavaPrimitiveTypeMapping {
     }
 
     public static String getPrimitiveType(String clazz) {
-        String className = com.prochanges.framework.template.util.StringHelper.getExtension(clazz);
+        String className = StringHelper.getExtension(clazz);
         System.out.println(className);
         String result = (String)wraper2primitive.get(className);
         return result == null?clazz:result;

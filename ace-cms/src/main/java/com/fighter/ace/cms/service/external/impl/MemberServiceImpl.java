@@ -30,8 +30,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member getById(long id) {
+    public Member getById(Long id) {
         return memberDao.getById(id);
+    }
+
+    @Override
+    public Member getByPhone(String phone) {
+        return memberDao.getByPhone(phone);
     }
 
     @Override

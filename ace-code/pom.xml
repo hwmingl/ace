@@ -13,13 +13,7 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>code</groupId>
-            <artifactId>code-gen</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>/work/code-generator-1.0.jar</systemPath>
-        </dependency>
+
 
         <dependency>
             <groupId>dom4j</groupId>

@@ -12,6 +12,7 @@
         <module>ace-code</module>
         <module>ace-admin</module>
         <module>ace-cms</module>
+        <module>ace-download</module>
     </modules>
 
     <properties>
@@ -29,9 +30,10 @@
         <guava.version>18.0</guava.version>
 
         <spring.version>4.1.6.RELEASE</spring.version>
-        <spring-data-redis.version>1.6.0.RELEASE</spring-data-redis.version>
+        <spring-data-redis.version>1.4.2.RELEASE</spring-data-redis.version>
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis-spring.version>1.2.1</mybatis-spring.version>
+        <jedis.version>2.6.2</jedis.version>
 
         <urlrewritefilter.version>4.0.4</urlrewritefilter.version>
         <freemarker.version>2.3.16</freemarker.version>
@@ -226,7 +228,12 @@
                 <version>${freemarker.version}</version>
             </dependency>
 
-
+            <!--rocket mq -->
+            <dependency>
+                <groupId>com.alibaba.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>3.6.2.Final</version>
+            </dependency>
 
 
             <dependency>
@@ -251,23 +258,37 @@
 
 
             <!-- log -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.7</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
-                <version>1.1.2</version>
+                <version>1.2.2</version>
             </dependency>
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.1.2</version>
+                <version>1.2.2</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.logback-extensions</groupId>
+                <artifactId>logback-ext-spring</artifactId>
+                <version>0.1.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.25</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>1.7.25</version>
+            </dependency>
+
 
             <!--servlet-->
             <dependency>

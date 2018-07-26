@@ -22,6 +22,10 @@ public class MemberDao extends BaseDaoImpl<Member> {
         return getSessionTemplate().selectOne(getStatement("findMemberByUserName"), username);
     }
 
+    public Member getByPhone(String phone){
+        return getSessionTemplate().selectOne(getStatement("getByPhone"), phone);
+    }
+
     public Member findByEmail(String email){
         return getSessionTemplate().selectOne(getStatement("findByEmail"), email);
     }

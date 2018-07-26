@@ -30,4 +30,5 @@
 
     <import resource="classpath:application-datasource.xml"/>
     <import resource="cms-shiro-context.xml"/>
+    <import resource="spring-redis.xml"/>
 </beans>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.min.css" />
+    <link href="${base}/res/css/dlstyle.css" rel="stylesheet" type="text/css">
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+    <script type="text/javascript">
+        function sendMobileCode(){
+            var phone = $('#phone').val();
+            if(!isPhoneNo(phone)){
+                $("#vldTip").html("请输入有效的手机号码");
+                return ;
+            }
+            $('#dyMobileButton').attr("disabled",true);
+            $.ajax({
+                url: '${base}/cms/sendRegCode.do',
+                dataType:"json",
+                data:{"phone":phone},
+                success	:function(data) {
+                    $("#vldTip").html("<font color='black'>验证码已发送</font>");
+                }
+            });
+        }
+
+        // 验证手机号
+        function isPhoneNo(phone) {
+            var pattern = /^1[34578]\d{9}$/;
+            return pattern.test(phone);
+        }
+
+        function register(){
+            var phone = $.trim($('#phone').val());
+            if(null == phone || phone == ''){
+                $("#vldTip").html("请输入有效的手机号码");
+                return false;
+            }
+            var code = $.trim($('#code').val());
+            if(null == code || code == ''){
+                $("#vldTip").html("请输入有效的验证码");
+                return false;
+            }
+            var password = $.trim($('#password').val());
+            if(null == password || password == ''){
+                $("#vldTip").html("密码不可为空");
+                return false;
+            }
+            if(password.length < 6){
+                $("#vldTip").html("密码不可小于6位");
+                return false;
+            }
+            var passwordRepeat = $.trim($('#passwordRepeat').val());
+            if(null == passwordRepeat || passwordRepeat == ''){
+                $("#vldTip").html("请输入确认密码");
+                return false;
+            }
+            if(password!=passwordRepeat){
+                $("#vldTip").html("两次输入密码不一致");
+                return false;
+            }
+
+            var param = {"phone":phone,"code":code,"password":password};
+            $.ajax({
+                url: '${base}/cms/register.do',
+                dataType:"json",
+                data:param,
+                success	:function(data) {
+                    if(data.code == 'exist'){
+                        $("#vldTip").html("该手机号码已被注册");
+                        return false;
+                    }
+
+                    if(data.code == 'expired'){
+                        $("#vldTip").html("注册码已过期,请重新获取");
+                        return false;
+                    }
+                    if(data.code == 'notEqual'){
+                        $("#vldTip").html("注册码有误,请重新输入");
+                        return false;
+                    }
+                    if(data.code == 'ok'){
+                        $("#regForm")[0].reset();
+                        $("#vldTip").html("<font color='green'>恭喜您注册成功</font><font color='red'>&nbsp;&nbsp;<a href='login.html'>点击登录</a></font>");
+                        return false;
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+<body style="background: #fff;">
+<div class="login-boxtitle">
+    <a href="index.html"> <img alt="" src="${base}/res/images/logo.jpg" /></a>
+</div>
+<div class="res-banner" style="background: #3db2e8;">
+    <div class="res-main">
+        <div class="login-banner-bg">
+            <span></span>
+            <img src="${base}/res/images/big.jpg" /></div>
+        <div class="login-box">
+            <h3 class="title">注册会员</h3>
+            <div class="clear"> </div>
+            <div class="am-tabs" id="doc-my-tabs">
+                <div class="am-tabs-bd">
+                    <div class="am-tab-panel am-active">
+                        <form method="post" id="regForm" name="regForm">
+                            <div class="user-phone">
+                                <label for="phone">
+                                    <i class="am-icon-mobile-phone am-icon-md"></i>
+                                </label>
+                                <input type="tel" name="phone" id="phone" placeholder="请输入手机号">
+                            </div>
+                            <div class="verification">
+                                <label for="code">
+                                    <i class="am-icon-code-fork"></i>
+                                </label>
+                                <input type="tel" name="code" id="code" placeholder="请输入验证码">
+                                <a class="btn" href="javascript:void(0);" onclick="sendMobileCode();" id="sendMobileCode" >
+                                    <span id="dyMobileButton">获取</span></a>
+                            </div>
+                            <div class="user-pass">
+                                <label for="password">
+                                    <i class="am-icon-lock"></i>
+                                </label>
+                                <input type="password" name="password" id="password" placeholder="设置密码">
+                            </div>
+                            <div class="user-pass">
+                                <label for="passwordRepeat">
+                                    <i class="am-icon-lock"></i>
+                                </label>
+                                <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="确认密码">
+                            </div>
+                        </form>
+                        <div class="login-links">
+                            <label for="reader-me">
+                                <input id="reader-me" type="checkbox" checked="checked" readonly>
+                                点击表示您同意商城《服务协议》
+                            </label>
+                        </div>
+                        <div class="am-cf">
+                            <input type="submit" name="" value="注册" onclick="register();" class="am-btn am-btn-primary am-btn-sm am-fl">
+                        </div>
+
+                        <div class="login-links">
+                            <label for="reader-me">
+                                <span style="font-weight: bold;color: red" id="vldTip"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#doc-my-tabs').tabs();
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer ">
+        <div class="footer-hd ">
+            <p>
+                <a href="# ">首页</a> <b>|</b> <a href="3dmall.htm">3D商城</a> <b>|</b> <a href="3dNews.htm ">3D资讯</a>
+                <b>|</b> <a href="3dDesigner.htm ">设计师</a>
+            </p>
+        </div>
+        <div class="footer-bd ">
+            <p>
+                <a href="3dAbout.htm#1">关于3D智造网</a> <a href="3dAbout.htm#6">联系我们</a> <a href="3dAbout.htm#7">投稿方式</a> <a href="3dAbout.htm#">常见问题</a>
+                <em>© 2017-2025 3Dmaking.com.cn 版权所有. </em>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

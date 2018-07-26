@@ -85,7 +85,7 @@ public class MemberAct {
     @RequestMapping(value = "/member/v_edit.do")
     public String edit(String id,String pageNo ,HttpServletRequest request ,HttpServletResponse response,ModelMap modelMap){
         try {
-            Member member = memberService.getById(Integer.parseInt(id));
+            Member member = memberService.getById(Long.valueOf(id));
             modelMap.addAttribute("member",member);
             modelMap.addAttribute("pageNo",pageNo);
         }catch (Exception e){
@@ -97,7 +97,7 @@ public class MemberAct {
     @RequestMapping(value = "/member/o_update.do")
     public String update(String id,String pageNo ,HttpServletRequest request ,HttpServletResponse response,ModelMap modelMap){
         try {
-            Member member = memberService.getById(Integer.parseInt(id));
+            Member member = memberService.getById(Long.valueOf(id));
         } catch (Exception e){
             log.error("update error",e);
         }
@@ -108,7 +108,7 @@ public class MemberAct {
     @RequestMapping(value = "/member/v_check.do")
      public String vCheckMember(String id,String pageNo ,HttpServletRequest request ,HttpServletResponse response,ModelMap modelMap){
         try {
-            Member member = memberService.getById(Integer.parseInt(id));
+            Member member = memberService.getById(Long.valueOf(id));
             modelMap.addAttribute("member",member);
             modelMap.addAttribute("pageNo",pageNo);
         } catch (Exception e){

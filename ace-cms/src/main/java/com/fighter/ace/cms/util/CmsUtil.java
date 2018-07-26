@@ -61,4 +61,16 @@ public class CmsUtil {
         return (CmsUser) request.getSession().getAttribute(ADMIN_USER_KEY);
     }
 
+    public static String getCode() {
+        int code = (int) ((Math.random() * 9 + 1) * 100000);
+        return String.valueOf(code);
+    }
+
+
+    public static void main(String[] args){
+        CmsUtil.getCode();
+    }
+
+
+
 }

@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>模型下载</title>
+    <script language="javascript" type="text/javascript">
+        var i = 5;
+        var intervalid;
+        intervalid = setInterval("countDown()", 1000);
+        function countDown() {
+            if (i == 0) {
+                window.location.href = "../index.html";
+                clearInterval(intervalid);
+            }
+            document.getElementById("mes").innerHTML = i;
+            i--;
+        }
+    </script>
+</head>
+<body>
+<div id="errorfrm">
+    <h3>模型下载</h3>
+    <div id="error">
+        <p>将在 <span id="mes">5</span> 秒钟后开始下载！</p>
+        <p>若浏览器无反应, 请 &nbsp;&nbsp; <a href=""><font color="#a52a2a">点击下载</font></a></p>
+    </div>
+</div>
+</body>
+</html> 
