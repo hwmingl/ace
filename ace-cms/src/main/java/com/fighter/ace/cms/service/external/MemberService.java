@@ -40,6 +40,15 @@ public interface MemberService {
      */
     Member getByPhone(String phone);
 
+
+    /**
+     *
+     * @param account
+     * @param password
+     * @return
+     */
+    Member findByPhoneAndUserName(String account,String password);
+
     /**
      *
      * @param id

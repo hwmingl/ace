@@ -12,6 +12,7 @@ import java.util.Date;
 @Data
 public class CmsUser extends BaseEntity {
 
+    private String phone;
     private String userName;
     private String userPwd;
     private String realName;

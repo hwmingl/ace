@@ -40,6 +40,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Member findByPhoneAndUserName(String account, String password) {
+        return memberDao.findByPhoneAndUserName(account,password);
+    }
+
+    @Override
     public int updateStatusById(Integer id) {
         return 0;
     }

@@ -4,6 +4,9 @@ import com.fighter.ace.cms.entity.external.Member;
 import com.fighter.ace.framework.common.dao.BaseDaoImpl;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by hanebert on 16/5/26.
  */
@@ -28,6 +31,13 @@ public class MemberDao extends BaseDaoImpl<Member> {
 
     public Member findByEmail(String email){
         return getSessionTemplate().selectOne(getStatement("findByEmail"), email);
+    }
+
+    public Member findByPhoneAndUserName(String account,String password){
+        Map<String,Object> param = new HashMap<>();
+        param.put("account",account);
+        param.put("password",password);
+        return getSessionTemplate().selectOne("findByPhoneAndUserName",param);
     }
 
 

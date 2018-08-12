@@ -2,7 +2,7 @@
     var htmlCode = "";
     htmlCode = htmlCode + "<div class=\"a_wd clearfix\">";
     htmlCode = htmlCode + "<div class=\"login fl\"><div class=\"login top_nav\" style=\"line-height: 35px;\">";
-    htmlCode = htmlCode + " <span><a href=\"register.html\" target=\"_blank\">注册</a><a href=\"login.html\" target=\"_blank\">登陆</a></span></div></div>";
+    htmlCode = htmlCode + " <span><a href=\"/jz3d/register.html\" target=\"_blank\">注册</a><a href=\"/jz3d/login.html\" target=\"_blank\">登陆</a></span></div></div>";
     htmlCode = htmlCode + "<ul class=\"que_nav fr\">";
     htmlCode = htmlCode + "<li><a href=\"#\">晋中智造网 | 增材制造（3D打印）公共服务-晋中分平台</a></li>";
     htmlCode = htmlCode + " <li class=\"site_nav\"><span>网站导航</span><div class=\"site_nav_list clearfix\">";

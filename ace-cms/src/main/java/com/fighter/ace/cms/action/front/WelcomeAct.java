@@ -12,6 +12,7 @@ import com.fighter.ace.framework.common.page.PageBean;
 import com.fighter.ace.framework.common.page.PageParam;
 import com.fighter.ace.framework.web.RequestUtils;
 import com.fighter.ace.framework.web.ResponseUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,9 +91,29 @@ public class WelcomeAct extends BaseAction{
      * @return
      */
     @RequestMapping("/goLogin.do")
-    public String login(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap){
+    public String v_login(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap){
 
         return "login";
+    }
+
+    @RequestMapping("/login.do")
+    public void login(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap){
+        String account = RequestUtils.getQueryParam(request, "account");
+        String password = RequestUtils.getQueryParam(request, "password");
+        if (StringUtils.isBlank(account) || StringUtils.isBlank(password)){
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+        }
+
+        try {
+            if (account.equals("admin") && password.equals("password")){
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
+            } else {
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+            }
+        } catch (Exception e){
+            log.error("login error",e);
+        }
+
     }
 
     /**

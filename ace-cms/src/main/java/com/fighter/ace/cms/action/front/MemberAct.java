@@ -5,6 +5,7 @@ import com.fighter.ace.cms.service.external.MemberService;
 import com.fighter.ace.cms.util.JsonUtil;
 import com.fighter.ace.framework.web.RequestUtils;
 import com.fighter.ace.framework.web.ResponseUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -29,23 +30,29 @@ public class MemberAct extends BaseAction{
     @RequestMapping("/m/login.do")
     public void login(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap){
 
-        try {
-            String phone = RequestUtils.getQueryParam(request, "phone");
-            Member member = memberService.getByPhone(phone);
-            if (null == member){
-                ResponseUtils.renderJson(response, JsonUtil.toJson("code", "notExist"));
-            } else {
-                ResponseUtils.renderJson(response, JsonUtil.toJson("code", "ok"));
-            }
-
-        } catch (Exception e){
-
+        String account = RequestUtils.getQueryParam(request, "account");
+        String password = RequestUtils.getQueryParam(request, "password");
+        if (StringUtils.isBlank(account) || StringUtils.isBlank(password)){
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
         }
 
-
-
-
+        try {
+            Member member = memberService.findByPhoneAndUserName(account,password);
+            if (null != member){
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
+            } else {
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+            }
+        } catch (Exception e){
+            log.error("login error",e);
+        }
     }
 
+
+    @RequestMapping("/m/v_index")
+    public String v_index(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap){
+
+        return "/m/index";
+    }
 
 }

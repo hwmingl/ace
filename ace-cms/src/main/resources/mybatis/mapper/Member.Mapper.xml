@@ -157,6 +157,15 @@
         LIMIT 1
     </select>
 
+    <select id="findByPhoneAndUserName" parameterType="java.util.Map" resultMap="memberBeanMap">
+        select *
+        from t_member
+        where 1 = 1
+        <if test="account != null"> and (user_name = #{account} OR phone = #{account})</if>
+        <if test="password != null"> and user_pwd = #{password} </if>
+        limit 1
+    </select>
+
 
 
     <select id="findByEmail" parameterType="java.lang.String" resultMap="memberBeanMap">
