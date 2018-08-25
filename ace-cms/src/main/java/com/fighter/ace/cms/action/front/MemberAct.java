@@ -1,5 +1,6 @@
 package com.fighter.ace.cms.action.front;
 
+import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.entity.external.Member;
 import com.fighter.ace.cms.service.external.MemberService;
 import com.fighter.ace.cms.util.JsonUtil;
@@ -39,6 +40,8 @@ public class MemberAct extends BaseAction{
         try {
             Member member = memberService.findByPhoneAndUserName(account,password);
             if (null != member){
+                request.getSession().setAttribute(Constants.MEMBER_SESSION_KEY,member);
+                request.getSession().removeAttribute(Constants.MEMBER_SESSION_KEY_NULL);
                 ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
             } else {
                 ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
@@ -49,10 +52,10 @@ public class MemberAct extends BaseAction{
     }
 
 
-    @RequestMapping("/m/v_index")
+    @RequestMapping("/m/index")
     public String v_index(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap){
 
-        return "/m/index";
+        return "m/index";
     }
 
 }

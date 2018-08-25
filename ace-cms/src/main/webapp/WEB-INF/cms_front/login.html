@@ -40,8 +40,9 @@
                         return false;
                     }
                     if(data.msg == 'ok'){
-                        $("#vldTip").html("<font color='green'>恭喜您注册成功</font><font color='red'>&nbsp;&nbsp;<a href='login.html'>点击登录</a></font>");
-                        return false;
+                        //alert(data.msg)
+                        window.location.href='${base}/cms/m/index'
+                        //return false;
                     }
                 }
             });
@@ -102,7 +103,11 @@
             </div>
             <div id="login_container">
                 <label for="vldTip">
-                    <span style="font-weight: bold;color: red" id="vldTip"></span>
+                    <#if memberLoginSessionNull ??>
+                        <span style="font-weight: bold;color: red" id="vldTip">会话过期,需重新登陆</span>
+                    <#else>
+                        <span style="font-weight: bold;color: red" id="vldTip"></span>
+                    </#if>
                 </label>
             </div>
         </div>

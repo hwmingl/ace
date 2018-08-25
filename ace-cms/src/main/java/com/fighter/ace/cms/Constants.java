@@ -15,6 +15,12 @@ public class Constants {
      */
     public static final String RES_PATH = "/r/cms";
 
+    /**
+     * 会员登录session key
+     */
+    public static final String MEMBER_SESSION_KEY = "memberLoginSession";
+    public static final String MEMBER_SESSION_KEY_NULL = "memberLoginSessionNull";
+
     //****************************************常见状态************************************************
     //逻辑删除
     public static final Integer STATUS_DELETED = -1;
