@@ -1,26 +1,38 @@
 package com.fighter.ace.cms.action.front;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.entity.external.Category;
 import com.fighter.ace.cms.entity.external.Member;
 import com.fighter.ace.cms.entity.external.Model;
 import com.fighter.ace.cms.service.external.CategoryService;
+import com.fighter.ace.cms.service.external.DownloadService;
 import com.fighter.ace.cms.service.external.MemberService;
 import com.fighter.ace.cms.service.external.ModelService;
+import com.fighter.ace.cms.util.ConfigUtil;
+import com.fighter.ace.cms.util.JsonUtil;
 import com.fighter.ace.framework.common.page.PageBean;
 import com.fighter.ace.framework.common.page.PageParam;
+import com.fighter.ace.framework.web.RequestUtils;
+import com.fighter.ace.framework.web.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by hanebert on 18/1/20.
@@ -36,6 +48,122 @@ public class ModelAct extends BaseAction {
     private ModelService modelService;
     @Autowired
     private MemberService memberService;
+    @Resource
+    private ConfigUtil configUtil;
+    @Resource
+    private RedisTemplate redisTemplate;
+    @Resource
+    private DownloadService downloadService;
+
+    @RequestMapping("/model/downCheck")
+    public void downloadCheck(HttpServletRequest request,HttpServletResponse response, ModelMap modelMap){
+        //检查是否登录
+        Object loginUser = request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        if (null == loginUser){
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "needLogin"));
+            return;
+        }
+        try {
+            Member member = (Member) loginUser;
+            //会员积分数据
+            Member m = memberService.getById(member.getId());
+            Float point = Float.valueOf(m.getPoint());
+            Float coins = Float.valueOf(m.getCoin());
+            //模型数据
+            String modelId = RequestUtils.getQueryParam(request, "modelId");
+
+            //检查是否曾经下载过
+            if (downloadService.hasDownload(m.getId(),Long.valueOf(modelId))){
+                ResponseUtils.renderJson(response,JsonUtil.toJson("msg", "already"));
+                return;
+            }
+            Model modelForDown =  modelService.getById(Long.valueOf(modelId));
+            int payType = 0;
+            JSONObject data = new JSONObject();
+            //检查积分
+            if (payType == 0 && point.floatValue() >= modelForDown.getPoint()){
+                payType = 1;
+                data.put("cost",modelForDown.getPoint());
+            }
+            //检查金币
+            if (payType == 0 && coins.floatValue() >= modelForDown.getCoin()){
+                payType = 2;
+                data.put("cost",modelForDown.getCoin());
+            }
+            data.put("payType",payType);
+            data.put("msg","ok");
+
+            ResponseUtils.renderJson(response,data.toJSONString());
+        } catch (Exception e){
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "error"));
+        }
+    }
+
+    @RequestMapping("/model/download")
+    public void downloadFile(HttpServletRequest request,HttpServletResponse response, ModelMap modelMap){
+        //检查是否登录
+        Object loginUser = request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        if (null == loginUser){
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "needLogin"));
+            return;
+        }
+        try {
+            Member member = (Member) loginUser;
+            //会员积分数据
+            Member m = memberService.getById(member.getId());
+            Float point = Float.valueOf(m.getPoint());
+            Float coins = Float.valueOf(m.getCoin());
+            //模型数据
+            String modelId = RequestUtils.getQueryParam(request,"modelId");
+
+
+            Model modelForDown =  modelService.getById(Long.valueOf(modelId));
+            int payType = 0;
+            float cost = 0;
+            //检查积分
+            if (payType == 0 && point.floatValue() >= modelForDown.getPoint()){
+                payType = 1;
+                cost = modelForDown.getPoint();
+            }
+            //检查金币
+            if (payType == 0 && coins.floatValue() >= modelForDown.getCoin()){
+                payType = 2;
+                cost = modelForDown.getCoin();
+            }
+            if (payType == 0){
+                ResponseUtils.renderJson(response,JsonUtil.toJson("msg","notEnough"));
+                return;
+            }
+
+            //检查是否曾经下载过
+            if (!downloadService.hasDownload(m.getId(),Long.valueOf(modelId))){
+                //记录消费记录
+                member = memberService.addCost(m,modelForDown.getId(),payType,cost);
+                request.getSession().setAttribute(Constants.MEMBER_SESSION_KEY, member);
+            }
+
+            String uuid = UUID.randomUUID().toString();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("domain","jz3d");
+            jsonObject.put("memberId",member.getId());
+            jsonObject.put("payType",payType);
+            jsonObject.put("modelId", modelId);
+            jsonObject.put("fileName", modelForDown.getModelPath());
+            redisTemplate.opsForValue().set(uuid, jsonObject.toJSONString(), 30, TimeUnit.MINUTES);
+
+
+            String downloadUrl = configUtil.getDownloadPrefix() + uuid;
+            JSONObject data = new JSONObject();
+            data.put("msg","ok");
+            data.put("downloadUrl",downloadUrl);
+            ResponseUtils.renderJson(response,data.toJSONString());
+        } catch (Exception e){
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "error"));
+        }
+
+    }
+
+
 
     @RequestMapping("/model/latest")
     public String findLatest(Long categoryId,String pageNo, ModelMap model){

@@ -48,6 +48,11 @@
             <artifactId>spring-data-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+        </dependency>
+
         <!--redis-->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -70,6 +75,15 @@
             <groupId>com.alibaba.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
         </dependency>
+
+        <!--active mq-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
+
+
+
 
         <!--servlet-->
         <dependency>

@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class BaseAction {
 
+    public static final int PAGESIZE = 20;
 
     protected Integer getPageNo(String pageNo) {
         if (StringUtils.isBlank(pageNo)){

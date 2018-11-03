@@ -13,10 +13,20 @@ import java.util.Map;
 public interface MemberService {
 
     /**
-     *
+     *  新增会员
      * @param member
      */
     void addMember(Member member);
+
+
+    /**
+     *
+     * @param member
+     * @param modelId
+     * @param payType
+     * @param cost
+     */
+    Member addCost(Member member,Long modelId,int payType,Float cost);
 
     /**
      *

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!-- Activemq connection factory -->
+	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<constructor-arg index="0" value="tcp://localhost:61616" />
+	</bean>
+
+	<!-- ConnectionFactory Definition -->
+	<bean id="cachingConnectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<constructor-arg ref="amqConnectionFactory" />
+        <!-- 2、接收者ID -->
+        <property name="clientId" value="CID_APP_JZ3D" />
+    </bean>
+
+	<!--  Default Destination Queue Definition-->
+	<bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg index="0" value="modelTopic,fileTopic" />
+	</bean>
+
+
+    <!-- jms事务 -->
+    <bean id="jmsTransactionManager"
+          class="org.springframework.jms.connection.JmsTransactionManager">
+        <property name="connectionFactory" ref="cachingConnectionFactory" />
+    </bean>
+    <tx:annotation-driven transaction-manager="jmsTransactionManager" />
+
+
+
+    <!-- JmsTemplate Definition -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="cachingConnectionFactory" />
+        <property name="defaultDestination" ref="defaultDestination" />
+        <!-- true是topic，false是queue，默认是false，此处显示写出false -->
+        <property name="pubSubDomain" value="true" />
+    </bean>
+
+	<!-- Message Sender Definition -->
+	<bean id="messageSender" class="com.fighter.ace.cms.mq.MessageSender">
+		<constructor-arg index="0" ref="jmsTemplate" />
+	</bean>
+
+	<bean id="messageReceiver" class="com.fighter.ace.cms.mq.MessageReceiver"/>
+
+    <!--
+        AUTO_ACKNOWLEDGE = 1 ：自动确认
+        CLIENT_ACKNOWLEDGE = 2：客户端手动确认
+        DUPS_OK_ACKNOWLEDGE = 3： 自动批量确认
+        SESSION_TRANSACTED = 0：事务提交并确认
+        但是在activemq补充了一个自定义的ACK模式:
+        INDIVIDUAL_ACKNOWLEDGE = 4：单条消息确认
+    -->
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer" >
+		<property name="connectionFactory" ref="cachingConnectionFactory" />
+		<property name="destination" ref="defaultDestination"/>
+		<property name="messageListener" ref="messageReceiver" />
+        <property name="transactionManager" ref="jmsTransactionManager" /> <!--jms事务 -->
+        <property name="sessionAcknowledgeMode" value="1"></property>   <!-- 应答模式是 INDIVIDUAL_ACKNOWLEDGE http://blog.csdn.net/yueding_h/article/details/54944254 -->
+        <!-- ActiveMQ:设置多个并行的消费者
+        <property name="concurrency" value="2-3"/>-->
+
+        <!-- 3、持久化消息 -->
+        <property name="subscriptionDurable" value="true"/>
+        <!-- 4、接收者ID -->
+        <property name="clientId" value="CID_APP_JZ3D" />
+        <property name="durableSubscriptionName" value="CID_APP_JZ3D"/>
+    </bean>
+
+</beans>

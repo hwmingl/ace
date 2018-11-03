@@ -7,7 +7,7 @@
         intervalid = setInterval("countDown()", 1000);
         function countDown() {
             if (i == 0) {
-                window.location.href = "../index.html";
+                window.location.href = "../file/download/${uuid}";
                 clearInterval(intervalid);
             }
             document.getElementById("mes").innerHTML = i;
@@ -20,8 +20,8 @@
     <h3>模型下载</h3>
     <div id="error">
         <p>将在 <span id="mes">5</span> 秒钟后开始下载！</p>
-        <p>若浏览器无反应, 请 &nbsp;&nbsp; <a href=""><font color="#a52a2a">点击下载</font></a></p>
+        <p>若浏览器无反应, 请 &nbsp;&nbsp; <a href="../file/download/${uuid}"><font color="#a52a2a">点击下载</font></a></p>
     </div>
 </div>
 </body>
-</html> 
+</html>

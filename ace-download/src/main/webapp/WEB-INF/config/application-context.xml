@@ -26,55 +26,46 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 
-    <!-- redis config start -->
-    <!-- 配置JedisPoolConfig实例 -->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="${redis.maxIdle}" />
-        <property name="maxTotal" value="${redis.maxActive}" />
-        <property name="maxWaitMillis" value="${redis.maxWait}" />
-        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
-        <property name="timeBetweenEvictionRunsMillis" value="30000"/><!-- 多长时间检查一次连接池中空闲的连接 -->
-        <property name="minEvictableIdleTimeMillis" value="30000"/><!-- 空闲连接多长时间后会被收回, 单位是毫秒 -->
-        <property name="testOnReturn" value="true"/> <!-- 当调用return Object方法时，是否进行有效性检查 -->
+        <!-- 说明一个pool可以有多少个Jedis实例 -->
+        <property name="maxTotal" value="300"/>
+        <!-- 最大Idle-->
+        <property name="maxIdle" value="50"/>
+        <!-- 最小Idle -->
+        <property name="minIdle" value="10"/>
+        <!-- 获得一个jedis实例的时候是否检查连接可用性（ping()） -->
+        <property name="testOnBorrow" value="true"/>
+        <!-- return 一个jedis实例给pool时，是否检查连接可用性（ping()） -->
+        <property name="testOnReturn" value="true"/>
+        <!-- idle状态监测用异步线程evict进行检查， -->
         <property name="testWhileIdle" value="true"/>
+        <!-- 一次最多evict的pool里的jedis实例个数 -->
+        <property name="numTestsPerEvictionRun" value="10"/>
+        <!-- test idle 线程的时间间隔 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!--最大等待wait时间-->
+        <property name="maxWaitMillis" value="3000"/>
     </bean>
 
-    <!-- 配置JedisConnectionFactory -->
-    <bean id="jedisConnectionFactory"
-          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-        <constructor-arg ref="poolConfig"/>
-        <property name="hostName" value="${redis.host}" />
-        <property name="port" value="${redis.port}" />
-        <property name="password" value="${redis.pass}" />
-        <property name="database" value="${redis.dbIndex}" />
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="127.0.0.1"/>
+        <property name="port" value="6379"/>
+        <property name="poolConfig" ref="poolConfig"/>
     </bean>
 
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate" >
-        <property name="connectionFactory" ref="jedisConnectionFactory" />
-    </bean>
-
-    <!--
+    <bean id="stringSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    <!-- 开启事务，可以通过transcational注解控制 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
         <property name="keySerializer" ref="stringSerializer" />
     </bean>
-    -->
 
-    <!-- redis操作模板，这里采用尽量面向对象的模板 -->
-    <!--     如果不配置Serializer，那么存储的时候只能使用String，如果用对象类型存储，那么会提示错误 can't cast to String-->
-    <!--开启事务
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-        <property name="connectionFactory" ref="jedisConnectionFactory"/>
 
-        <property name="keySerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
-        </property>
-        <property name="valueSerializer">
-            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
-        </property>
+    <bean id="fileConfig" class="com.fighter.ace.cms.util.FileConfig">
+        <property name="pathPrefix" value="/Users/hanebert/Downloads/"/>
+    </bean>
 
-        <property name="enableTransactionSupport" value="true"/>
-    </bean>-->
-    <!-- redis config end -->
+
+    <import resource="spring-mq.xml"/>
 
 </beans>

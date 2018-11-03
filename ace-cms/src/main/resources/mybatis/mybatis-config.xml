@@ -46,6 +46,9 @@
         <mapper resource="mybatis/mapper/Model.Mapper.xml" />
         <mapper resource="mybatis/mapper/Category.Mapper.xml" />
 
+        <mapper resource="mybatis/mapper/Costs.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Favourite.Mapper.xml" />
+        <mapper resource="mybatis/mapper/ModelDownload.Mapper.xml" />
     </mappers>
 
 </configuration>

@@ -28,7 +28,12 @@
     <!--后台权限标签-->
     <bean id="cms_perm" class="com.fighter.ace.framework.directive.PermistionDirective"/>
 
+    <bean id="configUtil" class="com.fighter.ace.cms.util.ConfigUtil">
+        <property name="downloadPrefix" value="http://localhost:8080/download/cms/file/"/>
+    </bean>
+
     <import resource="classpath:application-datasource.xml"/>
     <import resource="cms-shiro-context.xml"/>
     <import resource="spring-redis.xml"/>
+    <import resource="spring-mq.xml"/>
 </beans>

@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd"
+       default-autowire="byName" default-lazy-init="false">
+
+
+    <context:component-scan base-package="com.fighter.ace.cms.dao,com.fighter.ace.cms.service"/>
+    <context:annotation-config/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--图片处理-->
+    <bean id="imageScale" class="com.fighter.ace.framework.common.image.ImageScaleImpl" init-method="init">
+        <property name="tryMagick" value="false"/>
+    </bean>
+
+    <bean id="realPathResolver" class="com.fighter.ace.framework.common.web.springmvc.ServletContextRealPathResolver"/>
+    <bean id="fileRepository" class="com.fighter.ace.framework.common.upload.FileRepository"/>
+
+    <!--自定义标签-->
+    <!--后台权限标签-->
+    <bean id="cms_perm" class="com.fighter.ace.framework.directive.PermistionDirective"/>
+
+    <import resource="classpath:application-datasource.xml"/>
+    <import resource="classpath:spring-redis.xml"/>
+</beans>

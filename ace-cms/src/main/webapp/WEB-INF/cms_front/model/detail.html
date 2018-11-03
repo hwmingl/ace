@@ -10,11 +10,79 @@
     <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="${base}/res/js/jquery.js"></script>
     <script type="text/javascript" src="${base}/res/js/common.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
     <!-- 轮换图-->
     <script src="${base}/res/js/base.js" type="text/javascript"></script>
     <link href="${base}/res/css/cssNew.css" rel="stylesheet" type="text/css" />
     <link href="${base}/res/css/show.css" rel="stylesheet" type="text/css" />
     <link href="${base}/res/css/top.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+
+        function downloadCheck(modelId){
+            var param = {"modelId":modelId};
+            $.ajax({
+                url: '${base}/cms/model/downCheck',
+                dataType:"json",
+                data:param,
+                success	:function(data) {
+                    if(data.msg == 'needLogin'){
+                        alert('会员登陆后,才可以下载模型')
+                        return false;
+                    }
+                    if(data.msg == 'already'){
+                        download(modelId);
+                        return true;
+                    }
+
+                    if(data.msg == 'ok' && data.payType == 0){
+                        alert('您的积分和金币不足,请充值!')
+                        //window.location.href='${base}/cms/m/index'
+                        return false;
+                    }
+
+                    if(data.msg == 'ok' && data.payType > 0){
+
+                        if(data.payType == 1){
+                            if(confirm("本次下载会扣除"+data.cost+"积分,确定要下载吗?")){
+                                download(modelId);
+                            }
+                        }
+                        if(data.payType == 2){
+                            if(confirm("本次下载会扣除"+data.cost+"金币,确定要下载吗?")){
+                                download(modelId);
+                            }
+                        }
+                        return true;
+                    }
+                }
+            });
+        }
+
+        function download(modelId){
+            var param = {"modelId":modelId};
+            $.ajax({
+                url: '${base}/cms/model/download',
+                dataType:"json",
+                data:param,
+                success	:function(data) {
+                    if(data.msg == 'needLogin'){
+                        alert('会员登陆后,才可以下载模型')
+                        return false;
+                    }
+                    if(data.msg == 'notEnough'){
+                        alert('您的积分和金币不足,请充值!')
+                        return false;
+                    }
+                    if(data.msg == 'ok'){
+                        //alert(data.downloadUrl);
+                        window.location.href= ""+data.downloadUrl;
+                    }
+                }
+            });
+        }
+
+
+    </script>
 </head>
 <body>
 <!--通用头部-->
@@ -107,7 +175,8 @@
                                     <p title="找3D模型，上3D智造"> 找3D模型，上3D智造 </p>
                                 </span>
                                 <!--点击下载-->
-                                <span class="fr"><a class="posturl1 fl xin_xiazai download" rel="nofollow" url="#" >下载模型</a></span>
+                                <span class="fr">
+                                    <a href="javascript:downloadCheck(${model.id!});" class="posturl1 fl xin_xiazai download" rel="nofollow" url="#" >下载模型</a></span>
                                 <a class="xin_show_zan fr baitiao" style="background-color: rgb(195, 0, 0);"
                                    href="#" target="_blank" rel="nofollow"><span>立即充值</span><span>限时优惠多多</span></a>
                                 <a title="赞" class="xin_show_zan xin_posturl fr posturl1" rel="nofollow" url="#">

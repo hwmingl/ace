@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
     <title>个人中心</title>
-    <link href="AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
-    <link href="AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
-    <link href="css/personal.css" rel="stylesheet" type="text/css" />
-    <link href="css/systyle.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/systyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 </head>
 <body>
-<div id="top1">
-</div>
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
 <div class="center">
     <div class="col-main">
         <div class="main-wrap">
@@ -32,15 +33,14 @@
                                 <div class="m-userinfo">
                                     <div class="m-baseinfo">
                                         <a href="information.html">
-                                            <img src="images/getAvatar.do.jpg" style=" width:120px; height:120px;">
+                                            <img src="${base}/res/images/getAvatar.do.jpg" style=" width:120px; height:120px;">
                                         </a>
                                         <div style="padding-left:150px;">
                                             <em class="s-name">用户名：王先生</em>
                                             <div class="s-prestige am-btn am-round" style="text-align:left; color:#333;">
-                                                <p>手机号：13566665589</p>
-                                                <p>积分：<span class="color_red">200</span></p>
-                                                <p>金币：<span class="color_red">1100</span></p>
-                                                <p class=" m-newRed"><a href="information.html" class="color_red">会员信息</a></p>
+                                                <p>手机号：${loginUser.phone!}</p>
+                                                <p>积分：<span class="color_red">${loginUser.point!}</span></p>
+                                                <p>金币：<span class="color_red">${loginUser.coin!}</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -50,9 +50,6 @@
                                             <a href="blog.html"><i class="am-icon-bell-o"></i>消息消消息消息息1</a><br />
                                             <a href="blog.html"><i class="am-icon-bell-o"></i>消息1</a><br />
                                             <a href="blog.html"><i class="am-icon-bell-o"></i>消息1</a><br />
-                                        </div>
-                                        <div class="m-address " style=" float:right">
-                                            <a href="news.html" class="i-triggerCCC">更多</a>
                                         </div>
                                     </div>
                                 </div>
@@ -69,21 +66,21 @@
                             <li>
                                 <a href="moxingUp.html">
                                     <i>
-                                        <img src="images/kj8.png" />
+                                        <img src="${base}/res/images/kj8.png" />
                                     </i><span>上传模型</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="moxingUpList.html">
                                     <i>
-                                        <img src="images/kj7.png" />
+                                        <img src="${base}/res/images/kj7.png" />
                                     </i><span>下载记录</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="collection.html">
                                     <i>
-                                        <img src="images/kj9.png" />
+                                        <img src="${base}/res/images/kj9.png" />
                                     </i><span>收藏管理</span>
                                 </a>
                             </li>
@@ -92,21 +89,21 @@
                             <li>
                                 <a href="order.html">
                                     <i>
-                                        <img src="images/kj1.png" />
+                                        <img src="${base}/res/images/kj1.png" />
                                     </i><span>充值提现</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="information.html">
                                     <i>
-                                        <img src="images/kj10.png" />
+                                        <img src="${base}/res/images/kj10.png" />
                                     </i><span>账户设置</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="news.html">
                                     <i>
-                                        <img src="images/kj11.png" />
+                                        <img src="${base}/res/images/kj11.png" />
                                     </i><span>系统消息</span>
                                 </a>
                             </li>
@@ -117,49 +114,13 @@
             </div>
         </div>
         <!--底部-->
-        <div class="footer" id="footer">
-        </div>
+        <#include "/cms_front/m/m_bottom.html"/>
+
     </div>
-    <aside class="menu">
-        <ul style=" border-top:#00a3e7 solid 4px;">
-            <li class="person">
-                <a href="#" style=" font-weight:bold;">基础信息</a>
-                <ul>
-                    <li> <a href="information.html">个人信息</a></li>
-                    <li> <a href="password.html">密码修改</a></li>
-                    <li> <a href="address.html">地址管理</a></li>
-                    <li> <a href="news.html">系统公告</a></li>
-                </ul>
-            </li>
-            <li class="person">
-                <a href="#" style=" font-weight:bold;">我的交易</a>
-                <ul>
-                    <li><a href="AddGoldCoin.html">我要充值</a></li>
-                    <li><a href="AcountGet.html">我要提现</a></li>
-                    <li><a href="billlist.html">出入帐记录</a></li>
-                    <li><a href="order.html">我的订单</a></li>
-                </ul>
-            </li>
-            <li class="person">
-                <a href="#" style=" font-weight:bold;">模型管理</a>
-                <ul>
-                    <li><a href="moxingUp.html">上传模型</a></li>
-                    <li> <a href="moxingUpList.html">上传记录</a></li>
-                    <li> <a href="moxingUpList.html">下载记录</a></li>
-                    <li> <a href="collection.html">我的收藏</a></li>
-                </ul>
-            </li>
-        </ul>
-    </aside>
+
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+
 </div>
-<script type="text/javascript" language="javascript" src="js/html.js"></script>
-<script type="text/javascript" language="javascript">
-    //页面加载top html公共部分
-    var top1Html = top_p();
-    $("#top1").html(top1Html);
-    //页面加载bottom html公共部分
-    var bottomHtml = bottom_p();
-    $("#footer").html(bottomHtml);
-</script>
 </body>
 </html>

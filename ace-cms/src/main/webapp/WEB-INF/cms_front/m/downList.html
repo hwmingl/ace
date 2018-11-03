@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+    <title>下载记录</title>
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/systyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+
+    <link href="${base}/res/page/page.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/page/page.js"></script>
+
+</head>
+
+<body>
+<!--头 -->
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+            <div class="am-cf am-padding">
+                <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">下载记录</strong> / <small>History&nbsp;Download&nbsp;Records</small></div>
+            </div>
+            <hr>
+            <div class="clear"></div>
+            <table width="100%" class="tableListNews">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>下载时间</th>
+                    <th>模型名称</th>
+                    <th>付款方式</th>
+
+                    <th class="txt_right">金额/积分</th>
+                    <th class="txt_center" style=" width:100px;">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--循环列表1开始-->
+                <#if pageBean??>
+                    <#list pageBean.recordList as bean>
+                        <tr>
+                            <td><p>${bean.id}</p></td>
+                            <td><p>${bean.createTime?string('yyyy-MM-dd HH:mm:ss')}</p></td>
+                            <td><p>${bean.modelName!}</p></td>
+                            <td><p>
+                                <#if bean.payType == 1>金币</#if>
+                                <#if bean.payType == 2>积分</#if>
+                            </p></td>
+                            <td class="txt_right"><p>${bean.cost!}</p></td>
+                            <td class="txt_center"><p>查看详情</p></td>
+                        </tr>
+                    </#list>
+                </#if>
+
+
+                <!--循环列表1结束-->
+
+                </tbody>
+            </table>
+
+            <ul class="page" maxshowpageitem="5" pagelistcount="10"  id="page"></ul>
+            <script type="text/javascript">
+                var GG = {
+                    "kk":function(mm){
+                        if( mm > ${pageBean.currentPage}){
+                            window.location.href = '${base}/cms/m/downList?pageNo='+mm;
+                        }
+                    }
+                }
+                $("#page").initPage(${pageBean.totalCount},${pageBean.currentPage},GG.kk);
+            </script>
+
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+
+</body>
+</html>
