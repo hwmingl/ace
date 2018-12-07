@@ -49,6 +49,15 @@
         <mapper resource="mybatis/mapper/Costs.Mapper.xml" />
         <mapper resource="mybatis/mapper/Favourite.Mapper.xml" />
         <mapper resource="mybatis/mapper/ModelDownload.Mapper.xml" />
+
+
+
+        <mapper resource="mybatis/mapper/Cash.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Coins.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Orders.Mapper.xml" />
+        <mapper resource="mybatis/mapper/Points.Mapper.xml" />
+
+
     </mappers>
 
 </configuration>

@@ -124,6 +124,16 @@ public class ModelServiceImpl implements ModelService {
         }
     }
 
+    @Override
+    public PageBean findListByMemberId(PageParam pageParam, Map<String,Object> paramMap) {
+        try{
+            return modelDao.listPage(pageParam,paramMap);
+        }catch (Exception e){
+            log.error("findList error", e);
+            throw new BizException("findList error",e);
+        }
+    }
+
     private List<Long> getChildIdList(Long parentId){
         List<Long> ids = new ArrayList<>();
         try{

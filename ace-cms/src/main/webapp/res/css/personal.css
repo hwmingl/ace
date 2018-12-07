@@ -739,22 +739,71 @@ hr {
         width: 170px;
         border: 1px solid #ccc;
         text-align:center;
-    }
-    .zhifu ul li img
-    {
-        width:75px;
-        height:50px;
-        float:left;
-    }
-    .zhifu ul li span {
-       line-height:50px;
-       font-size:1.2em;
-       font-weight:bold;
-    }
-    /*基本样式*/
-    .color_red {
-        color: red;
-    }
+}
+
+.zhifu ul li img
+{
+    width:75px;
+    height:50px;
+    float:left;
+}
+.zhifu ul li span {
+    line-height:50px;
+    font-size:1.2em;
+    font-weight:bold;
+}
+/*基本样式*/
+.color_red {
+    color: red;
+}
+
+
+
+.zhifux ul{
+    width:100%;
+}
+.zhifux ul li {
+    float: left;
+    margin-left:1em;
+    width: 170px;
+    text-align:center;
+}
+.zhifux ul li img
+{
+    width:75px;
+    height:50px;
+    float:left;
+}
+.zhifux ul li span {
+    line-height:50px;
+    font-size:1.2em;
+    font-weight:bold;
+}
+
+.zhifuz ul{
+    width:100%;
+}
+.zhifuz ul li {
+    float: left;
+    margin-left:1em;
+    width: 170px;
+    border: 1px solid #ccc;
+    text-align:center;
+    background-color: #0e90d2;
+}
+.zhifuz ul li img
+{
+    width:75px;
+    height:50px;
+    float:left;
+}
+.zhifuz ul li span {
+    line-height:50px;
+    font-size:1.2em;
+    font-weight:bold;
+    color: white;
+}
+
 
 .color_gray {
     color: #aaa;

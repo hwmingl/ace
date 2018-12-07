@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <title>我要充值</title>
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/orstyle.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/addstyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+
+    <script type="application/javascript">
+        function recharge(){
+            document.f1.submit();
+        }
+    </script>
+</head>
+<body>
+<!--头 -->
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+            <div class="user-order">
+                <!--标题-->
+                <div class="am-cf am-padding">
+                    <div class="am-fl am-cf">
+                        <strong class="am-text-danger am-text-lg">金币充值</strong> / <small>Gold</small>
+                    </div>
+                </div>
+                <hr />
+                <div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
+                    <ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs">
+                        <li class="am-active"><a href="#tab1">金币充值</a></li>
+                        <li><a href="#tab2">积分兑换</a></li>
+                    </ul>
+                    <div class="am-tabs-bd">
+                        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                            <div class="user-address">
+                                <form name="f1" action="${base}/cms/m/buyCoin" method="post">
+                                <div class="chongzhi_1">
+                                    充值金额：
+                                    <div style="margin-left: 20px;margin-top: 15px;">
+                                        <div>
+                                            <input type="radio" id="chongzhi1" name="WIDtotal_fee" value="50"/>
+                                            <span style="margin-left: 10px;">￥50.00&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;1000&nbsp;&nbsp;&nbsp;金币</span>
+                                        </div>
+                                        <div style="margin-top: 15px;">
+                                            <input type="radio" id="chongzhi2" name="WIDtotal_fee" value="100" checked/>
+                                            <span style="margin-left: 10px;">￥100.00&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;2000&nbsp;&nbsp;&nbsp;金币&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;500&nbsp;&nbsp;&nbsp;积分</span>
+                                        </div>
+                                        <div style="margin-top: 15px;">
+                                            <input type="radio" id="chongzhi3" name="WIDtotal_fee" value="300"/><span style="margin-left: 10px;">￥300.00&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;6000&nbsp;&nbsp;&nbsp;金币&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;1800&nbsp;&nbsp;&nbsp;积分</span>
+                                        </div>
+                                        <div style="margin-top: 15px;">
+                                            <input type="radio" id="chongzhi4" name="WIDtotal_fee" value="500"/><span style="margin-left: 10px;">￥500.00&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;10000&nbsp;&nbsp;&nbsp;金币&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;3000&nbsp;&nbsp;&nbsp;积分 </span>
+                                        </div>
+                                        <div style="margin-top: 15px;">
+                                            <input type="radio" id="chongzhi5" name="WIDtotal_fee" value="1000"/><span style="margin-left: 10px;">￥1000.00&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;20000&nbsp;&nbsp;&nbsp;金币&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;6500&nbsp;&nbsp;&nbsp;积分</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <div class="am-modal am-modal-no-btn" id="doc-modal-1">
+                                <div class="add-dress">
+                                    <!--标题 -->
+                                    <div class="am-cf am-padding">
+                                        <div class="am-fl am-cf">
+                                            <strong class="am-text-danger am-text-lg">选择支付方式支付</strong> <small>&nbsp;</small>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
+                                        <div class="am-form-group">
+                                            <div class="am-form-content zhifu">
+                                                <ul>
+                                                    <li><img src="${base}/res/images/zhifubao.jpg" width="75" height="50"/><span>支付宝支付</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="am-form-content zhifu" style="border: 0px;">
+                                                <ul>
+                                                    <li><span>&nbsp;</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="am-form-content zhifu">
+                                                <ul>
+                                                    <li><span onclick="recharge()">点击充值</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                    <hr style="margin-top:20px;" />
+                                    <div class="am-cf am-padding">
+                                        <div class="am-fl am-cf">
+                                            <strong class="am-text-danger am-text-lg">充值须知</strong>
+                                        </div>
+                                    </div>
+                                    <div class="am-u-md-12 am-u-lg-8">
+                                        <div class="am-form-group">
+                                            <div class="am-form-content ">
+                                                <ul>
+                                                    <li>1、<span>到账时间为1到10分钟；</span></li>
+                                                    <li>2、<span>如遇充值不到账的情况，请再工作日9:00到18:00联系客服人员</span></li>
+                                                    <li>3、<span>目前只支持支付宝和微信充值</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="am-tab-panel am-fade" id="tab2">
+                            <div class="add-dress">
+                                <!--标题 -->
+                                <div class="am-cf am-padding">
+                                    <div class="am-fl am-cf">
+                                        <strong class="am-text-danger am-text-lg">激活码兑换</strong>  <small></small>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
+                                    <div class="am-form am-form-horizontal">
+                                        <div class="am-form-group">
+                                            <label for="user-name" class="am-form-label">
+                                                激活码
+                                            </label>
+                                            <div class="am-form-content">
+                                                <input type="text" id="user-name" placeholder="请输入激活码进行积分兑换">
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group">
+                                            <div class="am-form-content">
+                                                <a class="am-btn am-btn-primary">充值</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <!--标题 -->
+                                <div class="am-cf am-padding">
+                                    <div class="am-fl am-cf">
+                                        <strong class="am-text-danger am-text-lg">金币兑换</strong>  <small></small>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
+                                    <div class="am-form am-form-horizontal">
+                                        <div class="am-form-group">
+                                            <label for="user-name" class="am-form-label">
+                                                1金币:1积分
+                                            </label>
+                                            <div class="am-form-content">
+                                                <input type="text" id="user-name" placeholder="请输入兑换数量">
+                                                <br>
+                                                当前金币：<span class="fontsize1D2 color_orangered fontBold">40</span>
+                                                当前积分：<span class="fontsize1D2 color_orangered fontBold">20</span>
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group">
+                                            <div class="am-form-content">
+                                                <a class="am-btn am-btn-primary">兑换</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <span class="fontBold fontsize1D8">本站再无其他方式兑换积分，谨防上当受骗！！</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".new-option-r").click(function () {
+                            $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+                        });
+
+                        var $ww = $(window).width();
+                        if ($ww > 640) {
+                            $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
+                        }
+
+                    })
+                </script>
+            </div>
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+</body>
+</html>

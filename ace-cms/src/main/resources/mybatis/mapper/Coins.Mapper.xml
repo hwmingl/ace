@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighter.ace.cms.dao.external.CoinsDao">
+
+    <resultMap id="beanMap" type="com.fighter.ace.cms.entity.external.Coins">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="member_id" property="memberId" jdbcType="BIGINT"/>
+        <result column="source" property="source" jdbcType="VARCHAR"/>
+
+        <result column="current" property="current" jdbcType="VARCHAR"/>
+        <result column="mark" property="mark" jdbcType="VARCHAR"/>
+        <result column="finalized" property="finalized" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="pointMap" type="com.fighter.ace.cms.entity.external.CoinsMember">
+
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP"/>
+
+        <result column="member_id" property="memberId" jdbcType="BIGINT"/>
+        <result column="source" property="source" jdbcType="VARCHAR"/>
+
+        <result column="current" property="current" jdbcType="VARCHAR"/>
+        <result column="mark" property="mark" jdbcType="VARCHAR"/>
+        <result column="finalized" property="finalized" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.Coins" keyProperty="id" useGeneratedKeys="true">
+        INSERT t_coins(
+            create_time,
+            member_Id,
+            source,
+            current,
+            mark,
+            finalized,
+            remark,
+            status)
+        VALUES (
+            now(),
+            #{memberId},
+            #{source},
+            #{current},
+            #{mark},
+            #{finalized},
+            #{remark},
+            1
+        )
+    </insert>
+
+
+    <select id="listPage" parameterType="java.util.Map" resultMap="pointMap">
+       SELECT
+        p.*,
+        m.nick_name nickname
+        FROM
+        t_coins p
+        LEFT JOIN t_member m
+        ON p.member_id = m.id
+        WHERE p.status != -1
+        <if test="nickName != null">AND m.nick_Name LIKE #{nickName}</if>
+        ORDER BY create_time DESC
+        LIMIT #{pageFirst},#{pageSize}
+    </select>
+
+    <select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+        COUNT(1)
+        FROM
+        t_coins p
+        LEFT JOIN t_member m
+        ON p.member_id = m.id
+        WHERE p.status != -1
+        <if test="nickName != null">AND m.nick_Name LIKE #{nickName}</if>
+    </select>
+
+
+
+</mapper>

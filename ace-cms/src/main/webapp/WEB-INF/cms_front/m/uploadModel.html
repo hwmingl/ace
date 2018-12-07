@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <title>模型上传</title>
+    <!--引入CSS-->
+    <link rel="stylesheet" type="text/css" href="${base}/res/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="${base}/res/webuploader/image-upload/style.css" />
+
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/refstyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+    <script type="text/javascript">
+        function upload(){
+
+            var categoryId = $.trim($('#categoryId').val());
+            if(null == categoryId || categoryId == ''){
+                alert("请选择模型类型");
+                return false;
+            }
+            var name = $.trim($('#name').val());
+            if(null == name || name == ''){
+                alert("请输入素材名称");
+                return false;
+            }
+
+            var length = $.trim($('#length').val());
+            if(null == length || length == ''){
+                alert("请输入长度");
+                return false;
+            }
+            var width = $.trim($('#width').val());
+            if(null == width || width == ''){
+                alert("请输入宽度");
+                return false;
+            }
+            var height = $.trim($('#height').val());
+            if(null == height || height == ''){
+                alert("请输入高度");
+                return false;
+            }
+
+            var mark = $.trim($('#mark').val());
+            if(null == mark || mark == ''){
+                alert("请输入文件描述");
+                return false;
+            }
+
+
+            var modelImg, modelImgs,modelFile;
+            var files = $('#uploadFiles').val();
+            if(null == files || files == ''){
+                alert('请上传模型图片和模型文件');
+                return false;
+            }
+            var fileArr = files.split(',');
+            for( var i = 0; i < fileArr.length ; i++){
+                var filePath = fileArr[i].toLowerCase();
+
+                if(filePath.indexOf(".stl") > -1){
+                    modelFile = filePath;
+                } else {
+                    if(null == modelImgs || '' == modelImgs){
+                        modelImg = filePath;
+                        modelImgs = filePath;
+                    } else {
+                        modelImgs = modelImgs + ',' + filePath;
+                    }
+                }
+            }
+
+            if(null == modelImgs || modelImgs == ''){
+                alert('请上传模型图片');
+                return false;
+            }
+            if(null == modelFile || modelFile == ''){
+                alert('请上传模型文件');
+                return false;
+            }
+            var keyword = $.trim($('#keyword').val());
+            var softVersion = $.trim($('#softVersion').val());
+
+            var params = {"softVersion":softVersion,"categoryId":categoryId,"name":name,"keyword":keyword,"length":length,"width":width,"height":height,"mark":mark,"modelImgs":modelImgs,"modelFile":modelFile,"modelImg":modelImg};
+
+            $.ajax({
+                url: '${base}/cms//m/createUploadRecord',
+                dataType:"json",
+                data:params,
+                success	:function(data) {
+                    if(data.msg == 'ok'){
+                        alert('恭喜,素材已经上传成功!');
+                        $("#regForm")[0].reset();
+                        return false;
+                    }
+                }
+            });
+
+
+
+        }
+    </script>
+
+</head>
+
+<body>
+<!--头 -->
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+            <!--标题 -->
+            <div class="am-cf am-padding">
+                <div class="am-fl am-cf">
+                    <strong class="am-text-danger am-text-lg">上传模型</strong> / <small>Model&nbsp;Upload</small></div>
+            </div>
+            <hr />
+            <div class="comment-list">
+                <div class="refund-main">
+                    <form method="post" id="regForm" name="regForm">
+                        <input id="uploadFiles" name="uploadFiles" type="hidden">
+                    <div class="item-comment">
+
+                        <div class="am-form-group">
+                            <label for="refund-type" class="am-form-label">素材种类<font color="red">&nbsp;*</font></label></label>
+                            <div class="am-form-content">
+                                <select name="categoryId" id="categoryId" style="height: 30px;width: 534px;">
+                                    <option value="" selected>请选择模型类型...</option>
+                                    <#if treeDtoList?size gt 0>
+                                        <#list treeDtoList as tree>
+                                            <option value="${tree.id}" <#if categoryId??> <#if tree.id == categoryId>selected</#if></#if> >${tree.name}</option>
+                                            <#if tree.childs?size gt 0>
+                                                <#list tree.childs as subTree>
+                                                    <option value="${subTree.id}" <#if categoryId??> <#if subTree.id == categoryId>selected</#if></#if> >&nbsp;&nbsp;&nbsp;&nbsp;--${subTree.name}</option>
+                                                </#list>
+                                            </#if>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="refund-money" class="am-form-label">
+                                素材名称<font color="red">&nbsp;*</font></label></label>
+                            <div class="am-form-content">
+                                <input type="text" id="name" name="name" placeholder="请输入素材名称">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="refund-money" class="am-form-label">
+                                关键词</label>
+                            <div class="am-form-content">
+                                <input type="text" id="keyword" name="keyword" placeholder="多关键词请用 | 分隔开">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="refund-money" class="am-form-label">
+                                模型尺寸<font color="red">&nbsp;*</font></label></label>
+                            <div class="am-form-content">
+                                长:<input type="text" id="length" name="length" placeholder="" style="width: 60px;">
+                                宽:<input type="text" id="width" name="width" placeholder="" style="width: 60px;">
+                                高:<input type="text" id="height" name="height" placeholder="" style="width: 60px;">
+                                (单位:厘米)
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="refund-money" class="am-form-label">
+                                软件版本<font color="red">&nbsp;*</font></label>
+                            <div class="am-form-content">
+                                <select name="softVersion" id="softVersion" style="height: 30px;width: 534px;">
+                                    <option value="3DS Max 2009">3DS Max 2009</option>
+                                    <option value="3DS Max 2010" selected>3DS Max 2010</option>
+                                    <option value="3DS Max 2011">3DS Max 2011</option>
+                                    <option value="3DS Max 2012">3DS Max 2012</option>
+                                    <option value="3DS Max 2013">3DS Max 2013</option>
+                                    <option value="3DS Max 2014">3DS Max 2014</option>
+                                    <option value="3DS Max 2015">3DS Max 2015</option>
+                                    <option value="3DS Max 2016">3DS Max 2016</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="refund-info" class="am-form-label">作品描述<font color="red">&nbsp;*</font></label></label>
+                            <div class="am-form-content">
+                                <textarea name="mark" id="mark" placeholder="请输入文件描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="refund-info" class="am-form-label">上传作品<font color="red">&nbsp;*</font></label></label>
+                            <div class="am-form-content ">
+                                <div id="container">
+                                    <!--头部，相册选择和格式选择-->
+                                    <div id="uploader">
+                                        <div class="queueList">
+                                            <div id="dndArea" class="placeholder">
+                                                <div id="filePicker"></div>
+                                            </div>
+                                        </div>
+                                        <div class="statusBar" style="display:none;">
+                                            <div class="progress">
+                                                <span class="text">0%</span>
+                                                <span class="percentage"></span>
+                                            </div><div class="info"></div>
+                                            <div class="btns">
+                                                <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-btn">
+                        <div class="am-btn am-btn-danger"><span onclick="upload()">提交申请</span> </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+<script type="text/javascript" src="${base}/res/webuploader/image-upload/jquery.js"></script>
+<script type="text/javascript" src="${base}/res/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="${base}/res/webuploader/demo.js"></script>
+</body>
+</html>

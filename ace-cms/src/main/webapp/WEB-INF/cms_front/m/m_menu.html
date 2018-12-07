@@ -3,26 +3,26 @@
         <li class="person">
             <a href="#" style=" font-weight:bold;">基础信息</a>
             <ul>
-                <li> <a href="information.html">个人信息</a></li>
-                <li> <a href="password.html">密码修改</a></li>
-                <li> <a href="address.html">地址管理</a></li>
-                <li> <a href="news.html">系统公告</a></li>
+                <li <#if menu='index'>class="active"</#if> > <a href="${base}/cms/m/index">个人信息</a></li>
+                <li> <a href="#">密码修改</a></li>
+                <li> <a href="#">地址管理</a></li>
+                <li> <a href="#">系统公告</a></li>
             </ul>
         </li>
         <li class="person">
             <a href="#" style=" font-weight:bold;">我的交易</a>
             <ul>
-                <li><a href="AddGoldCoin.html">我要充值</a></li>
-                <li><a href="AcountGet.html">我要提现</a></li>
-                <li  <#if menu='bills'>class="active"</#if>><a href="${base}/cms/m/bills">出入帐记录</a></li>
-                <li><a href="order.html">我的订单</a></li>
+                <li <#if menu='recharge'>class="active"</#if> ><a href="${base}/cms/m/v_recharge">我要充值</a></li>
+                <li <#if menu='exchangeCash'>class="active"</#if> ><a href="${base}/cms/m/v_exchangeCash">我要提现</a></li>
+                <li <#if menu='bills'>class="active"</#if>><a href="${base}/cms/m/bills">出入帐记录</a></li>
+               <!-- <li><a href="order.html">我的订单</a></li>-->
             </ul>
         </li>
         <li class="person">
             <a href="#" style=" font-weight:bold;">模型管理</a>
             <ul>
-                <li <#if menu='upload'>class="active"</#if> ><a href="moxingUp.html">上传模型</a></li>
-                <li <#if menu='uploadRecords'>class="active"</#if> > <a href="moxingUpList.html">上传记录</a></li>
+                <li <#if menu='upload'>class="active"</#if> ><a href="${base}/cms/m/uploadModel">上传模型</a></li>
+                <li <#if menu='uploadRecords'>class="active"</#if> > <a href="${base}/cms/m/uploadRecords">上传记录</a></li>
                 <li <#if menu='downList'>class="active"</#if> > <a href="${base}/cms/m/downList">下载记录</a></li>
                 <li <#if menu='favourites'>class="active"</#if>> <a href="${base}/cms/m/favourites">我的收藏</a></li>
             </ul>

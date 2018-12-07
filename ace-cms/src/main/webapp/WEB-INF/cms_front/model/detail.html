@@ -65,6 +65,10 @@
                 dataType:"json",
                 data:param,
                 success	:function(data) {
+                    if(data.msg == 'error'){
+                        alert('下载失败!')
+                        return false;
+                    }
                     if(data.msg == 'needLogin'){
                         alert('会员登陆后,才可以下载模型')
                         return false;

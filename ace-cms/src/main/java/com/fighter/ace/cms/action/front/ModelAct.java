@@ -158,6 +158,7 @@ public class ModelAct extends BaseAction {
             data.put("downloadUrl",downloadUrl);
             ResponseUtils.renderJson(response,data.toJSONString());
         } catch (Exception e){
+            log.error("downloadFile error",e);
             ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "error"));
         }
 

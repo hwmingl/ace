@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <title>我要提现</title>
+    <!--引入CSS-->
+
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+
+    <link href="${base}/res/css/orstyle.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/addstyle.css" rel="stylesheet" type="text/css" />
+
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+
+
+    <script>
+
+        //获得选中文件的文件名
+        function checkForm(){
+            var realName = $.trim($('#realName').val());
+            if(realName == ''){
+                alert('请填写人真实姓名!');
+                return false;
+            }
+            var phone = $.trim($('#phone').val());
+            if(phone == ''){
+                alert('手机号码不能为空!');
+                return false;
+            }else{
+                var regex = /^1[34578]\d{9}$/
+                if(!regex.test(phone)){
+                    alert("手机号码不符合规范！");
+                    return false;
+                }
+            }
+            var account = $.trim($('#account').val());
+            if(account == ''){
+                alert('请填写收款账户!');
+                return false;
+            }
+
+            var coins = $.trim($('#coins').val());
+            if(coins == ''){
+                alert('兑换金币数目不能为空!');
+                return false;
+            }else{
+                if(!isNaN(coins)){
+                    var dot = coins.indexOf(".");
+                    if(dot != -1){
+                        var dotCnt = coins.substring(dot+1,coins.length);
+                        if(dotCnt.length > 2){
+                            alert("小数位已超过2位！");
+                        }
+                    }
+                }else{
+                    alert("数字不合法！");
+                    return false;
+                }
+            }
+            if(coins == 0){
+                alert("不能为0");
+                return false;
+            }
+            if(coins%50 != 0){
+                alert("必须为50的倍数");
+                return false;
+            }
+            if(parseFloat(coins) > parseFloat("0")){
+                alert('兑换金币不能大于现有金币.');
+                return false;
+            }
+
+
+            var params = {"realName":realName,"phone":phone,"account":account,"coins":coins};
+
+
+        }
+
+
+        setInterval(function(){
+            $("#nowHaveCash").html(($("#nowHaveCoin").html()*0.9/20).toFixed(2));
+            $("#coinsToCash").html(($("#coins").val()*0.9/20).toFixed(2));
+        }, 1000);
+    </script>
+
+
+</head>
+<body>
+<!--头 -->
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+            <div class="user-order">
+                <!--标题-->
+                <div class="am-cf am-padding">
+                    <div class="am-fl am-cf">
+                        <strong class="am-text-danger am-text-lg">我要提现</strong> / <small>Exchange cash</small>
+                    </div>
+                </div>
+                <hr />
+
+
+                <div class="add-dress">
+                    <div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
+                        <div class="am-form am-form-horizontal">
+                            <div class="am-form-group">
+                                <label class="am-form-label">
+                                </label>
+                                <div class="am-form-content fontsize1D2">
+                                    当前可提现金币余额：<span class="fontsize1D8 color_orangered"><span id="nowHaveCoin">${loginUser.coin!}</span></span>&nbsp;金币
+                                    &nbsp;&nbsp;相当于可提现人民币：<span class="fontsize1D8 color_orangered"><span id="nowHaveCash">${coins!}元</span></span>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-form-label">
+                                </label>
+                                <div class="am-form-content fontsize1D2">
+                                    计算公式：<span class="fontsize1D2">可提现人民币= 金币×0.9÷20</span>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="realName" class="am-form-label">
+                                    真实姓名：
+                                </label>
+                                <div class="am-form-content">
+                                    <input type="text" name='realName' id='realName' placeholder="请输入您证件上的姓名" onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')"/>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="phone" class="am-form-label">
+                                    手机号码：
+                                </label>
+                                <div class="am-form-content">
+                                    <input type="text" name='phone' id='phone' maxlength="11" placeholder="请输入您的电话号码" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="account" class="am-form-label">
+                                    支付宝账号：
+                                </label>
+                                <div class="am-form-content">
+                                    <input type="text" name='account' id='account' placeholder="请输入您的支付宝账号" />
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="coins" class="am-form-label">
+                                    提现金币：
+                                </label>
+                                <div class="am-form-content">
+                                    <input type="text" name='coins' id='coins' maxlength="10" placeholder="请输入您要提现的金币" style="width:300px; float:left;">
+                                    <span>&nbsp;&nbsp;金币余额</span><span class="color_orangered fontsize1D2 fontBold">&nbsp;${loginUser.coin!} 金币</span>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-form-label">
+
+                                </label>
+                                <div class="am-form-content">
+                                   <span>等价现金：</span><span class="color_orangered fontsize1D2 fontBold"><span id="coinsToCash">0</span> 元</span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-form-label">
+
+                                </label>
+                                <div class="am-form-content">
+                                    注：提现金币只能输入50的倍数，且不能大于当前金币余额
+                                </div>
+                            </div>
+                            <br />
+                            <div class="am-form-group">
+                                <div class="am-form-content">
+                                    <span class="color_orangered fontsize1D2 fontBold">请核对好自己的支付宝账号，提现期间客服会进行电话联系。</span>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-form-content" >
+                                    <a class="am-btn am-btn-primary" href="javascript:checkForm();">申请提现</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <script type="text/javascript">
+
+                    $(".zfLi").click(function () {
+                        var cont = $(this).children("span").text();
+                        alert("确定 " + cont + " 支付？");
+                    });
+                </script>
+            </div>
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+</body>
+</html>
