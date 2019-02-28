@@ -14,6 +14,32 @@
     <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="${base}/res/js/jquery.js"></script>
     <link href="${base}/res/css/cssNew.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+
+        function addToCart(itemId){
+
+            var param = {"itemId":itemId};
+            $.ajax({
+                url: '${base}/cms/mall/add',
+                dataType:"json",
+                data:param,
+                success	:function(data) {
+                    if(data.msg == 'needLogin'){
+                        alert('您尚未登录');
+                        return false;
+                    }
+                    if(data.msg == 'ok'){
+                        alert("已添加至购物车");
+                        return false
+                    }
+                }
+            });
+        }
+
+    </script>
+
+
 </head>
 <body>
 <!--通用头部-->
@@ -66,7 +92,7 @@
                                 <div class="price">
                                     <ul>
                                         <li><span class="icoRmb">￥</span>${bean.price!}</li>
-                                        <li class="gwcLi" onclick='javascript:alert("已加入购物车");'>加入购物车</li>
+                                        <li class="gwcLi" onclick='javascript:addToCart(${bean.id});'>加入购物车</li>
                                     </ul>
                                 </div>
                             </div>
@@ -93,9 +119,7 @@
             </div>
             <!--中间内容列表end-->
             <!--右侧浮窗-->
-            <div class="side-bar" id="side_bar">
-            </div>
-            <script type="text/javascript" src="${base}/res/js/goback_Top.js"></script>
+            <#include "/cms_front/inc/right_side_bar.html"/>
         </td>
     </tr>
     <!--底部bottom动态加载-->

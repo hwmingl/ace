@@ -4,10 +4,7 @@ import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.action.front.BaseAction;
 import com.fighter.ace.cms.entity.external.Member;
 import com.fighter.ace.cms.entity.external.Model;
-import com.fighter.ace.cms.service.external.CategoryService;
-import com.fighter.ace.cms.service.external.DownloadService;
-import com.fighter.ace.cms.service.external.MemberService;
-import com.fighter.ace.cms.service.external.ModelService;
+import com.fighter.ace.cms.service.external.*;
 import com.fighter.ace.cms.util.JsonUtil;
 import com.fighter.ace.cms.vo.CategoryTreeDTO;
 import com.fighter.ace.framework.common.page.PageBean;
@@ -45,6 +42,8 @@ public class MemberAct extends BaseAction {
     private CategoryService categoryService;
     @Resource
     private ModelService modelService;
+    @Resource
+    private NoticeService noticeService;
 
 
     @RequestMapping("/m/login.do")
@@ -71,10 +70,25 @@ public class MemberAct extends BaseAction {
     }
 
 
+    /**
+     * 会员中心首页
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/m/index")
     public String v_index(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap){
         request.setAttribute("loginUser",request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY));
         request.setAttribute("menu","index");
+
+        //系统公告
+        PageParam pageParam = new PageParam(1, 4);
+        PageBean pageBean = noticeService.getListPage(pageParam, new HashMap<String, Object>());
+        if (pageBean.getTotalCount() > 0){
+            modelMap.addAttribute("noticeList", pageBean.getRecordList());
+        }
+
         return "m/index";
     }
 
@@ -211,7 +225,7 @@ public class MemberAct extends BaseAction {
 
         try {
             Double coins = Integer.valueOf(loginUser.getCoin()) * 0.9 / 20;
-            request.setAttribute("coins",coins);
+            request.setAttribute("coins", coins);
 
 
 
@@ -246,6 +260,258 @@ public class MemberAct extends BaseAction {
             log.error("recharge error", e);
         }
         return "m/recharge";
+    }
+
+
+
+    /**
+     * 修改密码
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/v_pwd")
+    public String v_pwd(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","resetPwd");
+
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("recharge error", e);
+        }
+        return "m/m_pwd";
+    }
+
+    /**
+     * 修改密码
+     * @param request
+     * @param response
+     * @param modelMap
+     */
+    @RequestMapping("/m/o_pwd")
+    public void o_pwd(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","resetPwd");
+
+
+        String oldpwd = RequestUtils.getQueryParam(request, "oldpwd");
+        String newPwd = RequestUtils.getQueryParam(request, "newPwd");
+
+        try {
+            if (!oldpwd.equals(loginUser.getUserPwd())){
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+                return;
+            }
+
+            Member member = new Member();
+            member.setId(loginUser.getId());
+            member.setUserPwd(newPwd);
+            int n = memberService.update(member);
+            if (n > 0){
+                loginUser.setUserPwd(newPwd);
+                request.getSession().setAttribute(Constants.MEMBER_SESSION_KEY, loginUser);
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
+            }
+        } catch (Exception e){
+            log.error("update password error",e);
+        }
+
+    }
+
+    /**
+     * 地址管理
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/v_addr")
+    public String v_addr(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","address");
+
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("recharge error", e);
+        }
+        return "m/m_addr";
+    }
+
+
+    /**
+     * 系统公告
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/v_notice")
+    public String v_notice(String pageNo,HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","notice");
+
+        try {
+            PageParam pageParam = new PageParam(getPageNo(pageNo), PAGESIZE);
+            Map<String, Object> map = new HashMap<>();
+            PageBean pageBean = noticeService.getListPage(pageParam, map);
+            modelMap.addAttribute("pageBean", pageBean);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("v_notice error", e);
+        }
+        return "m/m_notice";
+    }
+
+
+    /**
+     * 开通设计师
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/v_designer")
+    public String v_designer(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","designer");
+
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("recharge error", e);
+        }
+        return "m/m_designer";
+    }
+
+
+    /**
+     * 修改资料
+     * @param request
+     * @param response
+     * @param modelMap
+     */
+    @RequestMapping("/m/o_info")
+    public void o_info(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","designer");
+
+        try {
+
+            String type = RequestUtils.getQueryParam(request, "type");
+            String phone = RequestUtils.getQueryParam(request, "phone");
+            String cardNo = RequestUtils.getQueryParam(request, "cardNo");
+            String nickName = RequestUtils.getQueryParam(request, "nickName");
+            Member member = new Member();
+            member.setId(loginUser.getId());
+            member.setPhone(phone);
+            member.setCardNo(cardNo);
+            member.setType(Integer.valueOf(type));
+
+            int n = memberService.update(member);
+            if (n > 0){
+                loginUser.setPhone(phone);
+                loginUser.setCardNo(cardNo);
+                loginUser.setType(Integer.valueOf(type));
+                loginUser.setNickName(nickName);
+                request.getSession().setAttribute(Constants.MEMBER_SESSION_KEY, loginUser);
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
+            } else {
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+            }
+
+        } catch (Exception e) {
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "invalid"));
+            log.error("recharge error", e);
+        }
+    }
+
+    /**
+     * 更换头像页面
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/v_avatar")
+    public String v_avatar(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","designer");
+
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("recharge error", e);
+        }
+        return "m/m_avatar";
+    }
+
+
+    @RequestMapping("/m/o_avatar")
+    public void o_avatar(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","designer");
+
+        try {
+
+            String picUrl = RequestUtils.getQueryParam(request, "picUrl");
+
+            Member member = new Member();
+            member.setId(loginUser.getId());
+            member.setPicUrl(picUrl);
+
+
+            int n = memberService.update(member);
+            if (n > 0){
+                loginUser.setPicUrl(picUrl);
+                request.getSession().setAttribute(Constants.MEMBER_SESSION_KEY, loginUser);
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
+            } else {
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+            }
+
+        } catch (Exception e) {
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "invalid"));
+            log.error("recharge error", e);
+        }
+    }
+
+
+    /**
+     * 我的订单
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/v_order")
+    public String v_order(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","order");
+
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("recharge error", e);
+        }
+        return "m/m_order";
     }
 
 

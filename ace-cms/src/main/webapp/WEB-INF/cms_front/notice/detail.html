@@ -23,7 +23,7 @@
 <div class="width1100">
     <div class="a_wd clearfix" style="margin-top: 10px;">
         <div class="siteFont">
-            你现在的位置：智造网&nbsp;→&nbsp;<a href="${base}/cms/college/index" title="3D学院" class="xin_c66 xin_bianse">3D学院</a>&nbsp;→&nbsp;内容正文</div>
+            你现在的位置：智造网&nbsp;→&nbsp;<a href="${base}/cms/news/index" title="系统公告" class="xin_c66 xin_bianse">系统公告</a>&nbsp;→&nbsp;内容正文</div>
     </div>
 </div>
 <!--页面地址end-->
@@ -35,20 +35,14 @@
                 <div style="margin: 0px auto; ">
                     <div class="xq_content fl bgWhite2">
                         <div class="xq_cont borderbottom">
-                            <h1>${article.title!}</h1>
+                            <h1>${notice.title!}</h1>
                             <p class="xq_info">
-                                文章分类：
-                                <a class="xin_c66 xin_bianse" style="color: rgb(52, 152, 219);
-                                        font-size: 12px;" href="${base}/cms/college/list?style=${article.style!}">
-                                    <#if article.style == 1>视频资料</#if>
-                                    <#if article.style == 2>文章资料</#if>
-                                    <#if article.style == 3>软件下载</#if>
-                                </a>
-                                <span class="xq_info_fb">发布时间：${article.createTime?string('yyyy-MM-dd')}</span>
+                                文章分类：系统公告
+                                <span class="xq_info_fb">发布时间：${notice.createTime?string('yyyy-MM-dd')}</span>
                             </p>
                         </div>
                         <div class="xq_cont">
-                            ${article.content!}
+                            ${notice.content!}
                         </div>
                     </div>
                     <div class="fr">
@@ -65,16 +59,17 @@
 
                         <div class="xq_redian" style="margin-bottom:10px;">
                             <ul>
-                                <li class="xq_new">热门资料</li>
+                                <li class="xq_new">热点资讯</li>
                                 <#if hotNewsList??>
                                     <#list hotNewsList as bean>
                                         <li class="xq_redian_li">
-                                            <a title="${bean.title!}" class="xq_redian_tt" href="${base}/cms/college/${bean.id}"><@text_cut s=bean.title len=20 append='...'/></a>
+                                            <a title="${bean.title!}" class="xq_redian_tt" href="${base}/cms/news/${bean.id}"><@text_cut s=bean.title len=19 append='...'/></a>
                                         </li>
                                     </#list>
                                 </#if>
                             </ul>
                         </div>
+
 
                     </div>
                 </div>
@@ -83,7 +78,9 @@
             </div>
             <!--中间内容列表end-->
             <!--右侧浮窗-->
-            <#include "/cms_front/inc/right_side_bar.html"/>
+            <div class="side-bar" id="side_bar">
+            </div>
+            <script type="text/javascript" src="${base}/res/js/goback_Top.js"></script>
         </td>
     </tr>
     <!--底部bottom动态加载-->

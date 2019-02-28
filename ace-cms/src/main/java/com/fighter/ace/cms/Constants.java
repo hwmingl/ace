@@ -19,6 +19,7 @@ public class Constants {
      * 会员登录session key
      */
     public static final String MEMBER_SESSION_KEY = "memberLoginSession";
+    public static final String MEMBER_CART = "memberCartSession";
     public static final String MEMBER_SESSION_KEY_NULL = "memberLoginSessionNull";
 
     //****************************************常见状态************************************************

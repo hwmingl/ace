@@ -32,6 +32,7 @@
             var param = {"account":account,"password":password};
             $.ajax({
                 url: '${base}/cms/m/login.do',
+                type:"post",
                 dataType:"json",
                 data:param,
                 success	:function(data) {

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+    <title>会员中心--个人资料-更换头像</title>
+    <!--引入CSS-->
+    <link rel="stylesheet" type="text/css" href="${base}/res/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="${base}/res/webuploader/image-upload/style.css" />
+
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/infstyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function updateAvatar(){
+            var files = $('#uploadFiles').val();
+            if(null == files || files == ''){
+                alert('请上传头像图片和');
+                return false;
+            }
+
+
+            var param = {"picUrl":files};
+            $.ajax({
+                url: '${base}/cms/m/o_avatar',
+                dataType:"json",
+                data:param,
+                success	:function(data) {
+                    if(data.msg == 'invalid'){
+                        $("#vldTip").html("头像更新失败");
+                        return false;
+                    }
+                    if(data.msg == 'ok'){
+                        window.location.href = '${base}/cms/m/v_avatar';
+                        return false
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+
+            <div class="user-info">
+                <!--标题 -->
+                <div class="am-cf am-padding">
+                    <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong> / <small>Personal&nbsp;information</small></div>
+                </div>
+                <hr/>
+
+                <!--头像 -->
+                <div class="user-infoPic">
+
+                    <div class="filePic">
+                        <a href="" title="点击更换头像">
+                            <img class="am-circle am-img-thumbnail" src="${base}${loginUser.picUrl!('/res/images/getAvatar.do.jpg')}"/>
+                        </a>
+                    </div>
+
+                    <p class="am-form-help">头像</p>
+
+                    <div class="info-m">
+                        <div><b>用户名：<i>${loginUser.userName!}</i></b></div>
+                        <div>会员类型：<#if loginUser.type==0>普通会员</#if>
+                            <#if loginUser.type==1>设计师</#if></div>
+                        <div class="u-level">
+									<span class="rank r2">
+							             <s class="vip1"></s><a class="classes" href="#">积分：${loginUser.point!}</a>
+						            </span>
+                        </div>
+                        <div class="u-safety">
+                            金币: <span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">${loginUser.coin!}</i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--个人信息 -->
+                <div class="info-main">
+                    <form class="am-form am-form-horizontal">
+                        <input id="uploadFiles" name="uploadFiles" type="hidden">
+                        <div class="am-form-content ">
+                            <div id="container">
+                                <!--头部，相册选择和格式选择-->
+                                <div id="uploader">
+                                    <div class="queueList">
+                                        <div id="dndArea" class="placeholder">
+                                            <div id="filePicker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="statusBar" style="display:none;">
+                                        <div class="progress">
+                                            <span class="text">0%</span>
+                                            <span class="percentage"></span>
+                                        </div><div class="info"></div>
+                                        <div class="btns">
+                                            <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="info-btn">
+                            <br>
+                            <div class="am-btn am-btn-danger" onclick="updateAvatar()">确定修改</div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="cardNo" class="am-form-label"></label>
+                            <div class="am-form-content" id="cardNo">
+                                <span style="font-weight: bold;color: green" id="vldTip"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+<script type="text/javascript" src="${base}/res/webuploader/image-upload/jquery.js"></script>
+<script type="text/javascript" src="${base}/res/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="${base}/res/webuploader/avatar_up.js"></script>
+</body>
+</html>

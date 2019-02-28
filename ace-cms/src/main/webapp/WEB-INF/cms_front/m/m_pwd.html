@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+    <title>会员中心-修改密码</title>
+
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+
+    <link href="${base}/res/css/stepstyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+    <script type="text/javascript">
+
+        function updatePwd(){
+            var oldpwd = $.trim($('#user-old-password').val());
+            if(null == oldpwd || oldpwd == ''){
+                $("#vldTip").html("请输入原密码");
+                return false;
+            }
+
+            var newPwd = $.trim($('#newPwd').val());
+            if(null == newPwd || newPwd == ''){
+                $("#vldTip").html("请输入新密码");
+                return false;
+            }
+
+            var confirmNewPwd = $.trim($('#confirmNewPwd').val());
+            if(null == confirmNewPwd || confirmNewPwd == ''){
+                $("#vldTip").html("请再次输入新密码");
+                return false;
+            }
+
+            if(newPwd != confirmNewPwd){
+                $("#vldTip").html("两次密码不相同");
+                return false;
+            }
+
+
+            var param = {"oldpwd":oldpwd,"newPwd":confirmNewPwd};
+            $.ajax({
+                url: '${base}/cms/m/o_pwd',
+                dataType:"json",
+                data:param,
+                success	:function(data) {
+                    if(data.msg == 'invalid'){
+                        $("#vldTip").html("原始密码错误,请重新输入");
+                        return false;
+                    }
+                    if(data.msg == 'ok'){
+                        $("#vldTip").html("密码修改成功");
+                        document.form1.reset();
+                        return false
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+
+            <div class="am-cf am-padding">
+                <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">修改密码</strong> / <small>Password</small></div>
+            </div>
+            <hr/>
+            <!--进度条-->
+            <br>
+            <br>
+            <div align="center">
+                <span style="font-weight: bold;color: red" id="vldTip"></span>
+            </div>
+            <br>
+            <br>
+            <form class="am-form am-form-horizontal" id="form1" name="form1">
+                <div class="am-form-group">
+                    <label for="user-old-password" class="am-form-label">原密码</label>
+                    <div class="am-form-content">
+                        <input type="password" id="user-old-password" placeholder="请输入原登录密码">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="newPwd" class="am-form-label">新密码</label>
+                    <div class="am-form-content">
+                        <input type="password" id="newPwd" name="newPwd" placeholder="请输入新密码">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="confirmNewPwd" class="am-form-label">确认密码</label>
+                    <div class="am-form-content">
+                        <input type="password" id="confirmNewPwd" name="confirmNewPwd" placeholder="请再次输入新密码">
+                    </div>
+                </div>
+                <div class="info-btn">
+                    <div class="am-btn am-btn-danger" onclick="updatePwd()">保存修改</div>
+                </div>
+
+            </form>
+
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+
+</body>
+
+</html>

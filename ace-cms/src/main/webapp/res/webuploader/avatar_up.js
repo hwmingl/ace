@@ -64,15 +64,15 @@ jQuery(function() {
     uploader = WebUploader.create({
         pick: {
             id: '#filePicker',
-            label: '点击选择文件'
+            label: '点击选择头像图片'
         },
         dnd: '#uploader .queueList',
         paste: document.body,
 
         accept: {
             title: 'Files',
-            extensions: 'gif,jpg,jpeg,bmp,png,stl',
-            mimeTypes: 'image/*,application/vnd.ms-pki.stl,application/stl,.stl'
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
         },
 
         // swf文件路径
@@ -83,9 +83,9 @@ jQuery(function() {
         chunked: true,
         chunkSize: 512 * 1024,
         server: '../webUploader',
-        fileNumLimit: 300,
-        fileSizeLimit: 50 * 1024 * 1024,    // 200 M
-        fileSingleSizeLimit: 10 * 1024 * 1024    // 50 M
+        fileNumLimit: 1,
+        fileSizeLimit: 10 * 1024 * 1024,    // 10 M
+        fileSingleSizeLimit: 10 * 1024 * 1024    // 10 M
     });
 
     // 添加“添加文件”的按钮，

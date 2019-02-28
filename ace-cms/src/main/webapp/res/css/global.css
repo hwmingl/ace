@@ -1052,12 +1052,12 @@ dl.no_border {
 	bottom:50px;
 	left:50%;
 	margin-left:630px;
-	z-index:999;
+	z-index:9999;
 	font-size:0;
 }
 .side-bar a {
 	display:block;
-	background:url(../images/float_button_01.gif) no-repeat;
+	background:url(../images/float_button_01.png) no-repeat;
 	width:48px;
 	height:48px;
 	border:1px solid #fff;
@@ -1076,6 +1076,12 @@ dl.no_border {
 }
 .side-bar a.cd-top:hover {
 	background-position:-48px -96px;
+}
+.side-bar a.icon_gwc {
+	background-position:0 -144px;
+}
+.side-bar a.icon_gwc:hover {
+	background-position:-48px -144px;
 }
 .side-bar a.icon_erwei {
 	background-image:url(../images/float_btn_03.gif);
@@ -1105,6 +1111,8 @@ dl.no_border {
 .side-bar a.icon_erwei:hover i {
 	display:block;
 }
+
+
 /*返回头部*/
 	.cd-top {
 	/* image replacement properties*/

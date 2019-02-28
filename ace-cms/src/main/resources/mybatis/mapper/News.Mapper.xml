@@ -29,7 +29,7 @@
         SELECT
         COUNT(1)
         FROM
-        t_news
+        t_news2
         WHERE status != -1
         <if test="style != null">AND style = #{style}</if>
         <if test="status != null">AND status = #{status}</if>
@@ -43,7 +43,7 @@
         SELECT
         *
         FROM
-        t_news
+        t_news2
         WHERE status != -1
         <if test="style != null">AND style = #{style}</if>
         <if test="status != null">AND status = #{status}</if>
@@ -56,7 +56,7 @@
 
     <!--添加新闻-->
     <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.News" keyProperty="id" useGeneratedKeys="true">
-        INSERT t_news(
+        INSERT t_news2(
         create_time,
         title,
         type,
@@ -85,7 +85,7 @@
 
     <!-- 删除新闻 -->
     <update id="deleteById" parameterType="java.lang.Long">
-        UPDATE t_news
+        UPDATE t_news2
         SET
         modified_time = now(),
         status = -1
@@ -99,7 +99,7 @@
                 <foreach item="id" collection="array" open="(" separator ="," close=")">
                     #{id}
                 </foreach>-->
-        UPDATE t_news
+        UPDATE t_news2
         SET
         modified_time = now(),
         status = -1
@@ -111,7 +111,7 @@
 
     <!-- 更新 -->
     <update id="update" parameterType="com.fighter.ace.cms.entity.external.News">
-        UPDATE t_news
+        UPDATE t_news2
         SET modified_time = now()
         <if test="title != null">
             ,title = #{title}
@@ -148,7 +148,7 @@
 
     <!-- 批量审核新闻 -->
     <update id="batchCheck" parameterType="java.lang.Integer">
-        UPDATE t_news
+        UPDATE t_news2
         SET
         modified_time = now(),
         status = 1
@@ -160,7 +160,7 @@
 
     <!-- 详情 -->
     <select id="getById" resultMap="beanMap">
-        select * from t_news
+        select * from t_news2
         where id = #{id}
     </select>
 
@@ -179,7 +179,7 @@
         hot,
         recommend,
         pic_url
-        FROM t_news
+        FROM t_news2
         WHERE status = 1 and recommend = 1
         ORDER BY create_time DESC
         limit #{count}
@@ -199,7 +199,7 @@
             hot,
             recommend,
             pic_url
-        FROM t_news
+        FROM t_news2
         WHERE status = 1
         ORDER BY view_count DESC
         limit #{count}
@@ -219,7 +219,7 @@
             hot,
             recommend,
             pic_url
-        FROM t_news
+        FROM t_news2
         WHERE status = 1
         <if test="style != null"> and style = #{style} </if>
         ORDER BY id DESC

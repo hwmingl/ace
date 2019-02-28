@@ -32,12 +32,16 @@
                                 </div>
                                 <div class="m-userinfo">
                                     <div class="m-baseinfo">
-                                        <a href="information.html">
-                                            <img src="${base}/res/images/getAvatar.do.jpg" style=" width:120px; height:120px;">
+                                        <a href="${base}/cms/m/v_designer">
+                                            <img src="${base}${loginUser.picUrl!('/res/images/getAvatar.do.jpg')}" style=" width:120px; height:120px;">
                                         </a>
                                         <div style="padding-left:150px;">
-                                            <em class="s-name">用户名：王先生</em>
+                                            <em class="s-name">用户名：${loginUser.userName!}</em>
                                             <div class="s-prestige am-btn am-round" style="text-align:left; color:#333;">
+
+                                                <p>会员类型：<#if loginUser.type==0>普通会员</#if>
+                                                    <#if loginUser.type==1>设计师</#if>
+                                                </p>
                                                 <p>手机号：${loginUser.phone!}</p>
                                                 <p>积分：<span class="color_red">${loginUser.point!}</span></p>
                                                 <p>金币：<span class="color_red">${loginUser.coin!}</span></p>
@@ -46,10 +50,12 @@
                                     </div>
                                     <div class="m-right">
                                         <div class="m-new">
-                                            <a href="blog.html"><i class="am-icon-bell-o"></i>消息消息消息消息消息消息消息1</a><br />
-                                            <a href="blog.html"><i class="am-icon-bell-o"></i>消息消消息消息息1</a><br />
-                                            <a href="blog.html"><i class="am-icon-bell-o"></i>消息1</a><br />
-                                            <a href="blog.html"><i class="am-icon-bell-o"></i>消息1</a><br />
+                                            <#if noticeList ??>
+                                                <#list noticeList as bean>
+                                                    <a href="${base}/cms/notice/${bean.id}" target="_blank"><i class="am-icon-bell-o"></i>${bean.title!}</a><br/>
+                                                </#list>
+                                            </#if>
+
                                         </div>
                                     </div>
                                 </div>

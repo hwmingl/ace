@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <#include "/cms_front/inc/top_meta.html"/>
+    <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_news.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!-- Piwik -->
+    <link href="${base}/res/css/pages.css" rel="stylesheet" type="text/css"  />
+    <link href="${base}/res/css/mall.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/goods_info.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/good_right.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/detail.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/cartstyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${base}/res/js/jquery.js"></script>
+    <script type="text/javascript" src="${base}/res/js/common.js"></script>
+    <script type="text/javascript" src="${base}/res/js/address.js"></script>
+    <link href="${base}/res/css/css/cssNew.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+<!--通用头部-->
+<!--通用头部-->
+<#include "/cms_front/inc/top_nav.html"/>
+
+<!--头部结束-->
+<!--页面地址start-->
+<div class="width1100">
+    <div class="a_wd clearfix" style="margin-top: 10px;">
+        <div class="siteFont">
+            你现在的位置：智造网&nbsp;→&nbsp;<a href="#" title="3D商城" class="xin_c66 xin_bianse">3D商城</a></div>
+    </div>
+</div>
+<!--页面地址end-->
+<table class=" width1100 top_5">
+    <tr>
+        <td class="bgWhite" style=" padding:5px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <#if cartListCount==0 >
+                    <tr style=" background:#efefef">
+                        <th style="height: 60px; text-align:center;" colspan="3" >
+                            您还未购买商品!
+                        </th>
+                    </tr>
+                    </thead>
+                </#if>
+
+                <#if cartListCount!=0 >
+                <thead>
+                <tr style=" background:#efefef">
+                    <th style="height: 60px; text-align:center;" colspan="2" >
+                        商品信息
+                    </th>
+                    <th style="text-align:right; padding: 0 20px;">
+                        单价
+                    </th>
+                    <th style="text-align:right;padding: 0 20px;">
+                        数量
+                    </th>
+                    <th style="text-align:right;padding: 0 20px;">
+                        金额
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--购物车循环列表1start--->
+                <#list cartList as bean>
+                <tr>
+                    <td  class="imagesListPic">
+                        <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" >
+                    </td>
+                    <td style="vertical-align: middle; text-align: left;">
+                        ${bean.name!}
+                    </td>
+                    <td class="td td-price" style="vertical-align: middle; text-align: right;padding: 0 20px;">
+                        ${bean.price!}
+                    </td>
+                    <td style="vertical-align: middle; text-align: right;padding: 0 20px;">
+                        <div class="amount-wrapper ">
+                            <div class="item-amount ">
+                                <div class="sl">
+                                    <input class="min am-btn" name="" type="button" value="-" />
+                                    <input class="text_box" name="" type="text" value="1" style="width: 30px;" />
+                                    <input class="add am-btn" name="" type="button" value="+" />
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="vertical-align: middle; text-align: right;padding: 0 20px;">
+                        ${bean.price!}
+                    </td>
+
+                </tr>
+                    </#list>
+                <!--购物车循环列表1end--->
+
+                </tbody>
+                </#if>
+
+            </table>
+
+            <#if cartListCount!=0 >
+            <div class="float-bar-wrapper">
+
+                <div class="operations">
+                    <a href="#" hidefocus="true" class="deleteAll">&nbsp;</a>
+                </div>
+                <div class="float-bar-right">
+                    <div class="amount-sum">
+                        <span class="txt">已选商品</span> <em id="J_SelectedItemsCount">1</em><span class="txt">件</span>
+                        <div class="arrow-box">
+                            <span class="selected-items-arrow"></span><span class="arrow"></span>
+                        </div>
+                    </div>
+                    <div class="price-sum">
+                        <span class="txt">合计:</span> <strong class="price">¥<em id="J_Total">8000.00</em></strong>
+                    </div>
+                    <div class="btn-area">
+                        <a href="3dMallGoodsPay.htm" id="J_Go" class="submit-btn submit-btn-disabled"
+                           aria-label="请注意如果没有选择宝贝，将无法结算"><span>结&nbsp;算</span></a>
+                    </div>
+                </div>
+            </div>
+            </#if>
+            <!--中间内容列表start-->
+            <!--右侧浮窗-->
+            <#include "/cms_front/inc/right_side_bar.html"/>
+        </td>
+    </tr>
+    <!--底部bottom动态加载-->
+    <#include "/cms_front/inc/bottom.html"/>
+</table>
+</body>
+</html>
