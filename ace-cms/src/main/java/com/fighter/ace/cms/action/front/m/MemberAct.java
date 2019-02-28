@@ -53,6 +53,7 @@ public class MemberAct extends BaseAction {
         String password = RequestUtils.getQueryParam(request, "password");
         if (StringUtils.isBlank(account) || StringUtils.isBlank(password)){
             ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+            return;
         }
 
         try {
@@ -61,8 +62,10 @@ public class MemberAct extends BaseAction {
                 request.getSession().setAttribute(Constants.MEMBER_SESSION_KEY,member);
                 request.getSession().removeAttribute(Constants.MEMBER_SESSION_KEY_NULL);
                 ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
+                return;
             } else {
                 ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+                return;
             }
         } catch (Exception e){
             log.error("login error",e);
