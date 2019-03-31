@@ -40,7 +40,7 @@
                             <#list pageBean.recordList as bean>
                         <!--设计师列表1start-->
                         <li><a href="${base}/cms/designer/detail/${bean.id!}">
-                            <img width="115" height="115" src="${base}/res/images/40328_big.jpg">
+                            <img width="115" height="115" src="${base}${bean.memberPicUrl!('/res/images/avatar.jpg')}">
                         </a>
                             <div class="item-detail">
                                 <a href="${base}/cms/designer/detail/${bean.id!}" target="_blank">

@@ -91,7 +91,7 @@
                                 <div class="series-item ">
                                     <div class="series-img">
                                         <a href="${base}/cms/model/detail/${bean.id!}" target="_blank">
-                                            <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" title="${bean.name!}">
+                                            <img src="${base}${bean.picUrl!('/res/images/defaultpic.gif')}" title="${bean.name!}">
                                         </a>
                                     </div>
                                     <p class="txt_l">
@@ -101,7 +101,7 @@
                                             <tr>
                                                 <td class=" txt_l">
                                                     <a href="${base}/cms/designer/detail/${bean.memberId!}" class="headP" target="_blank">
-                                                        <img src="${bean.memberPicUrl!('/jz3d/res/images/avatar.jpg')}" width="25" height="25" alt="${bean.memberName!}" />
+                                                        <img src="${base}${bean.memberPicUrl!('/res/images/avatar.jpg')}" width="25" height="25" alt="${bean.memberName!}" />
                                                     </a><i>&nbsp;&nbsp;${bean.memberName!}</i>
                                                 </td>
                                                 <td class="txt_r">
