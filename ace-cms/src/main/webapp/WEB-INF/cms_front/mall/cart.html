@@ -58,9 +58,6 @@
                         单价
                     </th>
                     <th style="text-align:right;padding: 0 20px;">
-                        数量
-                    </th>
-                    <th style="text-align:right;padding: 0 20px;">
                         金额
                     </th>
                 </tr>
@@ -77,17 +74,6 @@
                     </td>
                     <td class="td td-price" style="vertical-align: middle; text-align: right;padding: 0 20px;">
                         ${bean.price!}
-                    </td>
-                    <td style="vertical-align: middle; text-align: right;padding: 0 20px;">
-                        <div class="amount-wrapper ">
-                            <div class="item-amount ">
-                                <div class="sl">
-                                    <input class="min am-btn" name="" type="button" value="-" />
-                                    <input class="text_box" name="" type="text" value="1" style="width: 30px;" />
-                                    <input class="add am-btn" name="" type="button" value="+" />
-                                </div>
-                            </div>
-                        </div>
                     </td>
                     <td style="vertical-align: middle; text-align: right;padding: 0 20px;">
                         ${bean.price!}
@@ -109,17 +95,9 @@
                     <a href="#" hidefocus="true" class="deleteAll">&nbsp;</a>
                 </div>
                 <div class="float-bar-right">
-                    <div class="amount-sum">
-                        <span class="txt">已选商品</span> <em id="J_SelectedItemsCount">1</em><span class="txt">件</span>
-                        <div class="arrow-box">
-                            <span class="selected-items-arrow"></span><span class="arrow"></span>
-                        </div>
-                    </div>
-                    <div class="price-sum">
-                        <span class="txt">合计:</span> <strong class="price">¥<em id="J_Total">8000.00</em></strong>
-                    </div>
+
                     <div class="btn-area">
-                        <a href="3dMallGoodsPay.htm" id="J_Go" class="submit-btn submit-btn-disabled"
+                        <a href="${base}/cms/mall/itemsPay" id="J_Go" class="submit-btn submit-btn-disabled"
                            aria-label="请注意如果没有选择宝贝，将无法结算"><span>结&nbsp;算</span></a>
                     </div>
                 </div>

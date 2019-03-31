@@ -2,6 +2,7 @@ package com.fighter.ace.cms.action.front.m;
 
 import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.action.front.BaseAction;
+import com.fighter.ace.cms.entity.external.Addr;
 import com.fighter.ace.cms.entity.external.Member;
 import com.fighter.ace.cms.entity.external.Model;
 import com.fighter.ace.cms.service.external.*;
@@ -44,6 +45,8 @@ public class MemberAct extends BaseAction {
     private ModelService modelService;
     @Resource
     private NoticeService noticeService;
+    @Resource
+    private AddrService addrService;
 
 
     @RequestMapping("/m/login.do")
@@ -52,7 +55,7 @@ public class MemberAct extends BaseAction {
         String account = RequestUtils.getQueryParam(request, "account");
         String password = RequestUtils.getQueryParam(request, "password");
         if (StringUtils.isBlank(account) || StringUtils.isBlank(password)){
-            ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "invalid"));
             return;
         }
 
@@ -334,7 +337,27 @@ public class MemberAct extends BaseAction {
      * @return
      */
     @RequestMapping("/m/v_addr")
-    public String v_addr(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+    public String v_addr(String pageNo,HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","address");
+
+        try {
+            PageParam pageParam = new PageParam(getPageNo(pageNo), PAGESIZE);
+            Map<String, Object> map = new HashMap<>();
+            map.put("memberId", loginUser.getId());
+            PageBean pageBean = addrService.getListPage(pageParam, map);
+            modelMap.addAttribute("pageBean", pageBean);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("recharge error", e);
+        }
+        return "m/m_addr";
+    }
+
+
+    @RequestMapping("/m/v_addr_add")
+    public String v_addr_add(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
         Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
         request.setAttribute("loginUser",loginUser);
         request.setAttribute("menu","address");
@@ -345,8 +368,38 @@ public class MemberAct extends BaseAction {
             e.printStackTrace();
             log.error("recharge error", e);
         }
-        return "m/m_addr";
+        return "m/m_addr_add";
     }
+
+    @RequestMapping("/m/o_addr_add")
+    public void o_addr_add(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","address");
+
+        try {
+            String phone = RequestUtils.getQueryParam(request, "phone");
+            String name = RequestUtils.getQueryParam(request, "name");
+            String addr = RequestUtils.getQueryParam(request, "addr");
+
+            Addr addr1 = new Addr();
+            addr1.setMemberId(loginUser.getId());
+            addr1.setName(name);
+            addr1.setPhone(phone);
+            addr1.setAddr(addr);
+            Long n = addrService.addAddr(addr1);
+            if (n > 0){
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","ok"));
+            } else {
+                ResponseUtils.renderJson(response, JsonUtil.toJson("msg","invalid"));
+            }
+
+        } catch (Exception e) {
+            ResponseUtils.renderJson(response, JsonUtil.toJson("msg", "invalid"));
+            log.error("recharge error", e);
+        }
+    }
+
 
 
     /**
@@ -516,6 +569,7 @@ public class MemberAct extends BaseAction {
         }
         return "m/m_order";
     }
+
 
 
 }

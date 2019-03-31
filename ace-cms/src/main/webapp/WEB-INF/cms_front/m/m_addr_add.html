@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+    <title>会员中心-修改密码</title>
+
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+
+    <link href="${base}/res/css/stepstyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+    <script type="text/javascript">
+
+        function confirmAdd(){
+            var name = $.trim($('#name').val());
+            if(null == name || name == ''){
+                $("#vldTip").html("请输入联系人姓名");
+                return false;
+            }
+
+            var phone = $.trim($('#phone').val());
+            if(null == phone || phone == ''){
+                $("#vldTip").html("请输入手机号码");
+                return false;
+            }
+
+            var addr = $.trim($('#addr').val());
+            if(null == addr || addr == ''){
+                $("#vldTip").html("请输入收货地址");
+                return false;
+            }
+
+            var param = {"name":name,"phone":phone,"addr":addr};
+            $.ajax({
+                url: '${base}/cms/m/o_addr_add',
+                dataType:"json",
+                data:param,
+                success	:function(data) {
+                    if(data.msg == 'invalid'){
+                        $("#vldTip").html("地址新增失败");
+                        return false;
+                    }
+                    if(data.msg == 'ok'){
+                        $("#vldTip").html("地址新增成功");
+                        window.location.href = '${base}/cms/m/v_addr';
+                        return false
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+
+            <div class="am-cf am-padding">
+                <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> / <small>New Address</small></div>
+            </div>
+            <hr/>
+            <!--进度条-->
+            <br>
+            <br>
+            <div align="center">
+                <span style="font-weight: bold;color: red" id="vldTip"></span>
+            </div>
+            <br>
+            <br>
+            <form class="am-form am-form-horizontal" id="form1" name="form1">
+                <div class="am-form-group">
+                    <label for="name" class="am-form-label">联系人</label>
+                    <div class="am-form-content">
+                        <input type="text" id="name" placeholder="请输入联系人姓名">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="phone" class="am-form-label">手机号码</label>
+                    <div class="am-form-content">
+                        <input type="text" id="phone" name="phone" placeholder="请输入收件号码">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="addr" class="am-form-label">收货地址</label>
+                    <div class="am-form-content">
+                        <input type="text" id="addr" name="addr" placeholder="请输入收货地址">
+                    </div>
+                </div>
+                <div class="info-btn">
+                    <div class="am-btn am-btn-danger" onclick="confirmAdd()">确定新增</div>
+                </div>
+
+            </form>
+
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+
+</body>
+
+</html>

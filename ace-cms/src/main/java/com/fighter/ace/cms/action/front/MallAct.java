@@ -3,6 +3,7 @@ package com.fighter.ace.cms.action.front;
 import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.entity.external.Mall;
 import com.fighter.ace.cms.entity.external.Member;
+import com.fighter.ace.cms.service.external.AddrService;
 import com.fighter.ace.cms.service.external.MallService;
 import com.fighter.ace.cms.util.JsonUtil;
 import com.fighter.ace.framework.common.page.PageBean;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ public class MallAct extends BaseAction{
 
     @Autowired
     private MallService mallService;
+    @Resource
+    private AddrService addrService;
 
     @RequestMapping("/mall/index")
     public String mallIndex(String pageNo ,Integer type, ModelMap model){
@@ -127,7 +131,41 @@ public class MallAct extends BaseAction{
     }
 
 
+    @RequestMapping("/mall/itemsPay")
+    public String v_itemsPay(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap){
 
+        try {
+            List<Mall> cartList = new ArrayList<>();
+            Object loginObj = request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+            if (null != loginObj){
+                Member loginUser = (Member) loginObj;
+                request.setAttribute("loginUser", loginUser);
+
+                Object cartObj = request.getSession().getAttribute(Constants.MEMBER_CART);
+                if (null != cartObj){
+                    Map<Long,Mall> mallMap = (Map<Long, Mall>) cartObj;
+                    cartList.addAll(mallMap.values());
+                    modelMap.addAttribute("cartListCount", 1);
+                    modelMap.addAttribute("cartList",cartList);
+                }
+
+
+                PageParam pageParam = new PageParam(1, PAGESIZE);
+                Map<String, Object> map = new HashMap<>();
+                map.put("memberId", loginUser.getId());
+                PageBean pageBean = addrService.getListPage(pageParam, map);
+                modelMap.addAttribute("addrList",pageBean.getRecordList());
+
+            } else {
+                modelMap.addAttribute("cartListCount", 0);
+            }
+
+        }catch (Exception e){
+            log.error("my cart error",e);
+        }
+        modelMap.addAttribute("position","mall");
+        return "mall/items_pay";
+    }
 
 
 

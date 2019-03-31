@@ -105,7 +105,7 @@
     </update>
 
     <!-- 更新 -->
-    <update id="update" parameterType="com.fighter.ace.cms.entity.external.News">
+    <update id="update" parameterType="com.fighter.ace.cms.entity.external.Article">
         UPDATE t_article
         SET modified_time = now()
         <if test="title != null">

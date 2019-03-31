@@ -35,6 +35,7 @@
                 <entry key="process_time" value-ref="process_time"/>
                 <entry key="text_cut" value-ref="text_cut"/>
                 <entry key="html_cut" value-ref="html_cut"/>
+                <entry key="showImg" value-ref="showImgDirective"/>
             </map>
         </property>
         <property name="freemarkerSettings">
@@ -58,6 +59,9 @@
     <bean id="process_time" class="com.fighter.ace.framework.directive.ProcessTimeDirective"/>
     <bean id="text_cut" class="com.fighter.ace.framework.directive.TextCutDirective"/>
     <bean id="html_cut" class="com.fighter.ace.framework.directive.HtmlCutDirective"/>
+    <bean id="showImgDirective" class="com.fighter.ace.framework.directive.ImageDirective">
+        <property name="prefix" value="http://localhost:8080/download/cms/showImg?data="/>
+    </bean>
 
 
     <mvc:interceptors>

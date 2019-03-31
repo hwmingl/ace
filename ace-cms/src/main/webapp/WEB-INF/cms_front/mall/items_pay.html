@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <#include "/cms_front/inc/top_meta.html"/>
+    <link href="${base}/res/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_globla.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!--[if lte IE 8]><link href="${base}/res/css/ie8_news.css" rel="stylesheet" type="text/css"><!<![endif]-->
+    <!-- Piwik -->
+    <link href="${base}/res/css/pages.css" rel="stylesheet" type="text/css"  />
+    <link href="${base}/res/css/mall.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/news.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/goods_info.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/good_right.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/detail.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/cartstyle.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/jsstyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="${base}/res/js/jquery.js"></script>
+    <script type="text/javascript" src="${base}/res/js/common.js"></script>
+    <script type="text/javascript" src="${base}/res/js/address.js"></script>
+    <link href="${base}/res/css/css/cssNew.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--通用头部-->
+<#include "/cms_front/inc/top_nav.html"/>
+<!--头部结束-->
+<!--页面地址start-->
+<div class="width1100">
+    <div class="a_wd clearfix" style="margin-top: 10px;">
+        <div class="siteFont">
+            你现在的位置：智造网&nbsp;→&nbsp;<a href="#" title="3D商城" class="xin_c66 xin_bianse">3D商城</a>&nbsp;→&nbsp;在线支付</div>
+    </div>
+</div>
+<!--页面地址end-->
+<table class=" width1100 top_5"><tr><td class="bgWhite">
+
+    <!--中间内容列表start-->
+    <div class=" widthall">
+        <div class="width1100">
+            <div class="goodsCon">
+                <div class="concent">
+                    <!--地址 -->
+                    <div class="paycont">
+                        <div class="address">
+                            <h3>
+                                确认收货地址
+                            </h3>
+                            <div class="control">
+                                <div class="theme-login" style="background: #ff5500; padding: 5px 10px; color: White;">
+                                    使用新地址</div>
+                            </div>
+                            <div class="clear">
+                            </div>
+                            <ul>
+
+                                <#list addrList as bean>
+                                <li class="user-addresslist defaultAddr">
+                                    <table width="90%" style="height: 130px;">
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <span class="buy-user">${bean.name!} </span><span class="buy-phone">${bean.phone!}</span>
+                                            </td>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span>收货地址：</span><span style="font-size: 13px; padding: 5px 10px;"> ${bean.addr!} </span>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </li>
+                                </#list>
+
+                            </ul>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <!--物流 -->
+                        <div class="logistics">
+                            <h3>
+                                选择物流方式</h3>
+                            <ul class="op_express_delivery_hot">
+                                <li class="OP_LOG_BTN  selected"><i class="c-gap-right" style="background-position: 0px -468px">
+                                </i>圆通<span></span></li>
+                                <li class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position: 0px -1008px">
+                                </i>申通<span></span></li>
+                                <li class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position: 0px -576px">
+                                </i>韵达<span></span></li>
+                                <li class="OP_LOG_BTN op_express_delivery_hot_last "><i class="c-gap-right" style="background-position: 0px -324px">
+                                </i>中通<span></span></li>
+                                <li class="OP_LOG_BTN  op_express_delivery_hot_bottom"><i class="c-gap-right" style="background-position: 0px -180px">
+                                </i>顺丰<span></span></li>
+                            </ul>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <!--支付方式-->
+                        <div class="logistics">
+                            <h3>
+                                选择支付方式</h3>
+                            <ul class="pay-list">
+                                <li class="pay taobao selected">
+                                    <img src="${base}/res/images/zhifubao.jpg" alt="" />支付宝<span></span></li>
+                            </ul>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <!--订单 -->
+                        <div class="concent">
+                            <div id="payTable">
+                                <h3>
+                                    确认订单信息</h3>
+                                <div class="cart-table-th">
+                                    <div class="wp">
+                                        <div class="th th-item">
+                                            <div class="td-inner">
+                                                商品信息</div>
+                                        </div>
+                                        <div class="th th-price">
+                                            <div class="td-inner">
+                                                单价</div>
+                                        </div>
+                                        <div class="th th-amount">
+                                            <div class="td-inner">
+                                                数量</div>
+                                        </div>
+                                        <div class="th th-sum">
+                                            <div class="td-inner">
+                                                金额</div>
+                                        </div>
+                                        <div class="th th-oplist">
+                                            <div class="td-inner">
+                                                配送方式</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <table width="100%">
+                                    <tr class="item-list">
+                                        <td>
+                                            <div class="bundle  bundle-last">
+                                                <div class="bundle-main">
+                                                    <ul class="item-content clearfix">
+                                                        <div class="pay-phone">
+                                                            <li class="td td-item">
+                                                                <div class="item-pic">
+                                                                    <a href="#" class="J_MakePoint">
+                                                                        <img src="images/imgsearch5.jpg" class="itempic J_ItemImg"></a>
+                                                                </div>
+                                                                <div class="item-info">
+                                                                    <div class="item-basic-info">
+                                                                        <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">da Vinci 1.0的进阶机型</a>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="td td-info">
+                                                                <div class="item-props">
+                                                                    <span class="sku-line">颜色：黑色</span> <span class="sku-line">包装：裸装</span>
+                                                                </div>
+                                                            </li>
+                                                            <li class="td td-price">
+                                                                <div class="item-price price-promo-promo">
+                                                                    <div class="price-content">
+                                                                        <em class="J_Price price-now">3439.00</em>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                        <li class="td td-amount">
+                                                            <div class="amount-wrapper ">
+                                                                <div class="item-amount ">
+                                                                    <span class="phone-title">购买数量</span>
+                                                                    <div class="sl">
+                                                                        <input class="min am-btn" name="" type="button" value="-" />
+                                                                        <input class="text_box" name="" type="text" value="3" style="width: 30px;" />
+                                                                        <input class="add am-btn" name="" type="button" value="+" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="td td-sum">
+                                                            <div class="td-inner">
+                                                                <em tabindex="0" class="J_ItemSum number">117.00</em>
+                                                            </div>
+                                                        </li>
+                                                        <li class="td td-oplist">
+                                                            <div class="td-inner">
+                                                                <span class="phone-title">配送方式</span>
+                                                                <div class="pay-logis">
+                                                                    快递<b class="sys_item_freprice">10</b>元
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clear">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="item-list">
+                                        <td>
+                                            <div class="bundle  bundle-last">
+                                                <div class="bundle-main">
+                                                    <ul class="item-content clearfix">
+                                                        <div class="pay-phone">
+                                                            <li class="td td-item">
+                                                                <div class="item-pic">
+                                                                    <a href="#" class="J_MakePoint">
+                                                                        <img src="images/imgsearch5.jpg" class="itempic J_ItemImg"></a>
+                                                                </div>
+                                                                <div class="item-info">
+                                                                    <div class="item-basic-info">
+                                                                        <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">da Vinci 1.0的进阶机型</a>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="td td-info">
+                                                                <div class="item-props">
+                                                                    <span class="sku-line">颜色：黑色</span> <span class="sku-line">包装：裸装</span>
+                                                                </div>
+                                                            </li>
+                                                            <li class="td td-price">
+                                                                <div class="item-price price-promo-promo">
+                                                                    <div class="price-content">
+                                                                        <em class="J_Price price-now">3439.00</em>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                        <li class="td td-amount">
+                                                            <div class="amount-wrapper ">
+                                                                <div class="item-amount ">
+                                                                    <span class="phone-title">购买数量</span>
+                                                                    <div class="sl">
+                                                                        <input class="min am-btn" name="" type="button" value="-" />
+                                                                        <input class="text_box" name="" type="text" value="3" style="width: 30px;" />
+                                                                        <input class="add am-btn" name="" type="button" value="+" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="td td-sum">
+                                                            <div class="td-inner">
+                                                                <em tabindex="0" class="J_ItemSum number">117.00</em>
+                                                            </div>
+                                                        </li>
+                                                        <li class="td td-oplist">
+                                                            <div class="td-inner">
+                                                                <span class="phone-title">配送方式</span>
+                                                                <div class="pay-logis">
+                                                                    快递<b class="sys_item_freprice">10</b>元
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clear">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="clear">
+                            </div>
+                            <div class="pay-total">
+                                <!--留言-->
+                                <div class="order-extra">
+                                    <div class="order-user-info">
+                                        <div id="holyshit257" class="memo">
+                                            <label>
+                                                买家留言：</label>
+                                            <input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明"
+                                                   class="memo-input J_MakePoint c2c-text-default memo-close">
+                                            <div class="msg hidden J-msg">
+                                                <p class="error">
+                                                    最多输入500个字符</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--优惠券 -->
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!--含运费小计 -->
+                            <div class="buy-point-discharge ">
+                                <p class="price g_price ">
+                                    合计（含运费） <span>¥</span><em class="pay-sum">244.00</em>
+                                </p>
+                            </div>
+                            <!--信息 -->
+                            <div class="order-go clearfix">
+                                <div class="pay-confirm clearfix">
+                                    <div class="box">
+                                        <div tabindex="0" id="holyshit267" class="realPay">
+                                            <em class="t">实付款：</em> <span class="price g_price "><span>¥</span> <em class="style-large-bold-red "
+                                                                                                                    id="J_ActualFee">244.00</em> </span>
+                                        </div>
+                                        <div id="holyshit268" class="pay-address">
+                                            <p class="buy-footer-address">
+                                                <span class="buy-line-title buy-line-title-type">寄送至：</span> <span class="buy--address-detail">
+                                                    <span class="province">陕西</span>省 <span class="city">西安</span>市 <span class="dist">雁塔</span>区
+                                                    <span class="street">高新六路234号</span> </span></span>
+                                            </p>
+                                            <p class="buy-footer-address">
+                                                <span class="buy-line-title">收货人：</span> <span class="buy-address-detail"><span class="buy-user">
+                                                    王先生 </span><span class="buy-phone">15666666666</span> </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="holyshit269" class="submitOrder">
+                                        <div class="go-btn-wrap">
+                                            <a id="J_Go" href="3dMallGoodsPaySuc.htm" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+                                        </div>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <hr color="#ff5500" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--中间内容列表end-->
+    <!--右侧浮窗-->
+    <!--右侧浮窗-->
+    <#include "/cms_front/inc/right_side_bar.html"/>
+</td>
+</tr>
+    <!--底部bottom动态加载-->
+    <#include "/cms_front/inc/bottom.html"/>
+
+</table>
+</body>
+</html>
