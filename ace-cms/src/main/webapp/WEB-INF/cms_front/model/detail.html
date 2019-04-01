@@ -127,7 +127,7 @@
                             </div>
                             <!--模型图-->
                             <div style="width: 820px; text-align: center; position: relative;">
-                                <img style="max-width: 820px;" alt="test" src="${model.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                                <img style="max-width: 820px;" alt="test" src="<@showImg url=model.picUrl/>">
                             </div>
                             <table class="xin_details" cellspacing="0" cellpadding="0">
                                 <tbody>
@@ -150,26 +150,24 @@
                                         max版本：${model.softVersion!}
                                     </td>
                                     <td>
-                                        购买价格：<font color="#e5292e">￥3.5</font> 元 <font style="color: rgb(170, 170, 170);">(1元=1000金币)</font>
+                                        所需金币：<font color="#e5292e">${model.coin!}</font>  <font style="color: rgb(170, 170, 170);">(50元=1000金币)</font>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;寸：${model.length}*${model.width}*${model.height}厘米
+                                        尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;寸：${model.length}*${model.width}*${model.height}毫米
                                     </td>
                                     <td>
-                                        文件大小：${model.size!}
+                                        文件大小：${model.size!}(KB)
                                     </td>
                                     <td style="width: 250px;">
-                                        <a title="VIP价格：￥3.15 元(9折)" style="color: rgb(51, 51, 51); font-size: 14px;" href="#"
-                                           rel="nofollow"><span style="font-size: 14px; margin-left: 2px;">&nbsp;VIP价格</span>：<font
-                                                color="#e5292e">￥3.15</font> 元 (9折)</a>
+                                        所需积分</span>：<font color="#e5292e">${model.point!}</font>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                             <div>
-                                <img height="60" class="fl" src="${member.picUrl!('/jz3d/res/images/defaultpic.gif')}">
+                                <img height="60" class="fl" src="${base}${member.picUrl!('/res/images/defaultpic.gif')}">
                                 <span class="fl" style="color: rgb(96, 108, 120); line-height: 30px; margin-left: 15px;">
                                 <a title="进入${member.nickName!}的主页" class="xin_bianse xin_lm_checked" href="#"
                                    rel="nofollow">${member.nickName!}</a>
@@ -251,15 +249,15 @@
                                 <ul class="news_ppxl_list clearfix">
                                     <#if rankList??>
                                         <#list rankList as bean>
-                                    <li class="txt_c">
-                                        <i>
-                                            <a href="${base}/cms/model/detail/${bean.id!}" target="_blank" title="">
-                                            <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" alt=""></a>
-                                        </i>
-                                        <h3>
-                                            <a href="${base}/cms/model/detail/${bean.id!}" title="${bean.name!}" target="_blank">${bean.name!}</a>
-                                        </h3>
-                                    </li>
+                                            <li class="txt_c">
+                                                <i>
+                                                    <a href="${base}/cms/model/detail/${bean.id!}" target="_blank" title="">
+                                                        <img src="<@showImg url=bean.picUrl/>" alt=""></a>
+                                                </i>
+                                                <h3>
+                                                    <a href="${base}/cms/model/detail/${bean.id!}" title="${bean.name!}" target="_blank">${bean.name!}</a>
+                                                </h3>
+                                            </li>
                                         </#list>
                                     </#if>
 
