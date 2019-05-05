@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.File;
 
 /**
  * Created by hanebert on 2019/3/20.
@@ -118,6 +119,13 @@ public class Base64Util {
         System.out.println("明文:" + test);
         System.out.println("加密后:" + data);
         System.out.println("解密后:" + desEncrypt("eTIJEm+brt3VL/e7xRuz0upc5MCT8lNmoaL2QQFEbOs="));
+
+        String os = System.getProperty("os.name");
+        System.out.println(os);
+
+        System.out.println(File.separatorChar);
+
+
     }
 
 

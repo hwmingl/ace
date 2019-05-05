@@ -30,6 +30,7 @@
 
     <bean id="configUtil" class="com.fighter.ace.cms.util.ConfigUtil">
         <property name="downloadPrefix" value="http://localhost:8080/download/cms/file/"/>
+        <property name="uploadFilePath" value="/EbertHan/3dmaking"/>
     </bean>
 
     <import resource="classpath:application-datasource.xml"/>

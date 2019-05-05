@@ -16,6 +16,7 @@ public class BaseUplaodAction {
     private long allowSize = 50L;//允许文件大小
     private String fileName;
     private String[] fileNames;
+    private String origName;
 
     public String getAllowSuffix() {
         return allowSuffix;
@@ -49,6 +50,13 @@ public class BaseUplaodAction {
         this.fileNames = fileNames;
     }
 
+    public String getOrigName() {
+        return origName;
+    }
+
+    public void setOrigName(String origName) {
+        this.origName = origName;
+    }
 
     /**
      * <p class="detail">
@@ -99,6 +107,7 @@ public class BaseUplaodAction {
                 File f = new File(destFile.getAbsoluteFile() + "\\" + fileNameNew);
                 file.transferTo(f);
                 f.createNewFile();
+                origName = fileNameNew;
                 fileNames[index++] = basePath + destDir + fileNameNew;
             }
         } catch (Exception e) {
@@ -130,8 +139,9 @@ public class BaseUplaodAction {
                 throw new Exception("您上传的文件大小已经超出范围");
             }
 
-            String realPath = request.getSession().getServletContext().getRealPath("/");
-            File destFile = new File(realPath + destDir);
+            //String realPath = request.getSession().getServletContext().getRealPath("/");
+            //File destFile = new File(realPath + destDir);
+            File destFile = new File(destDir);
             if (!destFile.exists()) {
                 destFile.mkdirs();
             }
@@ -140,6 +150,7 @@ public class BaseUplaodAction {
             file.transferTo(f);
             f.createNewFile();
             fileName = basePath + destDir + fileNameNew;
+            origName = fileNameNew;
         } catch (Exception e) {
             throw e;
         }

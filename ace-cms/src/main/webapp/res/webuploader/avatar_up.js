@@ -80,8 +80,8 @@ jQuery(function() {
 
         disableGlobalDnd: true,
 
-        chunked: true,
-        chunkSize: 512 * 1024,
+        //chunked: true,
+        //chunkSize: 512 * 1024,
         server: '../webUploader',
         fileNumLimit: 1,
         fileSizeLimit: 10 * 1024 * 1024,    // 10 M
@@ -91,7 +91,7 @@ jQuery(function() {
     // 添加“添加文件”的按钮，
     uploader.addButton({
         id: '#filePicker2',
-        label: '继续添加'
+         label: '继续添加'
     });
 
     // 当有文件添加进来时执行，负责view的创建

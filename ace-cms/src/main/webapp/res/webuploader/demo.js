@@ -80,8 +80,8 @@ jQuery(function() {
 
         disableGlobalDnd: true,
 
-        chunked: true,
-        chunkSize: 512 * 1024,
+        //chunked: false,
+        //chunkSize: 512 * 1024,
         server: '../webUploader',
         fileNumLimit: 300,
         fileSizeLimit: 50 * 1024 * 1024,    // 200 M

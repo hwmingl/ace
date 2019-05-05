@@ -1,5 +1,6 @@
 package com.fighter.ace.cms.action.front.m;
 
+import com.alibaba.fastjson.JSONArray;
 import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.action.front.BaseAction;
 import com.fighter.ace.cms.entity.external.Addr;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -171,6 +173,11 @@ public class MemberAct extends BaseAction {
             model.setHeight(height);
 
             model.setPicUrl(modelImg);
+
+            //JSONArray picJson = new JSONArray();
+            //String[] pics = modelImgs.split(",");
+            //picJson.add(pics);
+
             model.setPicUrls(modelImgs);
             model.setModelPath(modelFile);
             model.setMark(mark);

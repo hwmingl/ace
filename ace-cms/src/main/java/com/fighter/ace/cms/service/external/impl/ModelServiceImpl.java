@@ -110,7 +110,7 @@ public class ModelServiceImpl implements ModelService {
             if (StringUtils.isNotBlank(memberName)){
                 paramMap.put("memberName","%"+memberName+"%");
             }
-            if (null != categoryId){
+            if (null != categoryId && categoryId > -1){
                 List<Long> ids = getChildIdList(categoryId);
                 paramMap.put("categoryIds",ids);
             }
