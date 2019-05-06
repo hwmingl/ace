@@ -63,7 +63,7 @@
 
     <bean id="fileConfig" class="com.fighter.ace.cms.util.FileConfig">
         <property name="pathPrefix" value="/Users/hanebert/Downloads/"/>
-        <property name="imgRootPath" value="/EbertHan"/>
+        <property name="imgRootPath" value="/EbertHan/3dmaking"/>
     </bean>
 
 

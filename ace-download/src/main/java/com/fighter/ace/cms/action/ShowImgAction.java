@@ -56,9 +56,14 @@ public class ShowImgAction {
         //response.setContentType("image/jpeg/jpg/png/gif/bmp/tiff/svg");
         try {
             String filePath = Base64Util.desEncrypt(data);
-            String url  = fileConfig.getImgRootPath() + filePath.replace("/","\\");
-            //String url  = fileConfig.getImgRootPath() + filePath;
-            System.out.println("Can't find file." + url);
+            String url  = fileConfig.getImgRootPath();
+
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (osName.contains("windows")){
+                url = url + filePath.replace("/","\\");
+            } else {
+                url = url + filePath;
+            }
             File file = new File(url);       //括号里参数为文件图片路径
             if(file.exists()){   //如果文件存在
                 InputStream in = new FileInputStream(url);   //用该文件创建一个输入流
