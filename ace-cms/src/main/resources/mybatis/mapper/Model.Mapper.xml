@@ -313,6 +313,9 @@
         <if test="height!=null">
             ,height = #{height}
         </if>
+        <if test="size!=null">
+            ,size = #{size}
+        </if>
         WHERE id = #{id}
     </update>
 

@@ -19,6 +19,8 @@ public class OrderMember extends BaseEntity {
 	private String ext1;
 	private String ext2;
 	private String ext3;
+	private String ext4;
+	private String ext5;
 	private String nickName;
 
 

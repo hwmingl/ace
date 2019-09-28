@@ -239,6 +239,51 @@ public class ModelAct extends BaseAction {
         model.addAttribute("position","model");
         return "model/hotList";
     }
+
+
+    @RequestMapping("/model/{memberId}/list")
+    public String findListByMemberId(@PathVariable("memberId") Long memberId,Long categoryId,String pageNo, ModelMap model){
+        try {
+            List<Category> parentList = categoryService.findListByParentId(-1L);
+            model.addAttribute("parentList",parentList);
+
+            if (null == categoryId){
+                categoryId = -1L;
+                model.addAttribute("showParent",-1L);
+            } else {
+                Category category =  categoryService.getById(categoryId);
+                if (category.getParentId() == -1L){
+                    model.addAttribute("showParent",categoryId);
+                    model.addAttribute("showSub",-1L);
+
+                    List<Category> categoryList = categoryService.findListByParentId(categoryId);
+                    model.addAttribute("categoryList",categoryList);
+                } else {
+                    model.addAttribute("showParent",category.getParentId());
+                    model.addAttribute("showSub",categoryId);
+
+                    List<Category> categoryList = categoryService.findListByParentId(category.getParentId());
+                    model.addAttribute("categoryList",categoryList);
+                }
+
+                model.addAttribute("tipName",category.getName());
+            }
+            //
+            PageParam pageParam = new PageParam(getPageNo(pageNo),16);
+            Map<String,Object> params = new HashMap<>();
+            params.put("memberId",memberId);
+            PageBean pageBean =  modelService.findListByMemberId(pageParam, params);
+            model.addAttribute("pageBean",pageBean);
+        } catch (Exception e){
+            log.error("findList error",e);
+        }
+        model.addAttribute("position","model");
+        return "model/hotList";
+    }
+
+
+
+
     @RequestMapping("/model/list")
     public String findList(Long categoryId,String pageNo, ModelMap model){
         try {

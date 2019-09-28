@@ -9,4 +9,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("addrDao")
 public class AddrDao extends BaseDaoImpl<Addr> {
+
+    public Addr getByDeft(){
+       return getSessionTemplate().selectOne(getStatement("getByDeft"));
+    }
+
 }

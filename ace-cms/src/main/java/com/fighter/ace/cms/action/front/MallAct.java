@@ -1,10 +1,13 @@
 package com.fighter.ace.cms.action.front;
 
 import com.fighter.ace.cms.Constants;
+import com.fighter.ace.cms.entity.external.Category;
 import com.fighter.ace.cms.entity.external.Mall;
 import com.fighter.ace.cms.entity.external.Member;
+import com.fighter.ace.cms.entity.external.Model;
 import com.fighter.ace.cms.service.external.AddrService;
 import com.fighter.ace.cms.service.external.MallService;
+import com.fighter.ace.cms.service.external.ModelService;
 import com.fighter.ace.cms.util.JsonUtil;
 import com.fighter.ace.framework.common.page.PageBean;
 import com.fighter.ace.framework.common.page.PageParam;
@@ -15,7 +18,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +40,8 @@ public class MallAct extends BaseAction{
 
     @Autowired
     private MallService mallService;
+    @Resource
+    private ModelService modelService;
     @Resource
     private AddrService addrService;
 
@@ -60,6 +67,32 @@ public class MallAct extends BaseAction{
         }
         model.addAttribute("position","mall");
         return "mall/index";
+    }
+
+
+    @RequestMapping(value = "mall/detail/{id}",method = RequestMethod.GET)
+    public String getDetail(@PathVariable("id") Long id,HttpServletRequest request, ModelMap modelMap){
+
+        try{
+            Mall model = mallService.getById(id);
+            modelMap.addAttribute("mall", model);
+
+
+            //相关素材
+            PageBean pageBean =  getPageList(null, 5, "1");
+            modelMap.addAttribute("rankList",pageBean.getRecordList());
+
+
+            modelMap.addAttribute("position","mall");
+        }catch (Exception e){
+            log.error("getDetail error," + e.getMessage(),e);
+        }
+        return "mall/detail";
+    }
+
+    private PageBean getPageList(Long categoryId, Integer queryOrderBy,String pageNo) {
+        PageParam pageParam = new PageParam(getPageNo(pageNo),10);
+        return modelService.findList(pageParam,null,categoryId,null,queryOrderBy,1);
     }
 
     @RequestMapping("/mall/add")
@@ -96,7 +129,40 @@ public class MallAct extends BaseAction{
         }
     }
 
+    @RequestMapping("/mall/delItem")
+    public String o_cart_del(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        try {
+            List<Mall> cartList = new ArrayList<>();
+            Object loginObj = request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+            if (null != loginObj){
+                Object cartObj = request.getSession().getAttribute(Constants.MEMBER_CART);
+                if (null != cartObj){
+                    Map<Long,Mall> mallMap = (Map<Long, Mall>) cartObj;
+                    Long itemId = Long.valueOf(RequestUtils.getQueryParam(request, "itemId"));
+                    mallMap.remove(itemId);
 
+                    if (mallMap.isEmpty()){
+                        modelMap.addAttribute("cartListCount", 0);
+                    } else {
+                        cartList.addAll(mallMap.values());
+                        modelMap.addAttribute("cartListCount", 1);
+                        modelMap.addAttribute("cartList",cartList);
+                    }
+                } else {
+                    modelMap.addAttribute("cartListCount", 0);
+                }
+
+            } else {
+                modelMap.addAttribute("cartListCount", 0);
+            }
+            Member loginUser = (Member) loginObj;
+            request.setAttribute("loginUser", loginUser);
+        }catch (Exception e){
+            log.error("my cart error",e);
+        }
+        modelMap.addAttribute("position","mall");
+        return "mall/cart";
+    }
 
     /**
      * 我的购物车
@@ -116,6 +182,8 @@ public class MallAct extends BaseAction{
                     cartList.addAll(mallMap.values());
                     modelMap.addAttribute("cartListCount", 1);
                     modelMap.addAttribute("cartList",cartList);
+                } else {
+                    modelMap.addAttribute("cartListCount", 0);
                 }
 
             } else {
@@ -145,8 +213,20 @@ public class MallAct extends BaseAction{
                 if (null != cartObj){
                     Map<Long,Mall> mallMap = (Map<Long, Mall>) cartObj;
                     cartList.addAll(mallMap.values());
+                    Double totalFee = 0.00;
+
+                    for (Mall mall : cartList){
+                        totalFee += Double.valueOf(mall.getPrice());
+                    }
+
+
+
+
                     modelMap.addAttribute("cartListCount", 1);
                     modelMap.addAttribute("cartList",cartList);
+                    modelMap.addAttribute("totalFee",totalFee);
+                } else {
+                    return "redirect:myCart";
                 }
 
 
@@ -157,7 +237,7 @@ public class MallAct extends BaseAction{
                 modelMap.addAttribute("addrList",pageBean.getRecordList());
 
             } else {
-                modelMap.addAttribute("cartListCount", 0);
+                return "redirect:/cms/goLogin.do";
             }
 
         }catch (Exception e){

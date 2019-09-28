@@ -160,7 +160,7 @@
                                             <tr>
                                                 <td class=" txt_l">
                                                     <a href="${base}/cms/designer/detail/${bean.memberId!}" class="headP" target="_blank">
-                                                        <img src="${bean.memberPicUrl!('/jz3d/res/images/avatar.jpg')}" title="${bean.memberName!}" width="25" height="25" alt="${bean.memberName!}" />
+                                                        <img src="${base}${bean.memberPicUrl!('/jz3d/res/images/avatar.jpg')}" title="${bean.memberName!}" width="25" height="25" alt="${bean.memberName!}" />
                                                     </a><i>&nbsp;&nbsp;${bean.memberName!}</i>
                                                 </td>
                                                 <td class="txt_r">
@@ -202,7 +202,7 @@
                                 <#list dailyList as bean>
                             <div class="news-list clearfix">
                                 <div class="news-pic fl">
-                                    <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}">"&gt;<i class="icon icon-news-z"></i><span class="new-line"><i></i></span></div>
+                                    <img src="${base}${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}">"&gt;<i class="icon icon-news-z"></i><span class="new-line"><i></i></span></div>
                                 <div class="news-word fr">
                                     <h5 class="news-tit-h5">
                                         <a href="${base}/cms/news/${bean.id}" target="_blank"><@text_cut s=bean.title len=15 append='...'/></a></h5>

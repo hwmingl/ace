@@ -89,10 +89,18 @@
         <if test="addr != null">
             ,addr = #{addr}
         </if>
+        <if test="status != null">
+            ,status = #{status}
+        </if>
         WHERE id = #{id};
     </update>
 
 
+    <select id="getByDeft" resultMap="beanMap">
+        select * from t_addr
+        where status = 2
+        limit 1;
+    </select>
     <!-- 详情 -->
     <select id="getById" resultMap="beanMap">
         select * from t_addr

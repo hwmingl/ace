@@ -1,11 +1,10 @@
 package com.fighter.ace.cms.action.front.m;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.action.front.BaseAction;
-import com.fighter.ace.cms.entity.external.Addr;
-import com.fighter.ace.cms.entity.external.Member;
-import com.fighter.ace.cms.entity.external.Model;
+import com.fighter.ace.cms.entity.external.*;
 import com.fighter.ace.cms.service.external.*;
 import com.fighter.ace.cms.util.JsonUtil;
 import com.fighter.ace.cms.vo.CategoryTreeDTO;
@@ -49,6 +48,9 @@ public class MemberAct extends BaseAction {
     private NoticeService noticeService;
     @Resource
     private AddrService addrService;
+
+    @Resource
+    private OrdersFacadeService ordersFacadeService;
 
 
     @RequestMapping("/m/login.do")
@@ -362,7 +364,13 @@ public class MemberAct extends BaseAction {
         return "m/m_addr";
     }
 
-
+    /**
+     * 添加地址页面
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/m/v_addr_add")
     public String v_addr_add(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
         Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
@@ -378,6 +386,12 @@ public class MemberAct extends BaseAction {
         return "m/m_addr_add";
     }
 
+    /**
+     * 添加地址操作
+     * @param request
+     * @param response
+     * @param modelMap
+     */
     @RequestMapping("/m/o_addr_add")
     public void o_addr_add(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
         Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
@@ -406,6 +420,66 @@ public class MemberAct extends BaseAction {
             log.error("recharge error", e);
         }
     }
+
+    /**
+     * 删除地址
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/o_addr_del")
+    public String o_addr_del(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","address");
+
+        try {
+            String addrId = RequestUtils.getQueryParam(request, "id");
+            addrService.deleteAddr(Long.valueOf(addrId));
+        } catch (Exception e) {
+            log.error("o_addr_del error", e);
+        }
+        return "redirect:v_addr";
+    }
+
+    /**
+     * 设置默认地址操作
+     * @param request
+     * @param response
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/m/o_addr_deft")
+    public String o_addr_deft(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","address");
+
+        try {
+            //取消原默认地址
+            Addr deftAddr = addrService.getByDeft();
+            if (null != deftAddr){
+                Addr oldAddr = new Addr();
+                oldAddr.setId(deftAddr.getId());
+                oldAddr.setStatus(1);
+                addrService.updateAddr(oldAddr);
+            }
+
+            //设置为默认地址
+            String addrId = RequestUtils.getQueryParam(request, "id");
+            Addr addr = new Addr();
+            addr.setId(Long.valueOf(addrId));
+            addr.setStatus(2);
+            addrService.updateAddr(addr);
+
+        } catch (Exception e) {
+            log.error("o_addr_del error", e);
+        }
+        return "redirect:v_addr";
+    }
+
+
 
 
 
@@ -563,18 +637,57 @@ public class MemberAct extends BaseAction {
      * @return
      */
     @RequestMapping("/m/v_order")
-    public String v_order(HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
+    public String v_order(String pageNo,HttpServletRequest request,HttpServletResponse response , ModelMap modelMap){
         Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
         request.setAttribute("loginUser",loginUser);
         request.setAttribute("menu","order");
 
         try {
+            PageParam pageParam = new PageParam(getPageNo(pageNo), PAGESIZE);
+            Map<String, Object> map = new HashMap<>();
+            map.put("memberId", loginUser.getId());
+            PageBean pageBean = ordersFacadeService.getListPage(pageParam,map);
 
+            List<OrderMember> dataList = new ArrayList<>();
+            List<OrderMember> itemList = pageBean.getRecordList();
+            for (OrderMember orders : itemList){
+                if (StringUtils.isNotBlank(orders.getExt3())){
+                    JSONObject ext4Json = JSONObject.parseObject(orders.getExt3());
+                    orders.setExt2(ext4Json.getString("phone"));
+                    orders.setExt3(ext4Json.getString("name"));
+                }
+                dataList.add(orders);
+            }
+            pageBean.setRecordList(dataList);
+
+            modelMap.addAttribute("pageBean",pageBean);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.error("recharge error", e);
+            log.error("v_order error", e);
         }
         return "m/m_order";
+    }
+
+
+    @RequestMapping("/m/v_detail")
+    public String detail(String id,HttpServletRequest request,ModelMap modelMap) {
+        Member loginUser = (Member) request.getSession().getAttribute(Constants.MEMBER_SESSION_KEY);
+        request.setAttribute("loginUser",loginUser);
+        request.setAttribute("menu","order");
+
+        try {
+            Orders orders = ordersFacadeService.getById(Long.valueOf(id));
+            modelMap.addAttribute("orders", orders);
+
+            List<Mall> mallList = JSON.parseArray(orders.getExt2(), Mall.class);
+            modelMap.addAttribute("mallList", mallList);
+
+            Addr addr = JSON.parseObject(orders.getExt3(),Addr.class);
+            modelMap.addAttribute("addr",addr);
+
+        } catch (Exception e){
+            log.error("edit error",e);
+        }
+        return "m/m_order_detail";
     }
 
 

@@ -62,4 +62,9 @@ public class AddrServiceImpl implements AddrService {
     public int updateAddr(Addr addr) {
         return addrDao.update(addr);
     }
+
+    @Override
+    public Addr getByDeft() {
+        return addrDao.getByDeft();
+    }
 }

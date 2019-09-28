@@ -5,8 +5,14 @@
         <div class="a_wd clearfix">
             <div class="login fl">
                 <div class="login top_nav" style="line-height: 35px;">
- 		<span><a href="${base}/register.html" target="_blank">注册</a>
- 		<a href="${base}/login.html" target="_blank">登陆</a></span>
+ 		<span>
+            <#if memberLoginSession ??>
+                <a href="${base}/cms/m/index" target="_blank">欢迎您再次登录,点击进入会员中心</a>
+                <#else>
+            <a href="${base}/register.html" target="_blank">注册</a>
+ 		    <a href="${base}/login.html" target="_blank">登陆</a>
+            </#if>
+        </span>
                 </div>
             </div>
             <ul class="que_nav fr">

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+    <title>我的订单</title>
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/personal.css" rel="stylesheet" type="text/css" />
+    <link href="${base}/res/css/systyle.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${base}/res/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+
+    <link href="${base}/res/page/page.css" rel="stylesheet" type="text/css" />
+    <script src="${base}/res/page/page.js"></script>
+
+</head>
+
+<body>
+<!--头 -->
+<!--top-->
+<#include "/cms_front/m/m_top.html"/>
+
+
+<div class="center">
+    <div class="col-main">
+        <div class="main-wrap">
+            <div class="am-cf am-padding">
+                <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">订单详情</strong> / <small>Order&nbsp;Detail</small></div>
+            </div>
+            <hr>
+            <div class="clear"></div>
+            <table width="100%" class="tableListNews">
+                <tr>
+                    <td colspan="4" style="text-align:center"><font size="4">订单信息</font></td>
+                </tr>
+                <tr>
+                    <td width="15%" style="text-align:right">订单编号:</td>
+                    <td width="35%" colspan="1" align="left">${orders.orderNo!}</td>
+                    <td width="15%" style="text-align:right">支付编号:</td>
+                    <td width="35%" colspan="1" align="left">${orders.tradeNo!}</td>
+                </tr>
+                <tr>
+                    <td width="15%" style="text-align:right">收件人:</td>
+                    <td width="35%" colspan="1" align="left">${addr.name!}</td>
+                    <td width="15%" style="text-align:right">联系电话:</td>
+                    <td width="35%" colspan="1" align="left">${addr.phone!}</td>
+                </tr>
+                <tr>
+                    <td width="15%" style="text-align:right">物流公司:</td>
+                    <td width="35%" colspan="1" align="left">${orders.ext4!}</td>
+                    <td width="15%" style="text-align:right">物流单号:</td>
+                    <td width="35%" colspan="1" align="left">${orders.ext5!}</td>
+                </tr>
+                <tr>
+                    <td width="15%" style="text-align:right">收件地址:</td>
+                    <td colspan="3" class="pn-fcontent">${addr.addr!}</td>
+                </tr>
+                <tr>
+                    <td width="15%" style="text-align:right">总费用:</td>
+                    <td colspan="3" class="pn-fcontent">${orders.totalFee!}</td>
+                </tr>
+            </table>
+            <BR>
+
+            <table width="100%" class="tableListNews" cellpadding="2" cellspacing="1" border="1">
+                <tr>
+                    <td colspan="4" style="text-align:center"><font size="4">商品信息</font></td>
+                </tr>
+                <tr>
+                    <td width="10%">商品图片</td>
+                    <td width="70%" style="text-align:center">商品名称</td>
+                    <td width="10%" style="text-align:center">购买数量</td>
+                    <td width="10%" style="text-align:center">商品单价</td>
+                </tr>
+                <#list mallList as bean>
+                    <tr>
+                        <td>
+                           <a href="${base}/cms/mall/detail/${bean.id}" target="_blank">
+                               <img src="${base}${bean.picUrl!('/res/images/defaultpic.gif')}" height="20" width="50">
+                           </a>
+                        </td>
+                        <td style="text-align:left" valign="middle">${bean.name!}</td>
+                        <td style="text-align:center">1</td>
+                        <td style="text-align:center">${bean.price!}</td>
+                    </tr>
+                </#list>
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </div>
+        <!--底部-->
+        <!--底部-->
+        <#include "/cms_front/m/m_bottom.html"/>
+    </div>
+
+    <!-- menu -->
+    <#include "/cms_front/m/m_menu.html"/>
+</div>
+
+</body>
+</html>

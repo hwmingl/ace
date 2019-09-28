@@ -14,6 +14,8 @@ import com.fighter.ace.cms.enums.CostSrcEnum;
 import com.fighter.ace.cms.service.external.OrdersFacadeService;
 import com.fighter.ace.cms.util.CmsUtil;
 import com.fighter.ace.framework.common.exceptions.BizException;
+import com.fighter.ace.framework.common.page.PageBean;
+import com.fighter.ace.framework.common.page.PageParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +49,36 @@ public class OrdersFacadeServiceImpl implements OrdersFacadeService {
         try{
            id = ordersDao.insert(orders);
         }catch (Exception e){
-            e.printStackTrace();
             log.error("saveOrders error,"+e.getMessage(),e);
             throw new BizException("saveOrders error,"+e.getMessage());
         }
         return id;
+    }
+
+    @Override
+    public int updateById(Orders orders) {
+        try {
+            return ordersDao.update(orders);
+        } catch (Exception e){
+            log.error("updateById error",e);
+        }
+        return 0;
+    }
+
+    @Override
+    public int updateOnlyTradeNo(Long orderId, String tradeNo) {
+        int n = 0;
+        try{
+            //更新订单状态,支付完成
+            Orders ord = new Orders();
+            ord.setId(orderId);
+            ord.setTradeNo(tradeNo);
+            ord.setStatus(1);//完成支付
+            n = ordersDao.update(ord);
+        }catch (Exception e){
+            log.error("updateOnlyTradeNo error",e);
+        }
+        return n;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -106,7 +133,6 @@ public class OrdersFacadeServiceImpl implements OrdersFacadeService {
             n = ordersDao.update(ord);
 
         }catch (Exception e){
-            e.printStackTrace();
             log.error("updateTradeNo error,"+e.getMessage(),e);
             throw new BizException("updateTradeNo error,"+e.getMessage());
         }
@@ -119,9 +145,18 @@ public class OrdersFacadeServiceImpl implements OrdersFacadeService {
             Orders orders = ordersDao.getByOrderNo(orderNo);
             return orders;
         }catch (Exception e){
-            e.printStackTrace();
             log.error("getByOrderNo error,"+e.getMessage(),e);
             throw new BizException("getByOrderNo error,"+e.getMessage());
         }
+    }
+
+    @Override
+    public Orders getById(Long id) {
+        return ordersDao.getById(id);
+    }
+
+    @Override
+    public PageBean getListPage(PageParam pageParam, Map<String, Object> paramMap) {
+        return ordersDao.listPage(pageParam,paramMap);
     }
 }

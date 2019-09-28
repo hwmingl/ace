@@ -57,8 +57,8 @@
                     <th>ID</th>
                     <th>收件人</th>
                     <th>联系电话</th>
-                    <th class="txt_left" style=" width:450px;">收货地址</th>
-                    <th class="txt_right" style=" width:100px;">操作</th>
+                    <th class="txt_left" style=" width:350px;">收货地址</th>
+                    <th class="txt_center" style=" width:200px;">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,7 +72,15 @@
                             </p></td>
                             <td><p>${bean.phone!}</p></td>
                             <td class="txt_left"><p>${bean.addr!}</p></td>
-                            <td class="txt_right"><p>删除</p></td>
+                            <td class="txt_center">
+                                <p>
+                                    <#if bean.status=2><font color="#8b0000"><b>默认收货地址</b></font> </#if>
+                                    <#if bean.status=1>
+                                        <a href="${base}/cms/m/o_addr_deft?id=${bean.id}">设为默认地址</a>
+                                    </#if>
+                                    &nbsp;&nbsp;
+                                    <a href="${base}/cms/m/o_addr_del?id=${bean.id}">删除</a></p>
+                            </td>
                         </tr>
                     </#list>
                 </#if>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        $(function() {
+            $("#jvForm").validate();
+        });
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 商城订单 - 修改配送</div>
+    <form class="ropt">
+        <input type="submit" value="返回列表" onclick="this.form.action='v_list.do';" class="return-button"/>
+    </form>
+    <div class="clear"/>
+</div>
+<div class="body-box">
+    <form method="post" action="update.do" id="jvForm">
+        <input type="hidden" name="id" value="${orders.id}"/>
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">物流公司:</td>
+                <td colspan="1" class="pn-fcontent">
+                    <input type="text" name="ext4" size="50" value="${orders.ext4!}"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">物流单号:</td>
+                <td colspan="1" class="pn-fcontent">
+                    <input type="text" name="ext5" size="50"  value="${orders.ext5!}"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" class="pn-fbutton">
+                    <input type="submit" value="提交" class="submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

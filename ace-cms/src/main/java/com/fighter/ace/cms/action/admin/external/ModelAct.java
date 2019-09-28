@@ -5,6 +5,7 @@ import com.fighter.ace.cms.entity.external.Model;
 import com.fighter.ace.cms.service.external.CategoryService;
 import com.fighter.ace.cms.service.external.ModelService;
 import com.fighter.ace.cms.service.main.CmsLogService;
+import com.fighter.ace.cms.util.ConfigUtil;
 import com.fighter.ace.cms.vo.CategoryTreeDTO;
 import com.fighter.ace.framework.common.page.PageBean;
 import com.fighter.ace.framework.common.page.PageParam;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -43,6 +45,8 @@ public class ModelAct {
     private CategoryService categoryService;
     @Autowired
     private CmsLogService cmsLogService;
+    @Resource
+    private ConfigUtil configUtil;
 
     @RequestMapping(value = "/model/v_add.do")
     public String add(HttpServletRequest request, ModelMap model) {
@@ -145,9 +149,24 @@ public class ModelAct {
     public void approveOk(Long id,HttpServletRequest request,HttpServletResponse response,
                              ModelMap model){
         try{
+
+            Model m = modelService.getById(id);
+            String osName = System.getProperty("os.name").toLowerCase();
+            String path = null;
+            if (osName.contains("windows")){
+                path = configUtil.getUploadFilePath() + m.getModelPath().replace("/", "\\");
+            } else {
+                path = configUtil.getUploadFilePath() + m.getModelPath();
+            }
+            int size = 0;
+            File file = new File(path);
+            if (file.exists()){
+                size = (int) (file.length()/1024);
+            }
             Model modelDto = new Model();
             modelDto.setId(id);
             modelDto.setStatus(1);
+            modelDto.setSize(String.valueOf(size));
             modelService.update(modelDto);
             //get model from db
             //modelDto = modelService.getById(id);

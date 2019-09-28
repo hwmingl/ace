@@ -39,7 +39,7 @@
                         <#if pageBean??>
                             <#list pageBean.recordList as bean>
                         <!--设计师列表1start-->
-                        <li><a href="${base}/cms/designer/detail/${bean.id!}">
+                        <li><a href="${base}/cms/model/${bean.id!}/list">
                             <img width="115" height="115" src="${base}${bean.memberPicUrl!('/res/images/avatar.jpg')}">
                         </a>
                             <div class="item-detail">
@@ -48,14 +48,14 @@
                                 </a>
                                 <p style="line-height: 30px;">
                                     ${bean.province!}&nbsp;&nbsp;|&nbsp;&nbsp;
-                                    案例：<a style="color: #ccc; font-size: 12px;" href="${base}/cms/designer/detail/${bean.id!}"target="_blank">62</a></p>
+                                    案例：<a style="color: #ccc; font-size: 12px;" href="$${base}/cms/model/${bean.id!}/list"target="_blank">62</a></p>
                                 <div class="contact">
                                     <i></i><strong>${bean.phone!}</strong>
                                 </div>
                                 <div class="contact">
                                     <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=${bean.qq!}&amp;site=qq&amp;menu=yes" target="_blank"
                                        rel="nofollow"><span class="zixun">在线咨询</span> </a>
-                                    <a href="${base}/cms/designer/detail/${bean.id!}" target="_blank"><span class="zixun">他的作品</span> </a>
+                                    <a href="${base}/cms/model/${bean.id!}/list" target="_blank"><span class="zixun">他的作品</span> </a>
                                 </div>
                             </div>
                         </li>

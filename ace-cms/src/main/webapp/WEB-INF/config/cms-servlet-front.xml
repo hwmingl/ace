@@ -66,6 +66,10 @@
 
     <mvc:interceptors>
         <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.fighter.ace.cms.interceptor.MemberLoginCheckInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
             <mvc:mapping path="/m/**"/>
             <bean class="com.fighter.ace.cms.interceptor.MemberLoginInterceptor">
                 <property name="backUrl" value="/jz3d/login.html"/>

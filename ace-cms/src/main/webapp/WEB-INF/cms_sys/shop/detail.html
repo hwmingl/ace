@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <#include "/cms_sys/head.html"/>
+    <script type="text/javascript">
+        $(function() {
+            $("#jvForm").validate();
+        });
+    </script>
+</head>
+<body>
+<div class="box-positon">
+    <div class="rpos">当前位置: 商城订单 - 订单详情</div>
+    <form class="ropt">
+        <input type="submit" value="返回列表" onclick="this.form.action='v_list.do';" class="return-button"/>
+    </form>
+    <div class="clear"/>
+</div>
+<div class="body-box">
+
+        <input type="hidden" name="id" value="${orders.id}"/>
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td class="pn-flabel pn-flabel-h" colspan="2" style="text-align:left"><font size="4">订单信息</font></td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">订单编号:</td>
+                <td colspan="1" class="pn-fcontent">${orders.orderNo!}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">支付编号:</td>
+                <td colspan="1" class="pn-fcontent">${orders.tradeNo!}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">总费用:</td>
+                <td colspan="1" class="pn-fcontent">${orders.totalFee!}</td>
+            </tr>
+
+        </table>
+        <br/>
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td class="pn-flabel pn-flabel-h" colspan="4" style="text-align:left"><font size="4">商品信息</font></td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">商品图片</td>
+                <td width="10%" class="pn-flabel pn-flabel-h" style="text-align:center">商品名称</td>
+                <td width="10%" class="pn-flabel pn-flabel-h" style="text-align:center">购买数量</td>
+                <td width="10%" class="pn-flabel pn-flabel-h" style="text-align:center">商品单价</td>
+            </tr>
+            <#list mallList as bean>
+            <tr>
+                <td class="pn-fcontent" align="center">
+                    <img src="${base}${bean.picUrl!('/res/images/defaultpic.gif')}" height="80" width="100">
+                </td>
+                <td class="pn-fcontent" style="text-align:left">${bean.name!}</td>
+                <td class="pn-fcontent" style="text-align:center">1</td>
+                <td class="pn-fcontent" style="text-align:center">${bean.price!}</td>
+            </tr>
+            </#list>
+        </table>
+
+
+
+        <br/>
+        <table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+            <tr>
+                <td class="pn-flabel pn-flabel-h" colspan="2" style="text-align:left"><font size="4">物流信息</font> </td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">收件人:</td>
+                <td colspan="1" class="pn-fcontent">${addr.name!}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">联系电话:</td>
+                <td colspan="1" class="pn-fcontent">${addr.phone!}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">收件地址:</td>
+                <td colspan="1" class="pn-fcontent">${addr.addr!}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">物流公司:</td>
+                <td colspan="1" class="pn-fcontent">${orders.ext4!}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="pn-flabel pn-flabel-h">物流单号:</td>
+                <td colspan="1" class="pn-fcontent">${orders.ext5!}</td>
+            </tr>
+        </table>
+</div>
+</body>
+</html>

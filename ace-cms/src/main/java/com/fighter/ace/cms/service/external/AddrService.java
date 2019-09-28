@@ -47,5 +47,10 @@ public interface AddrService {
      */
     int updateAddr(Addr addr);
 
+    /**
+     * 获取默认地址
+     * @return
+     */
+    Addr getByDeft();
 
 }

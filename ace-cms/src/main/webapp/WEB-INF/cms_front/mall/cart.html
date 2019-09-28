@@ -60,6 +60,9 @@
                     <th style="text-align:right;padding: 0 20px;">
                         金额
                     </th>
+                    <th style="text-align:right;padding: 0 20px;">
+                        操作
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,7 +70,7 @@
                 <#list cartList as bean>
                 <tr>
                     <td  class="imagesListPic">
-                        <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" >
+                       <a href="${base}/cms/mall/detail/${bean.id}" target="_blank"> <img src="${base}${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" height="80" width="100"></a>
                     </td>
                     <td style="vertical-align: middle; text-align: left;">
                         ${bean.name!}
@@ -78,7 +81,9 @@
                     <td style="vertical-align: middle; text-align: right;padding: 0 20px;">
                         ${bean.price!}
                     </td>
-
+                    <td style="vertical-align: middle; text-align: right;padding: 0 20px;">
+                        <a href="${base}/cms/mall/delItem?itemId=${bean.id}"><font color="red">删除</font></a>
+                    </td>
                 </tr>
                     </#list>
                 <!--购物车循环列表1end--->

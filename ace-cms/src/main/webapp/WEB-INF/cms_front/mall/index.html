@@ -86,7 +86,7 @@
                                 <#list pageBean.recordList as bean>
                             <div class="shijiGoodsItem  fl">
                                 <a href="${base}/cms/mall/detail/${bean.id!}" target="_blank">
-                                    <img src="${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" /></a>
+                                    <img src="${base}${bean.picUrl!('/jz3d/res/images/defaultpic.gif')}" /></a>
 
                                 <h3><a href="${base}/cms/mall/detail/${bean.id!}"  target="_blank">${bean.name!}</a></h3>
                                 <div class="price">
