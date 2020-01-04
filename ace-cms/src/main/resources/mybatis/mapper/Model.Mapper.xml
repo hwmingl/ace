@@ -64,6 +64,7 @@
         <result column="soft_version" property="softVersion" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
         <result column="mark" property="mark" jdbcType="VARCHAR"/>
+        <result column="ext1" property="ext1" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insert" parameterType="com.fighter.ace.cms.entity.external.Model" keyProperty="id" useGeneratedKeys="true">
@@ -170,7 +171,8 @@
                 m.mark,
                 m.rank,
                 m.model_no,
-                m.status
+                m.status,
+                m.ext1
         FROM
         t_model AS m,t_category AS cate,t_member AS member
         WHERE m.category_id = cate.id AND m.member_id = member.id

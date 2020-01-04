@@ -175,6 +175,7 @@
                 <th>名称</th>
                 <th>所属类目</th>
                 <th>作者</th>
+                <th>来源</th>
                 <th>长宽高</th>
                 <th>文件大小</th>
                 <th>下载次数</th>
@@ -192,6 +193,10 @@
                     <td> <a href="http://www.3dmaking.com.cn${bean.picUrl!}" target="_blank" onmouseover="showImage(this)" onmouseout="hideImage(this)">${bean.name!}</a> </td>
                     <td align="center">${bean.categoryName}</td>
                     <td align="center">${bean.memberName!}</td>
+                    <td align="center">
+                        <#if bean.ext1 == '0'>总部</#if>
+                        <#if bean.ext1 == '1'>晋中</#if>
+                    </td>
                     <td >${bean.length!}*${bean.width!}*${bean.height!}cm</td>
                     <td align="right">${bean.size!}(KB)</td>
                     <td align="right">${bean.downCount!}</td>

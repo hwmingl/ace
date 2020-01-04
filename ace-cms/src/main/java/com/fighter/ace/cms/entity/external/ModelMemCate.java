@@ -34,7 +34,7 @@ public class ModelMemCate extends BaseEntity {
     private String softVersion;
     private Integer status;
     private String mark;
-
+    private String ext1;
 
 
 }
