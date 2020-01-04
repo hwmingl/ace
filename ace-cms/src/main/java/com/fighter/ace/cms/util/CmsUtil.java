@@ -97,8 +97,20 @@ public class CmsUtil {
 
 
     public static void main(String[] args){
-        CmsUtil.getCode();
+
+        int x = 0;
+        for(int j = 0; j<=6; j++){
+            if (j%2 == 0){
+                continue;
+            }
+
+            x += j;
+
+        }
+
+        System.out.println(x);
     }
+
 
 
 
