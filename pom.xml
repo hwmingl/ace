@@ -34,7 +34,7 @@
         <urlrewritefilter.version>4.0.4</urlrewritefilter.version>
         <freemarker.version>2.3.16</freemarker.version>
         <servlet-api.version>2.5</servlet-api.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <java.version>1.7</java.version>
     </properties>
 
