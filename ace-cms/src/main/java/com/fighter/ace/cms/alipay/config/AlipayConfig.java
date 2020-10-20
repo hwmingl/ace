@@ -16,19 +16,19 @@ public class AlipayConfig {
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 	// 合作身份者ID，签约账号，以2088开头由16位纯数字组成的字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm
-	public static String partner = "2088221177615624";
+	public static String partner = "2088131408404340";
 	
 	// 收款支付宝账号，以2088开头由16位纯数字组成的字符串，一般情况下收款账号就是签约账号
 	public static String seller_id = partner;
 
 	// MD5密钥，安全检验码，由数字和字母组成的32位字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm
-    public static String key = "rhkfvqk19zxubrqrzklfeck3mtmbpoxr";
+    public static String key = "i650mye6e7eqn40rc7fih7x11mugsnv8";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String notify_url = "http://www.3dmaking.com.cn/cms/alipay/notify";
+	public static String notify_url = "http://http://www.jinzhong3d.com//cms/alipay/notify";
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String return_url = "http://www.3dmaking.com.cn/cms/alipay/returnUrl";
+	public static String return_url = "http://http://www.jinzhong3d.com/cms/alipay/returnUrl";
 
 	// 签名方式
 	public static String sign_type = "MD5";

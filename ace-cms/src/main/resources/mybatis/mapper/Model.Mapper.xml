@@ -89,7 +89,8 @@
                 model_no,
                 soft_version,
                 mark,
-                status)
+                status,
+                ext1)
         VALUES (
                 now(),
                 #{name},
@@ -111,7 +112,8 @@
                 #{modelNo},
                 #{softVersion},
                 #{mark},
-                0
+                0,
+                '1'
         )
     </insert>
 

@@ -5,6 +5,7 @@ import com.fighter.ace.cms.Constants;
 import com.fighter.ace.cms.entity.external.Category;
 import com.fighter.ace.cms.entity.external.Member;
 import com.fighter.ace.cms.entity.external.Model;
+import com.fighter.ace.cms.manager.external.ModelManager;
 import com.fighter.ace.cms.service.external.CategoryService;
 import com.fighter.ace.cms.service.external.DownloadService;
 import com.fighter.ace.cms.service.external.MemberService;
@@ -55,6 +56,9 @@ public class ModelAct extends BaseAction {
     @Resource
     private DownloadService downloadService;
 
+    @Resource
+    private ModelManager modelManager;
+
     @RequestMapping("/model/downCheck")
     public void downloadCheck(HttpServletRequest request,HttpServletResponse response, ModelMap modelMap){
         //检查是否登录
@@ -77,7 +81,8 @@ public class ModelAct extends BaseAction {
                 ResponseUtils.renderJson(response,JsonUtil.toJson("msg", "already"));
                 return;
             }
-            Model modelForDown =  modelService.getById(Long.valueOf(modelId));
+            Model modelForDown = modelManager.getById(Long.valueOf(modelId));
+            //modelService.getById(Long.valueOf(modelId));
             int payType = 0;
             JSONObject data = new JSONObject();
             //检查积分
