@@ -23,7 +23,7 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <commons-pool2.version>2.4.2</commons-pool2.version>
         <commons-io.version>2.4</commons-io.version>
-        <fastjson.version>1.2.7</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <guava.version>18.0</guava.version>
 
         <spring.version>4.1.6.RELEASE</spring.version>
